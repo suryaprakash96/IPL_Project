@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)),
+                url('https://images.unsplash.com/photo-1540747913346-19e3adca174f?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-attachment: fixed;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: 0.85rem; margin: 0; padding: 15px;
+        }
+
+        /* Main Dashboard Grid */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 440px 1fr;
+            gap: 25px;
+            max-width: 1500px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* Rules Shadow Box */
+        .rules-shadow-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-top: 5px solid #d32f2f;
+        }
+
+        .section-title {
+            color: #1a237e; font-weight: 800; font-size: 1.1rem;
+            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .rules-list { list-style: none; padding: 0; margin: 0; }
+        .rule-item {
+            display: flex; align-items: flex-start; gap: 12px;
+            margin-bottom: 12px; font-size: 0.82rem; line-height: 1.4; color: #444;
+        }
+        .rule-icon {
+            font-size: 1.1rem; color: #d32f2f; flex-shrink: 0; width: 25px; text-align: center;
+        }
+
+        /* Mobile-Friendly Table Container */
+        .table-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-top: 5px solid #1a237e;
+            /* Allows horizontal scrolling on small screens */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .compact-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            text-align: center;
+            /* Ensures table content doesn't wrap awkwardly */
+            min-width: 600px;
+        }
+
+        .compact-table th {
+            background: #1a237e;
+            color: white;
+            border: 1px solid #dee2e6;
+            padding: 10px 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .compact-table td {
+            padding: 8px 4px;
+            border: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+
+        /* Sticky Name Column for Mobile Navigation */
+        .name-cell {
+            text-align: left !important;
+            font-weight: bold;
+            background: #f8f9fa !important;
+            color: #1a237e;
+            padding-left: 12px !important;
+            width: 130px;
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            border-right: 2px solid #dee2e6 !important;
+        }
+
+        /* Point Coloring */
+        .pos { color: #2e7d32; font-weight: bold; background-color: rgba(46, 125, 50, 0.05); }
+        .neg { color: #d32f2f; font-weight: bold; background-color: rgba(211, 47, 47, 0.05); }
+        .neu { color: #888; }
+
+        @media (max-width: 1200px) {
+            .dashboard-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="rules-shadow-box">
+            <div class="section-title">🏆 Contest Rules</div>
+            <ul class="rules-list">
+                <li class="rule-item"><span class="rule-icon">🥇</span><div>Each team qualified for playoffs will be awarded with <b>5 points</b>.</div></li>
+                <li class="rule-item"><span class="rule-icon">🔒</span><div>Playoff predictions are locked and winner will be decided based on playoffs qualified teams.</div></li>
+                <li class="rule-item"><span class="rule-icon">⏱️</span><div>Cutoff time will be considered for each daily predictions and voting post cutoff will not be considered.</div></li>
+                <li class="rule-item"><span class="rule-icon">🕒</span><div>Cutoff time for match prediction is before match starts and for other contests it will be based on the poll and decided by organizer.</div></li>
+                <li class="rule-item"><span class="rule-icon">📊</span><div>Each daily match win prediction <b>2 points</b> and loss will be <b>-1</b>, in play off it will <b>3 points</b> and loss <b>-2</b>.</div></li>
+                <li class="rule-item"><span class="rule-icon">💡</span><div>Each other poll prediction will be <b>+2 points</b> and no loss prediction points.</div></li>
+                <li class="rule-item"><span class="rule-icon">🚫</span><div>Match cancelled scenarios: related polls get cancelled.</div></li>
+                <li class="rule-item"><span class="rule-icon">⚡</span><div>Tie break and super over scenario: new poll will be announced; <b>fastest fingers first</b> will get the chance to contest.</div></li>
+            </ul>
+        </div>
+
+        <div class="table-container">
+            <div class="section-title">📊 Predictions & Leaderboard</div>
+            <table class="compact-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="name-cell" style="background: #1a237e !important; color: white;">Member</th>
+                        <th colspan="4">Playoff Predictions</th>
+                        <th colspan="2">Points Table</th>
+                    </tr>
+                    <tr>
+                        <th>T1</th><th>T2</th><th>T3</th><th>T4</th>
+                        <th>Match Wins</th>
+                        <th>Other Polls</th>
+                    </tr>
+                </thead>
+                <tbody id="data-rows">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const members = [
+            {n: "Anand", t:["MI", "RCB", "PUN", "DEL"], m:-1, o:2},
+            {n: "Surya", t:["KKR", "RR", "SRH", "RCB"], m:2, o:0},
+            {n: "Navneet", t:["MI", "KKR", "GUJ", "RCB"], m:2, o:0},
+            {n: "Puneet", t:["MI", "RCB", "PUN", "DEL"], m:-1, o:0},
+            {n: "Mahendra", t:["RCB", "CSK", "MI", "SRH"], m:2, o:0},
+            {n: "Ranjith", t:["MI", "RCB", "CSK", "KKR"], m:0, o:2},
+            {n: "Yuktheswar", t:["CSK", "PUN", "MI", "DEL"], m:-1, o:0},
+            {n: "Praveen", t:["RCB", "MI", "SRH", "PUN"], m:2, o:2},
+            {n: "Basu", t:["RCB", "MI", "KKR", "PUN"], m:2, o:2},
+            {n: "Bhagavan", t:["CSK", "RCB", "SRH", "PUN"], m:-1, o:0},
+            {n: "Narasimha", t:["MI", "LSG", "PUN", "CSK"], m:-1, o:0}
+        ];
+
+        const tbody = document.getElementById('data-rows');
+        members.forEach(u => {
+            const mc = u.m > 0 ? 'pos' : u.m < 0 ? 'neg' : 'neu';
+            const oc = u.o > 0 ? 'pos' : u.o < 0 ? 'neg' : 'neu';
+            
+            tbody.innerHTML += `
+                <tr>
+                    <td class="name-cell">${u.n}</td>
+                    <td>${u.t[0]}</td><td>${u.t[1]}</td><td>${u.t[2]}</td><td>${u.t[3]}</td>
+                    <td class="${mc}">${u.m}</td>
+                    <td class="${oc}">${u.o}</td>
+                </tr>`;
+        });
+    </script>
+</body>
+</html>
+
