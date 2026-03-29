@@ -18,7 +18,6 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* Updated to a dynamic IPL action background */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=80&w=2000') no-repeat center center fixed;
             background-size: cover;
@@ -40,7 +39,6 @@
             text-align: center;
         }
 
-        /* Horizontal Button Container */
         .nav-container {
             display: flex;
             gap: 20px;
@@ -77,7 +75,7 @@
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
         }
         .modal-card {
-            background-color: white; margin: 3vh auto; width: 95%; max-width: 1000px;
+            background-color: white; margin: 3vh auto; width: 95%; max-width: 1100px;
             border-radius: 15px; position: relative; overflow: hidden;
             border-top: 8px solid var(--accent-red); color: #333;
         }
@@ -91,6 +89,29 @@
         .modal-body { padding: 10px 40px 30px 40px; max-height: 78vh; overflow-y: auto; }
         .close { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; color: #888; z-index: 100; }
 
+        /* Tabs System */
+        .tab-container {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: bold;
+            color: #666;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .tab-btn.active {
+            color: var(--primary-blue);
+            border-bottom: 4px solid var(--primary-blue);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
         /* Tables */
         table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.9); }
         th { background-color: var(--primary-blue); color: white; padding: 12px; font-size: 0.9rem; }
@@ -98,8 +119,10 @@
         .name-col { text-align: left; color: var(--primary-blue); }
         .win { background-color: var(--win-bg) !important; color: var(--win-text); }
         .loss { background-color: var(--loss-bg) !important; color: var(--loss-text); }
+        
+        .name-list { font-weight: normal; text-align: left; font-size: 0.85rem; color: #444; }
+        .win-highlight { background-color: var(--win-bg); color: var(--win-text); }
 
-        /* Rules */
         .rule-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 18px; line-height: 1.4; text-align: left; }
         .rule-icon { font-size: 1.5rem; min-width: 35px; }
     </style>
@@ -113,7 +136,8 @@
     <div class="nav-container">
         <button class="nav-button" onclick="showModal('rulesModal')">📜 Contest Rules</button>
         <button class="nav-button" onclick="showModal('scheduleModal')">📅 Match Schedule</button>
-        <button class="nav-button" onclick="showModal('leaderboardModal')">📊 Leaderboard</button>
+        <button class="nav-button" onclick="showModal('leaderboardModal')">🏆 Leaderboard</button>
+        <button class="nav-button" onclick="showModal('predictionModal')">📊 Prediction Results</button>
     </div>
 
     <div id="rulesModal" class="modal">
@@ -127,7 +151,7 @@
     <div id="leaderboardModal" class="modal">
         <div class="modal-card leaderboard-bg">
             <span class="close" onclick="closeModal('leaderboardModal')">&times;</span>
-            <div class="modal-header"><span>📊</span><h2>Leaderboard</h2></div>
+            <div class="modal-header"><span>🏆</span><h2>Leaderboard</h2></div>
             <div class="modal-body">
                 <table>
                     <thead>
@@ -149,6 +173,99 @@
                     <thead><tr><th>#</th><th>Date</th><th>Day</th><th>Matchup</th><th>Venue</th></tr></thead>
                     <tbody id="scheduleBody"></tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="predictionModal" class="modal">
+        <div class="modal-card">
+            <span class="close" onclick="closeModal('predictionModal')">&times;</span>
+            <div class="modal-header"><span>📊</span><h2>Prediction Results</h2></div>
+            <div class="modal-body">
+                
+                <div class="tab-container">
+                    <button class="tab-btn active" onclick="openTab(event, 'matchWins')">🏆 Match Wins</button>
+                    <button class="tab-btn" onclick="openTab(event, 'powerplay')">🏏 PP Scores</button>
+                    <button class="tab-btn" onclick="openTab(event, 'wickets')">☝️ PP Wickets</button>
+                </div>
+
+                <div id="matchWins" class="tab-content active">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Match</th>
+                                <th>Matchup</th>
+                                <th>Predictions Team 1</th>
+                                <th>Predictions Team 2</th>
+                                <th>Poll Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>RCB vs SRH</td>
+                                <td class="name-list">Surya, Navneet, Basu, Praveen, Mahendar</td>
+                                <td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td>
+                                <td class="win-highlight">Surya, Navneet, Basu, Praveen, Mahendar</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>MI vs KKR</td>
+                                <td class="name-list">Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td>
+                                <td class="name-list">Surya, Basana, Yukteswar</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="powerplay" class="tab-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Match</th>
+                                <th>Poll Type</th>
+                                <th>Predictions</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2">1</td>
+                                <td>SRH PP Score</td>
+                                <td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 70-79 (), 80+ (Puneet)</td>
+                                <td>NA</td>
+                            </tr>
+                            <tr>
+                                <td>RCB PP Score</td>
+                                <td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet), 70+ ()</td>
+                                <td>NA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="wickets" class="tab-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Match</th>
+                                <th>Poll Type</th>
+                                <th>Predictions</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>RCB PP Wickets</td>
+                                <td class="name-list">0 (Surya, Navneet, Mahendar), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td>
+                                <td class="win-highlight">Anand, Praveen, Basu, Ranjit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
@@ -260,21 +377,32 @@
             document.getElementById(id).style.display = "none";
         }
 
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
         window.onload = function() {
-            // Populate Rules
             const rulesDiv = document.getElementById('rulesContent');
             contestData.rules.forEach(r => {
                 rulesDiv.innerHTML += `<div class="rule-item"><span class="rule-icon">${r.icon}</span><span>${r.text}</span></div>`;
             });
 
-            // Populate Leaderboard
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
             contestData.leaderboard.forEach(m => {
                 lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins > 0 ? 'win' : (m.wins < 0 ? 'loss' : '')}">${m.wins}</td><td class="${m.polls > 0 ? 'win' : ''}">${m.polls}</td></tr>`;
             });
 
-            // Populate Schedule
             const schedBody = document.getElementById('scheduleBody');
             contestData.schedule.forEach(s => {
                 const dt = new Date(s.date);
