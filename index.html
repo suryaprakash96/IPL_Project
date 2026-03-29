@@ -3,179 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>IPL 2026 Contest</title>
     <style>
+        :root {
+            --primary-blue: #1a237e;
+            --accent-red: #d32f2f;
+            --win-bg: rgba(232, 245, 233, 0.95);
+            --win-text: #2e7d32;
+            --loss-bg: rgba(255, 235, 238, 0.95);
+            --loss-text: #c62828;
+            --gold: #ffd700;
+        }
+
         body {
-            background: linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)),
-                url('https://images.unsplash.com/photo-1540747913346-19e3adca174f?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover; background-attachment: fixed;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            font-size: 0.85rem; margin: 0; padding: 15px;
-        }
-
-        /* Main Dashboard Grid */
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: 440px 1fr;
-            gap: 25px;
-            max-width: 1500px;
-            margin: 0 auto;
-            align-items: start;
-        }
-
-        /* Rules Shadow Box */
-        .rules-shadow-box {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-top: 5px solid #d32f2f;
-        }
-
-        .section-title {
-            color: #1a237e; font-weight: 800; font-size: 1.1rem;
-            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;
-            display: flex; align-items: center; gap: 10px;
-        }
-
-        .rules-list { list-style: none; padding: 0; margin: 0; }
-        .rule-item {
-            display: flex; align-items: flex-start; gap: 12px;
-            margin-bottom: 12px; font-size: 0.82rem; line-height: 1.4; color: #444;
-        }
-        .rule-icon {
-            font-size: 1.1rem; color: #d32f2f; flex-shrink: 0; width: 25px; text-align: center;
-        }
-
-        /* Mobile-Friendly Table Container */
-        .table-container {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-top: 5px solid #1a237e;
-            /* Allows horizontal scrolling on small screens */
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .compact-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-            text-align: center;
-            /* Ensures table content doesn't wrap awkwardly */
-            min-width: 600px;
-        }
-
-        .compact-table th {
-            background: #1a237e;
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Updated to a dynamic IPL action background */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=80&w=2000') no-repeat center center fixed;
+            background-size: cover;
             color: white;
-            border: 1px solid #dee2e6;
-            padding: 10px 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-            white-space: nowrap;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .compact-table td {
-            padding: 8px 4px;
-            border: 1px solid #f0f0f0;
-            vertical-align: middle;
+        .hero h1 {
+            font-size: 5rem;
+            color: var(--gold);
+            text-shadow: 4px 4px 20px rgba(0,0,0,1);
+            margin: 0 0 40px 0;
+            font-weight: 900;
+            text-align: center;
         }
 
-        /* Sticky Name Column for Mobile Navigation */
-        .name-cell {
-            text-align: left !important;
+        /* Horizontal Button Container */
+        .nav-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-button {
+            background: rgba(26, 35, 126, 0.9);
+            color: white;
+            border: 2px solid var(--gold);
+            padding: 15px 30px;
+            font-size: 1.2rem;
             font-weight: bold;
-            background: #f8f9fa !important;
-            color: #1a237e;
-            padding-left: 12px !important;
-            width: 130px;
-            position: sticky;
-            left: 0;
-            z-index: 2;
-            border-right: 2px solid #dee2e6 !important;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        /* Point Coloring */
-        .pos { color: #2e7d32; font-weight: bold; background-color: rgba(46, 125, 50, 0.05); }
-        .neg { color: #d32f2f; font-weight: bold; background-color: rgba(211, 47, 47, 0.05); }
-        .neu { color: #888; }
-
-        @media (max-width: 1200px) {
-            .dashboard-container { grid-template-columns: 1fr; }
+        .nav-button:hover {
+            background: var(--gold);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
+
+        /* Modals */
+        .modal {
+            display: none; position: fixed; z-index: 1001; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
+        }
+        .modal-card {
+            background-color: white; margin: 3vh auto; width: 95%; max-width: 1000px;
+            border-radius: 15px; position: relative; overflow: hidden;
+            border-top: 8px solid var(--accent-red); color: #333;
+        }
+        .leaderboard-bg {
+            background: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), 
+                        url('https://i.ibb.co/L5Z5vjS/image-e367be.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        .modal-header { padding: 25px 40px 10px 40px; display: flex; align-items: center; gap: 15px; }
+        .modal-header h2 { margin: 0; color: var(--primary-blue); text-transform: uppercase; }
+        .modal-body { padding: 10px 40px 30px 40px; max-height: 78vh; overflow-y: auto; }
+        .close { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; color: #888; z-index: 100; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.9); }
+        th { background-color: var(--primary-blue); color: white; padding: 12px; font-size: 0.9rem; }
+        td { padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: 700; }
+        .name-col { text-align: left; color: var(--primary-blue); }
+        .win { background-color: var(--win-bg) !important; color: var(--win-text); }
+        .loss { background-color: var(--loss-bg) !important; color: var(--loss-text); }
+
+        /* Rules */
+        .rule-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 18px; line-height: 1.4; text-align: left; }
+        .rule-icon { font-size: 1.5rem; min-width: 35px; }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <div class="rules-shadow-box">
-            <div class="section-title">🏆 Contest Rules</div>
-            <ul class="rules-list">
-                <li class="rule-item"><span class="rule-icon">🥇</span><div>Each team qualified for playoffs will be awarded with <b>5 points</b>.</div></li>
-                <li class="rule-item"><span class="rule-icon">🔒</span><div>Playoff predictions are locked and winner will be decided based on playoffs qualified teams.</div></li>
-                <li class="rule-item"><span class="rule-icon">⏱️</span><div>Cutoff time will be considered for each daily predictions and voting post cutoff will not be considered.</div></li>
-                <li class="rule-item"><span class="rule-icon">🕒</span><div>Cutoff time for match prediction is before match starts and for other contests it will be based on the poll and decided by organizer.</div></li>
-                <li class="rule-item"><span class="rule-icon">📊</span><div>Each daily match win prediction <b>2 points</b> and loss will be <b>-1</b>, in play off it will <b>3 points</b> and loss <b>-2</b>.</div></li>
-                <li class="rule-item"><span class="rule-icon">💡</span><div>Each other poll prediction will be <b>+2 points</b> and no loss prediction points.</div></li>
-                <li class="rule-item"><span class="rule-icon">🚫</span><div>Match cancelled scenarios: related polls get cancelled.</div></li>
-                <li class="rule-item"><span class="rule-icon">⚡</span><div>Tie break and super over scenario: new poll will be announced; <b>fastest fingers first</b> will get the chance to contest.</div></li>
-            </ul>
-        </div>
 
-        <div class="table-container">
-            <div class="section-title">📊 Predictions & Leaderboard</div>
-            <table class="compact-table">
-                <thead>
-                    <tr>
-                        <th rowspan="2" class="name-cell" style="background: #1a237e !important; color: white;">Member</th>
-                        <th colspan="4">Playoff Predictions</th>
-                        <th colspan="2">Points Table</th>
-                    </tr>
-                    <tr>
-                        <th>T1</th><th>T2</th><th>T3</th><th>T4</th>
-                        <th>Match Wins</th>
-                        <th>Other Polls</th>
-                    </tr>
-                </thead>
-                <tbody id="data-rows">
-                    </tbody>
-            </table>
+    <div class="hero">
+        <h1>IPL 2026</h1>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-button" onclick="showModal('rulesModal')">📜 Contest Rules</button>
+        <button class="nav-button" onclick="showModal('scheduleModal')">📅 Match Schedule</button>
+        <button class="nav-button" onclick="showModal('leaderboardModal')">📊 Leaderboard</button>
+    </div>
+
+    <div id="rulesModal" class="modal">
+        <div class="modal-card" style="max-width: 650px;">
+            <span class="close" onclick="closeModal('rulesModal')">&times;</span>
+            <div class="modal-header"><span>📜</span><h2>Contest Rules</h2></div>
+            <div class="modal-body" id="rulesContent"></div>
+        </div>
+    </div>
+
+    <div id="leaderboardModal" class="modal">
+        <div class="modal-card leaderboard-bg">
+            <span class="close" onclick="closeModal('leaderboardModal')">&times;</span>
+            <div class="modal-header"><span>📊</span><h2>Leaderboard</h2></div>
+            <div class="modal-body">
+                <table>
+                    <thead>
+                        <tr><th rowspan="2">MEMBER</th><th colspan="4">PLAYOFFS PREDICTIONS</th><th colspan="2">POINTS</th></tr>
+                        <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>MATCH WINS</th><th>OTHER POLLS</th></tr>
+                    </thead>
+                    <tbody id="leaderboardBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="scheduleModal" class="modal">
+        <div class="modal-card">
+            <span class="close" onclick="closeModal('scheduleModal')">&times;</span>
+            <div class="modal-header"><span>📅</span><h2>Match Schedule</h2></div>
+            <div class="modal-body">
+                <table style="font-size: 0.8rem;">
+                    <thead><tr><th>#</th><th>Date</th><th>Day</th><th>Matchup</th><th>Venue</th></tr></thead>
+                    <tbody id="scheduleBody"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script>
-        const members = [
-            {n: "Anand", t:["MI", "RCB", "PUN", "DEL"], m:-1, o:2},
-            {n: "Surya", t:["KKR", "RR", "SRH", "RCB"], m:2, o:0},
-            {n: "Navneet", t:["MI", "KKR", "GUJ", "RCB"], m:2, o:0},
-            {n: "Puneet", t:["MI", "RCB", "PUN", "DEL"], m:-1, o:0},
-            {n: "Mahendra", t:["RCB", "CSK", "MI", "SRH"], m:2, o:0},
-            {n: "Ranjith", t:["MI", "RCB", "CSK", "KKR"], m:0, o:2},
-            {n: "Yuktheswar", t:["CSK", "PUN", "MI", "DEL"], m:-1, o:0},
-            {n: "Praveen", t:["RCB", "MI", "SRH", "PUN"], m:2, o:2},
-            {n: "Basu", t:["RCB", "MI", "KKR", "PUN"], m:2, o:2},
-            {n: "Bhagavan", t:["CSK", "RCB", "SRH", "PUN"], m:-1, o:0},
-            {n: "Narasimha", t:["MI", "LSG", "PUN", "CSK"], m:-1, o:0}
-        ];
+        const contestData = {
+            rules: [
+                { icon: "🏆", text: "Each team qualified for playoffs will be awarded with <b>5 points</b>." },
+                { icon: "🔒", text: "Playoff predictions are locked; winners decided based on qualified teams." },
+                { icon: "⏱️", text: "Cutoff time is strictly enforced for all daily predictions." },
+                { icon: "🕒", text: "Match prediction cutoff: Match Start. Other polls: As decided by organizer." },
+                { icon: "📊", text: "Daily Match: <b>Win +2 / Loss -1</b>. Playoffs: <b>Win +3 / Loss -2</b>." },
+                { icon: "💡", text: "Other Polls: <b>+2 points</b> per correct prediction (No negative points)." },
+                { icon: "🚫", text: "Cancelled matches result in cancelled polls." },
+                { icon: "⚡", text: "Tie/Super Over: New poll announced; <b>Fastest Fingers First</b> applies." }
+            ],
+            leaderboard: [
+                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 2, polls: 2},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 2, polls: 2},
+                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 2, polls: 0},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 2, polls: 0},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 2, polls: 0},
+                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: -1, polls: 2},
+                {name: "Ranjith", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 0, polls: 2},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: -1, polls: 0},
+                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: -1, polls: 0},
+                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: -1, polls: 0},
+                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: -1, polls: 0}
+            ],
+            schedule: [
+                {no: 1, date: "2026-03-28T19:30:00+05:30", match: "RCB vs SRH", venue: "Bengaluru"},
+                {no: 2, date: "2026-03-29T19:30:00+05:30", match: "MI vs KKR", venue: "Mumbai"},
+                {no: 3, date: "2026-03-30T19:30:00+05:30", match: "RR vs CSK", venue: "Guwahati"},
+                {no: 4, date: "2026-03-31T19:30:00+05:30", match: "PBKS vs GT", venue: "New Chandigarh"},
+                {no: 5, date: "2026-04-01T19:30:00+05:30", match: "LSG vs DC", venue: "Lucknow"},
+                {no: 6, date: "2026-04-02T19:30:00+05:30", match: "KKR vs SRH", venue: "Kolkata"},
+                {no: 7, date: "2026-04-03T19:30:00+05:30", match: "CSK vs PBKS", venue: "Chennai"},
+                {no: 8, date: "2026-04-04T15:30:00+05:30", match: "DC vs MI", venue: "Delhi"},
+                {no: 9, date: "2026-04-04T19:30:00+05:30", match: "GT vs RR", venue: "Ahmedabad"},
+                {no: 10, date: "2026-04-05T15:30:00+05:30", match: "SRH vs LSG", venue: "Hyderabad"},
+                {no: 11, date: "2026-04-05T19:30:00+05:30", match: "RCB vs CSK", venue: "Bengaluru"},
+                {no: 12, date: "2026-04-06T19:30:00+05:30", match: "KKR vs PBKS", venue: "Kolkata"},
+                {no: 13, date: "2026-04-07T19:30:00+05:30", match: "RR vs MI", venue: "Guwahati"},
+                {no: 14, date: "2026-04-08T19:30:00+05:30", match: "DC vs GT", venue: "Delhi"},
+                {no: 15, date: "2026-04-09T19:30:00+05:30", match: "KKR vs LSG", venue: "Kolkata"},
+                {no: 16, date: "2026-04-10T19:30:00+05:30", match: "RR vs RCB", venue: "Guwahati"},
+                {no: 17, date: "2026-04-11T15:30:00+05:30", match: "PBKS vs SRH", venue: "New Chandigarh"},
+                {no: 18, date: "2026-04-11T19:30:00+05:30", match: "CSK vs DC", venue: "Chennai"},
+                {no: 19, date: "2026-04-12T15:30:00+05:30", match: "LSG vs GT", venue: "Lucknow"},
+                {no: 20, date: "2026-04-12T19:30:00+05:30", match: "MI vs RCB", venue: "Mumbai"},
+                {no: 21, date: "2026-04-13T19:30:00+05:30", match: "SRH vs RR", venue: "Hyderabad"},
+                {no: 22, date: "2026-04-14T19:30:00+05:30", match: "CSK vs KKR", venue: "Chennai"},
+                {no: 23, date: "2026-04-15T19:30:00+05:30", match: "RCB vs LSG", venue: "Bengaluru"},
+                {no: 24, date: "2026-04-16T19:30:00+05:30", match: "MI vs PBKS", venue: "Mumbai"},
+                {no: 25, date: "2026-04-17T19:30:00+05:30", match: "GT vs KKR", venue: "Ahmedabad"},
+                {no: 26, date: "2026-04-18T15:30:00+05:30", match: "RCB vs DC", venue: "Bengaluru"},
+                {no: 27, date: "2026-04-18T19:30:00+05:30", match: "SRH vs CSK", venue: "Hyderabad"},
+                {no: 28, date: "2026-04-19T15:30:00+05:30", match: "KKR vs RR", venue: "Kolkata"},
+                {no: 29, date: "2026-04-19T19:30:00+05:30", match: "PBKS vs LSG", venue: "New Chandigarh"},
+                {no: 30, date: "2026-04-20T19:30:00+05:30", match: "GT vs MI", venue: "Ahmedabad"},
+                {no: 31, date: "2026-04-21T19:30:00+05:30", match: "SRH vs DC", venue: "Hyderabad"},
+                {no: 32, date: "2026-04-22T19:30:00+05:30", match: "LSG vs RR", venue: "Lucknow"},
+                {no: 33, date: "2026-04-23T19:30:00+05:30", match: "MI vs CSK", venue: "Mumbai"},
+                {no: 34, date: "2026-04-24T19:30:00+05:30", match: "RCB vs GT", venue: "Bengaluru"},
+                {no: 35, date: "2026-04-25T15:30:00+05:30", match: "DC vs PBKS", venue: "Delhi"},
+                {no: 36, date: "2026-04-25T19:30:00+05:30", match: "RR vs SRH", venue: "Jaipur"},
+                {no: 37, date: "2026-04-26T15:30:00+05:30", match: "GT vs CSK", venue: "Ahmedabad"},
+                {no: 38, date: "2026-04-26T19:30:00+05:30", match: "LSG vs KKR", venue: "Lucknow"},
+                {no: 39, date: "2026-04-27T19:30:00+05:30", match: "DC vs RCB", venue: "Delhi"},
+                {no: 40, date: "2026-04-28T19:30:00+05:30", match: "PBKS vs RR", venue: "New Chandigarh"},
+                {no: 41, date: "2026-04-29T19:30:00+05:30", match: "MI vs SRH", venue: "Mumbai"},
+                {no: 42, date: "2026-04-30T19:30:00+05:30", match: "GT vs RCB", venue: "Ahmedabad"},
+                {no: 43, date: "2026-05-01T19:30:00+05:30", match: "RR vs DC", venue: "Jaipur"},
+                {no: 44, date: "2026-05-02T19:30:00+05:30", match: "CSK vs MI", venue: "Chennai"},
+                {no: 45, date: "2026-05-03T15:30:00+05:30", match: "SRH vs KKR", venue: "Hyderabad"},
+                {no: 46, date: "2026-05-03T19:30:00+05:30", match: "GT vs PBKS", venue: "Ahmedabad"},
+                {no: 47, date: "2026-05-04T19:30:00+05:30", match: "MI vs LSG", venue: "Mumbai"},
+                {no: 48, date: "2026-05-05T19:30:00+05:30", match: "DC vs CSK", venue: "Delhi"},
+                {no: 49, date: "2026-05-06T19:30:00+05:30", match: "SRH vs PBKS", venue: "Hyderabad"},
+                {no: 50, date: "2026-05-07T19:30:00+05:30", match: "LSG vs RCB", venue: "Lucknow"},
+                {no: 51, date: "2026-05-08T19:30:00+05:30", match: "DC vs KKR", venue: "Delhi"},
+                {no: 52, date: "2026-05-09T19:30:00+05:30", match: "RR vs GT", venue: "Jaipur"},
+                {no: 53, date: "2026-05-10T15:30:00+05:30", match: "CSK vs LSG", venue: "Chennai"},
+                {no: 54, date: "2026-05-10T19:30:00+05:30", match: "RCB vs MI", venue: "Raipur"},
+                {no: 55, date: "2026-05-11T19:30:00+05:30", match: "PBKS vs DC", venue: "Dharamshala"},
+                {no: 56, date: "2026-05-12T19:30:00+05:30", match: "GT vs SRH", venue: "Ahmedabad"},
+                {no: 57, date: "2026-05-13T19:30:00+05:30", match: "RCB vs KKR", venue: "Raipur"},
+                {no: 58, date: "2026-05-14T19:30:00+05:30", match: "PBKS vs MI", venue: "Dharamshala"},
+                {no: 59, date: "2026-05-15T19:30:00+05:30", match: "LSG vs CSK", venue: "Lucknow"},
+                {no: 60, date: "2026-05-16T19:30:00+05:30", match: "KKR vs GT", venue: "Kolkata"},
+                {no: 61, date: "2026-05-17T15:30:00+05:30", match: "PBKS vs RCB", venue: "Dharamshala"},
+                {no: 62, date: "2026-05-17T19:30:00+05:30", match: "DC vs RR", venue: "Delhi"},
+                {no: 63, date: "2026-05-18T19:30:00+05:30", match: "CSK vs SRH", venue: "Chennai"},
+                {no: 64, date: "2026-05-19T19:30:00+05:30", match: "RR vs LSG", venue: "Jaipur"},
+                {no: 65, date: "2026-05-20T19:30:00+05:30", match: "KKR vs MI", venue: "Kolkata"},
+                {no: 66, date: "2026-05-21T19:30:00+05:30", match: "CSK vs GT", venue: "Chennai"},
+                {no: 67, date: "2026-05-22T19:30:00+05:30", match: "SRH vs RCB", venue: "Hyderabad"},
+                {no: 68, date: "2026-05-23T19:30:00+05:30", match: "LSG vs PBKS", venue: "Lucknow"},
+                {no: 69, date: "2026-05-24T15:30:00+05:30", match: "MI vs RR", venue: "Mumbai"},
+                {no: 70, date: "2026-05-24T19:30:00+05:30", match: "KKR vs DC", venue: "Kolkata"}
+            ]
+        };
 
-        const tbody = document.getElementById('data-rows');
-        members.forEach(u => {
-            const mc = u.m > 0 ? 'pos' : u.m < 0 ? 'neg' : 'neu';
-            const oc = u.o > 0 ? 'pos' : u.o < 0 ? 'neg' : 'neu';
-            
-            tbody.innerHTML += `
-                <tr>
-                    <td class="name-cell">${u.n}</td>
-                    <td>${u.t[0]}</td><td>${u.t[1]}</td><td>${u.t[2]}</td><td>${u.t[3]}</td>
-                    <td class="${mc}">${u.m}</td>
-                    <td class="${oc}">${u.o}</td>
-                </tr>`;
-        });
+        function showModal(id) {
+            document.getElementById(id).style.display = "block";
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+
+        window.onload = function() {
+            // Populate Rules
+            const rulesDiv = document.getElementById('rulesContent');
+            contestData.rules.forEach(r => {
+                rulesDiv.innerHTML += `<div class="rule-item"><span class="rule-icon">${r.icon}</span><span>${r.text}</span></div>`;
+            });
+
+            // Populate Leaderboard
+            const lbBody = document.getElementById('leaderboardBody');
+            contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
+            contestData.leaderboard.forEach(m => {
+                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins > 0 ? 'win' : (m.wins < 0 ? 'loss' : '')}">${m.wins}</td><td class="${m.polls > 0 ? 'win' : ''}">${m.polls}</td></tr>`;
+            });
+
+            // Populate Schedule
+            const schedBody = document.getElementById('scheduleBody');
+            contestData.schedule.forEach(s => {
+                const dt = new Date(s.date);
+                const day = dt.toLocaleDateString('en-US', {weekday: 'short', timeZone: 'Asia/Kolkata'});
+                const dateStr = dt.toLocaleDateString('en-US', {day: '2-digit', month: 'short', timeZone: 'Asia/Kolkata'});
+                schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dateStr}</td><td>${day}</td><td>${s.match}</td><td>${s.venue}</td></tr>`;
+            });
+        }
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') event.target.style.display = "none";
+        }
     </script>
 </body>
-</html>
-
+</html>)
