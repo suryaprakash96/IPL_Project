@@ -22,36 +22,64 @@
                         url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=80&w=2000') no-repeat center center fixed;
             background-size: cover;
             color: white;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             color: var(--gold);
             text-shadow: 4px 4px 20px rgba(0,0,0,1);
-            margin: 0 0 40px 0;
+            margin: 0 0 10px 0;
             font-weight: 900;
             text-align: center;
         }
 
+        .sponsor-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
         .nav-container {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
+            width: 100%;
+            max-width: 1100px;
         }
 
         .nav-button {
             background: rgba(26, 35, 126, 0.9);
             color: white;
             border: 2px solid var(--gold);
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
@@ -60,13 +88,13 @@
             gap: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            white-space: nowrap; /* Ensures text stays in one line */
         }
 
         .nav-button:hover {
             background: var(--gold);
             color: var(--primary-blue);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
 
         /* Modals */
@@ -75,62 +103,71 @@
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
         }
         .modal-card {
-            background-color: white; margin: 3vh auto; width: 95%; max-width: 1100px;
+            background-color: white; margin: 5vh auto; width: 95%; max-width: 1100px;
             border-radius: 15px; position: relative; overflow: hidden;
             border-top: 8px solid var(--accent-red); color: #333;
+            max-height: 85vh; display: flex; flex-direction: column;
         }
-        .leaderboard-bg {
-            background: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), 
-                        url('https://i.ibb.co/L5Z5vjS/image-e367be.jpg') no-repeat center center;
-            background-size: cover;
-        }
-        .modal-header { padding: 25px 40px 10px 40px; display: flex; align-items: center; gap: 15px; }
-        .modal-header h2 { margin: 0; color: var(--primary-blue); text-transform: uppercase; }
-        .modal-body { padding: 10px 40px 30px 40px; max-height: 78vh; overflow-y: auto; }
-        .close { position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer; color: #888; z-index: 100; }
+        
+        .modal-header { padding: 20px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .modal-header h2 { margin: 0; color: var(--primary-blue); text-transform: uppercase; font-size: clamp(1.1rem, 4vw, 1.5rem); }
+        .modal-body { padding: 0 15px 20px 15px; overflow-y: auto; flex-grow: 1; }
+        .close { position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: #888; z-index: 100; }
 
         /* Tabs System */
         .tab-container {
             display: flex;
+            overflow-x: auto;
             border-bottom: 2px solid #eee;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
         }
         .tab-btn {
-            padding: 12px 25px;
+            padding: 12px 15px;
             cursor: pointer;
             border: none;
             background: none;
             font-weight: bold;
-            color: #666;
-            transition: 0.3s;
-            font-size: 1rem;
+            color: #7f8c8d;
+            white-space: nowrap;
+            font-size: 0.9rem;
         }
-        .tab-btn.active {
-            color: var(--primary-blue);
-            border-bottom: 4px solid var(--primary-blue);
-        }
+        .tab-btn.active { color: var(--primary-blue); border-bottom: 4px solid var(--primary-blue); }
+
+        /* Tables & Responsive Wrapper */
+        .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 10px; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; min-width: 700px; }
+        th { background-color: var(--primary-blue); color: white; padding: 12px 10px; font-size: 0.85rem; text-align: center; }
+        td { padding: 14px 10px; border: 1px solid #eee; text-align: center; font-weight: 700; font-size: 0.85rem; color: #2c3e50; line-height: 1.4; }
+        
+        .matchup-col { white-space: nowrap; padding: 12px 25px !important; color: var(--primary-blue); }
+        .name-col { text-align: left; padding-left: 15px !important; color: var(--primary-blue); }
+        .name-list { font-weight: 500; text-align: left; font-size: 0.8rem; line-height: 1.6; padding: 12px !important; }
+
+        .win-cell { background-color: var(--win-bg); color: var(--win-text); }
+        .loss-cell { background-color: var(--loss-bg); color: var(--loss-text); }
+
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Tables */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.9); }
-        th { background-color: var(--primary-blue); color: white; padding: 12px; font-size: 0.9rem; }
-        td { padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: 700; }
-        .name-col { text-align: left; color: var(--primary-blue); }
-        .win { background-color: var(--win-bg) !important; color: var(--win-text); }
-        .loss { background-color: var(--loss-bg) !important; color: var(--loss-text); }
-        
-        .name-list { font-weight: normal; text-align: left; font-size: 0.85rem; color: #444; }
-        .win-highlight { background-color: var(--win-bg); color: var(--win-text); }
-
-        .rule-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 18px; line-height: 1.4; text-align: left; }
-        .rule-icon { font-size: 1.5rem; min-width: 35px; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .nav-container { flex-direction: column; width: 90%; }
+            .nav-button { width: 100%; justify-content: center; }
+            .modal-card { width: 98%; height: 95vh; margin: 2.5vh auto; }
+        }
     </style>
 </head>
 <body>
 
     <div class="hero">
         <h1>IPL 2026</h1>
+    </div>
+
+    <div class="sponsor-box">
+        <div class="sponsor-item">
+            <span>🎁 Prize Money Sponsor for Leaderboard Winner: <b>Anand</b> (₹1000 Amazon Voucher)</span>
+        </div>
     </div>
 
     <div class="nav-container">
@@ -141,25 +178,27 @@
     </div>
 
     <div id="rulesModal" class="modal">
-        <div class="modal-card" style="max-width: 650px;">
+        <div class="modal-card" style="max-width: 700px;">
             <span class="close" onclick="closeModal('rulesModal')">&times;</span>
-            <div class="modal-header"><span>📜</span><h2>Contest Rules</h2></div>
+            <div class="modal-header"><h2>📜 Contest Rules</h2></div>
             <div class="modal-body" id="rulesContent"></div>
         </div>
     </div>
 
     <div id="leaderboardModal" class="modal">
-        <div class="modal-card leaderboard-bg">
+        <div class="modal-card">
             <span class="close" onclick="closeModal('leaderboardModal')">&times;</span>
-            <div class="modal-header"><span>🏆</span><h2>Leaderboard</h2></div>
+            <div class="modal-header"><h2>🏆 Leaderboard</h2></div>
             <div class="modal-body">
-                <table>
-                    <thead>
-                        <tr><th rowspan="2">MEMBER</th><th colspan="4">PLAYOFFS PREDICTIONS</th><th colspan="2">POINTS</th></tr>
-                        <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>MATCH WINS</th><th>OTHER POLLS</th></tr>
-                    </thead>
-                    <tbody id="leaderboardBody"></tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th rowspan="2">MEMBER</th><th colspan="4">PLAYOFFS PREDICTIONS</th><th colspan="2">POINTS</th></tr>
+                            <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>MATCH WINS</th><th>POLLS</th></tr>
+                        </thead>
+                        <tbody id="leaderboardBody"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -167,12 +206,14 @@
     <div id="scheduleModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('scheduleModal')">&times;</span>
-            <div class="modal-header"><span>📅</span><h2>Match Schedule</h2></div>
+            <div class="modal-header"><h2>📅 Match Schedule</h2></div>
             <div class="modal-body">
-                <table style="font-size: 0.8rem;">
-                    <thead><tr><th>#</th><th>Date</th><th>Day</th><th>Matchup</th><th>Venue</th></tr></thead>
-                    <tbody id="scheduleBody"></tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>#</th><th>Date</th><th>Day</th><th>Matchup</th><th>Venue</th></tr></thead>
+                        <tbody id="scheduleBody"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -180,9 +221,8 @@
     <div id="predictionModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('predictionModal')">&times;</span>
-            <div class="modal-header"><span>📊</span><h2>Prediction Results</h2></div>
+            <div class="modal-header"><h2>📊 Prediction Results</h2></div>
             <div class="modal-body">
-                
                 <div class="tab-container">
                     <button class="tab-btn active" onclick="openTab(event, 'matchWins')">🏆 Match Wins</button>
                     <button class="tab-btn" onclick="openTab(event, 'powerplay')">🏏 PP Scores</button>
@@ -190,82 +230,68 @@
                 </div>
 
                 <div id="matchWins" class="tab-content active">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Match</th>
-                                <th>Matchup</th>
-                                <th>Predictions Team 1</th>
-                                <th>Predictions Team 2</th>
-                                <th>Poll Winner</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>RCB vs SRH</td>
-                                <td class="name-list">Surya, Navneet, Basu, Praveen, Mahendar</td>
-                                <td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td>
-                                <td class="win-highlight">Surya, Navneet, Basu, Praveen, Mahendar</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>MI vs KKR</td>
-                                <td class="name-list">Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td>
-                                <td class="name-list">Surya, Basana, Yukteswar</td>
-                                <td>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>#</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="matchup-col">RCB vs SRH</td>
+                                    <td class="name-list">Surya, Navneet, Basu, Praveen, Mahendar</td>
+                                    <td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td>
+                                    <td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendar</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="matchup-col">MI vs KKR</td>
+                                    <td class="name-list">Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td>
+                                    <td class="name-list">Surya, Basana, Yukteswar</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div id="powerplay" class="tab-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Match</th>
-                                <th>Poll Type</th>
-                                <th>Predictions</th>
-                                <th>Winner</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td rowspan="2">1</td>
-                                <td>SRH PP Score</td>
-                                <td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 70-79 (), 80+ (Puneet)</td>
-                                <td>NA</td>
-                            </tr>
-                            <tr>
-                                <td>RCB PP Score</td>
-                                <td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet), 70+ ()</td>
-                                <td>NA</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="matchup-col">SRH PP Score</td>
+                                    <td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 80+ (Puneet)</td>
+                                    <td>NA</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="matchup-col">RCB PP Score</td>
+                                    <td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet)</td>
+                                    <td>NA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div id="wickets" class="tab-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Match</th>
-                                <th>Poll Type</th>
-                                <th>Predictions</th>
-                                <th>Winner</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>RCB PP Wickets</td>
-                                <td class="name-list">0 (Surya, Navneet, Mahendar), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td>
-                                <td class="win-highlight">Anand, Praveen, Basu, Ranjit</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="matchup-col">RCB PP Wickets</td>
+                                    <td class="name-list">0 (Surya, Navneet, Mahendar), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td>
+                                    <td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -273,14 +299,14 @@
     <script>
         const contestData = {
             rules: [
-                { icon: "🏆", text: "Each team qualified for playoffs will be awarded with <b>5 points</b>." },
+                { icon: "🏆", text: "Each team qualified for playoffs will be awarded with <b>+5 points</b>." },
                 { icon: "🔒", text: "Playoff predictions are locked; winners decided based on qualified teams." },
                 { icon: "⏱️", text: "Cutoff time is strictly enforced for all daily predictions." },
                 { icon: "🕒", text: "Match prediction cutoff: Match Start. Other polls: As decided by organizer." },
                 { icon: "📊", text: "Daily Match: <b>Win +2 / Loss -1</b>. Playoffs: <b>Win +3 / Loss -2</b>." },
                 { icon: "💡", text: "Other Polls: <b>+2 points</b> per correct prediction (No negative points)." },
                 { icon: "🚫", text: "Cancelled matches result in cancelled polls." },
-                { icon: "⚡", text: "Tie/Super Over: New poll announced; <b>Fastest Fingers First</b> applies." }
+                { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
                 {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 2, polls: 2},
@@ -369,52 +395,39 @@
             ]
         };
 
-        function showModal(id) {
-            document.getElementById(id).style.display = "block";
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = "none";
-        }
-
+        function showModal(id) { document.getElementById(id).style.display = "block"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        
         function openTab(evt, tabName) {
             let i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); }
             tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
         window.onload = function() {
             const rulesDiv = document.getElementById('rulesContent');
-            contestData.rules.forEach(r => {
-                rulesDiv.innerHTML += `<div class="rule-item"><span class="rule-icon">${r.icon}</span><span>${r.text}</span></div>`;
-            });
+            contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4; text-align:left;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
 
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
             contestData.leaderboard.forEach(m => {
-                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins > 0 ? 'win' : (m.wins < 0 ? 'loss' : '')}">${m.wins}</td><td class="${m.polls > 0 ? 'win' : ''}">${m.polls}</td></tr>`;
+                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins > 0 ? 'win-cell' : (m.wins < 0 ? 'loss-cell' : '')}">${m.wins}</td><td class="${m.polls > 0 ? 'win-cell' : ''}">${m.polls}</td></tr>`;
             });
 
             const schedBody = document.getElementById('scheduleBody');
             contestData.schedule.forEach(s => {
                 const dt = new Date(s.date);
-                const day = dt.toLocaleDateString('en-US', {weekday: 'short', timeZone: 'Asia/Kolkata'});
-                const dateStr = dt.toLocaleDateString('en-US', {day: '2-digit', month: 'short', timeZone: 'Asia/Kolkata'});
-                schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dateStr}</td><td>${day}</td><td>${s.match}</td><td>${s.venue}</td></tr>`;
+                const day = dt.toLocaleDateString('en-IN', {weekday:'short'});
+                const dateStr = dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short'});
+                schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dateStr}</td><td>${day}</td><td class="matchup-col">${s.match}</td><td>${s.venue}</td></tr>`;
             });
         }
 
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') event.target.style.display = "none";
-        }
+        window.onclick = function(event) { if (event.target.className === 'modal') event.target.style.display = "none"; }
     </script>
 </body>
 </html>
