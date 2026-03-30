@@ -225,8 +225,8 @@
             <div class="modal-body">
                 <div class="tab-container">
                     <button class="tab-btn active" onclick="openTab(event, 'matchWins')">🏆 Match Wins</button>
-                    <button class="tab-btn" onclick="openTab(event, 'powerplay')">🏏 PP Scores</button>
-                    <button class="tab-btn" onclick="openTab(event, 'wickets')">☝️ PP Wickets</button>
+                    <button class="tab-btn" onclick="openTab(event, 'Scores')">🏏 Scores</button>
+                    <button class="tab-btn" onclick="openTab(event, 'wickets')">☝️ Wickets</button>
                 </div>
 
                 <div id="matchWins" class="tab-content active">
@@ -239,7 +239,7 @@
                                 <tr>
                                     <td>1</td>
                                     <td class="matchup-col">RCB vs SRH</td>
-                                    <td class="name-list">Surya, Navneet, Basu, Praveen, Mahendar</td>
+                                    <td class="name-list">Surya, Navneet, Basu, Praveen, Mahendra</td>
                                     <td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td>
                                     <td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendar</td>
                                 </tr>
@@ -248,21 +248,21 @@
                                     <td class="matchup-col">MI vs KKR</td>
                                     <td class="name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet, Praveen</td>
                                     <td class="name-list">Surya, Yukteswar</td>
-                                    <td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendar, Puneet</td
+                                    <td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td class="matchup-col">RR vs CSK</td>
                                     <td class="name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td>
                                     <td class="name-list">Rajit, Navneet, Yukteswar, Mahendra, Bhagavan</td>
-                                    <td>-</td>
+                                    <td class="win-cell name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div id="powerplay" class="tab-content">
+                <div id="scores" class="tab-content">
                     <div class="table-wrapper">
                         <table>
                             <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
@@ -297,6 +297,18 @@
                                     <td class="name-list">40-49 (Sumant), 50-59 (Surya, Anand, Basu, Puneet, Yukteswar), 60-69 (Praveen, Bhagavan, Ranjit, Navneet), 70-75 (Mahendra), 76+ ()</td>
                                     <td>NA</td>
                                 </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="matchup-col">CSK Overall Score</td>
+                                    <td class="name-list">Less than 100 (Sumant, Surya, ), 100-110 (Anand, Narasimha), 111-125 (Puneet, Navneet), 126-137 (Basu), 138+ ()</td>
+                                    <td class="win-cell name-list">Basu</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="matchup-col">RR PP Score</td>
+                                    <td class="name-list">40-49 (Sumant), 50-59 (Navneet, Puneet), 60-69 (Basu, Bhagavan, Ranjit), 70+ (Surya, Anand, Praveen)</td>
+                                    <td class="win-cell name-list">Surya, Anand, Praveen</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -310,7 +322,7 @@
                                 <tr>
                                     <td>1</td>
                                     <td class="matchup-col">RCB PP Wickets</td>
-                                    <td class="name-list">0 (Surya, Navneet, Mahendar), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td>
+                                    <td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td>
                                     <td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td>
                                 </tr>
                                 <tr>
@@ -334,8 +346,8 @@
                                 <tr>
                                     <td>3</td>
                                     <td class="matchup-col">RR PP Wickets</td>
-                                    <td class="name-list">0 (), 1 (), 2 (), 3+ ()</td>
-                                    <td>-</td>
+                                    <td class="name-list">0 (Surya, Anand), 1 (Navneet, Praveen, Basu, Ranjit), 2 (Sumant, Puneet), 3+ (Bhagavan)</td>
+                                    <td class="win-cell name-list">Surya, Anand</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -358,17 +370,18 @@
                 { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
-                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 4, polls: 6},
-                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 4, polls: 6},
-                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 4, polls: 0},
-                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 1, polls: 0},
-                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 4, polls: 6},
-                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 1, polls: 4},
-                {name: "Ranjith", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 2, polls: 6},
-                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 1, polls: 4},
-                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: -2, polls: 0},
-                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 1, polls: 2},
-                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: -1, polls: 0}
+                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 6, polls: 8},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 6, polls: 8},
+                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 3, polls: 0},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 3, polls: 4},
+                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PUN", t4: "HYD", wins: 2, polls: 0},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 3, polls: 6},
+                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 3, polls: 8},
+                {name: "Ranjith", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 1, polls: 6},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 3, polls: 4},
+                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: -3, polls: 0},
+                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 0, polls: 2},
+                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: 1, polls: 0}
             ],
             schedule: [
                 {no: 1, date: "2026-03-28T19:30:00+05:30", match: "RCB vs SRH", venue: "Bengaluru"},
