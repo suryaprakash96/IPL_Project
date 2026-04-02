@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL 2026 Contest</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-blue: #1a237e;
@@ -88,7 +89,7 @@
             gap: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            white-space: nowrap; /* Ensures text stays in one line */
+            white-space: nowrap;
         }
 
         .nav-button:hover {
@@ -150,6 +151,9 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
+        /* Chart container */
+        .chart-container { position: relative; height: 450px; width: 100%; margin-top: 10px; }
+
         @media (max-width: 600px) {
             body { padding: 10px; }
             .nav-container { flex-direction: column; width: 90%; }
@@ -175,6 +179,28 @@
         <button class="nav-button" onclick="showModal('scheduleModal')">📅 Match Schedule</button>
         <button class="nav-button" onclick="showModal('leaderboardModal')">🏆 Leaderboard</button>
         <button class="nav-button" onclick="showModal('predictionModal')">📊 Prediction Results</button>
+        <button class="nav-button" onclick="showModal('statsModal')">📈 Statistics</button>
+    </div>
+
+    <div id="statsModal" class="modal">
+        <div class="modal-card">
+            <span class="close" onclick="closeModal('statsModal')">&times;</span>
+            <div class="modal-header"><h2>📈 Points Statistics</h2></div>
+            <div class="modal-body">
+                <div class="tab-container">
+                    <button class="tab-btn active" onclick="openTab(event, 'matchWinsTab')">🏆 Match Wins Graph</button>
+                    <button class="tab-btn" onclick="openTab(event, 'otherPollsTab')">🗳️ Other Polls Graph</button>
+                </div>
+
+                <div id="matchWinsTab" class="tab-content active">
+                    <div class="chart-container"><canvas id="matchWinsChart"></canvas></div>
+                </div>
+
+                <div id="otherPollsTab" class="tab-content">
+                    <div class="chart-container"><canvas id="otherPollsChart"></canvas></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="rulesModal" class="modal">
@@ -248,7 +274,7 @@
                                     <td class="matchup-col">MI vs KKR</td>
                                     <td class="name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet, Praveen</td>
                                     <td class="name-list">Surya, Yukteswar</td>
-                                    <td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td
+                                    <td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -500,7 +526,7 @@
                 {name: "Sumant", t1: "MI", t2: "RCB", t3: "PUN", t4: "SRH", wins: 2, polls: 4},
                 {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 3, polls: 20},
                 {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 22},
-                {name: "Ranjith", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: -2, polls: 12},
+                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: -2, polls: 12},
                 {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 14},
                 {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: 0, polls: 12},
                 {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 4, polls: 10},
@@ -580,7 +606,29 @@
             ]
         };
 
-        function showModal(id) { document.getElementById(id).style.display = "block"; }
+        // All 12 members progression history
+        const statsHistory = {
+            dates: ["Mar 28", "Mar 29", "Mar 30", "Mar 31", "Apr 01", "Apr 02"],
+            members: [
+                { name: "Praveen", winPts: [2, 1, 3, 5, 7, 9], pollPts: [2, 4, 8, 12, 14, 18], color: "#1a237e" },
+                { name: "Basu", winPts: [2, 1, 3, 3, 5, 6], pollPts: [2, 6, 10, 14, 18, 22], color: "#2e7d32" },
+                { name: "Mahendra", winPts: [2, 4, 3, 5, 5, 6], pollPts: [0, 2, 2, 4, 4, 6], color: "#9c27b0" },
+                { name: "Surya", winPts: [0, -1, 1, 0, 0, 0], pollPts: [2, 4, 6, 8, 10, 12], color: "#ff5722" },
+                { name: "Sumant", winPts: [0, 0, 2, 1, 2, 2], pollPts: [0, 2, 2, 2, 4, 4], color: "#795548" },
+                { name: "Navneet", winPts: [2, 0, 2, 1, 3, 3], pollPts: [4, 8, 12, 16, 18, 20], color: "#607d8b" },
+                { name: "Anand", winPts: [0, 2, 4, 4, 6, 9], pollPts: [4, 8, 10, 14, 18, 22], color: "#d32f2f" },
+                { name: "Ranjit", winPts: [0, 2, 1, 0, -1, -2], pollPts: [2, 4, 6, 8, 10, 12], color: "#e91e63" },
+                { name: "Puneet", winPts: [0, 2, 4, 6, 6, 9], pollPts: [2, 4, 6, 8, 10, 14], color: "#ffd700" },
+                { name: "Yuktheswar", winPts: [0, 0, 0, 2, 2, 0], pollPts: [2, 4, 6, 8, 10, 12], color: "#00bcd4" },
+                { name: "Bhagavan", winPts: [0, 2, 2, 4, 4, 4], pollPts: [2, 4, 4, 6, 8, 10], color: "#4caf50" },
+                { name: "Narasimha", winPts: [0, 0, 2, 2, 2, 0], pollPts: [0, 2, 2, 4, 6, 6], color: "#ffc107" }
+            ]
+        };
+
+        function showModal(id) { 
+            document.getElementById(id).style.display = "block"; 
+            if(id === 'statsModal') setTimeout(renderCharts, 100);
+        }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
         
         function openTab(evt, tabName) {
@@ -593,9 +641,43 @@
             evt.currentTarget.classList.add("active");
         }
 
+        let matchChart, pollChart;
+        function renderCharts() {
+            const options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } },
+                scales: { y: { ticks: { precision: 0 } }, x: { grid: { display: false } } }
+            };
+
+            if(matchChart) matchChart.destroy();
+            matchChart = new Chart(document.getElementById('matchWinsChart'), {
+                type: 'line',
+                data: {
+                    labels: statsHistory.dates,
+                    datasets: statsHistory.members.map(m => ({
+                        label: m.name, data: m.winPts, borderColor: m.color, backgroundColor: m.color, tension: 0.3, pointRadius: 3
+                    }))
+                },
+                options: options
+            });
+
+            if(pollChart) pollChart.destroy();
+            pollChart = new Chart(document.getElementById('otherPollsChart'), {
+                type: 'line',
+                data: {
+                    labels: statsHistory.dates,
+                    datasets: statsHistory.members.map(m => ({
+                        label: m.name, data: m.pollPts, borderColor: m.color, backgroundColor: m.color, tension: 0.3, pointRadius: 3
+                    }))
+                },
+                options: options
+            });
+        }
+
         window.onload = function() {
             const rulesDiv = document.getElementById('rulesContent');
-            contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4; text-align:left;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
+            contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
 
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
@@ -612,7 +694,7 @@
             });
         }
 
-        window.onclick = function(event) { if (event.target.className === 'modal') event.target.style.display = "none"; }
+        window.onclick = function(e) { if (e.target.className === 'modal') e.target.style.display = "none"; }
     </script>
 </body>
 </html>
