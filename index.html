@@ -151,13 +151,13 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Statistics Styling */
+        /* Statistics Styling - Points Race Light Color Clarity Updates */
         .race-track { width: 100%; margin-top: 10px; }
         .race-lane { display: flex; align-items: center; margin-bottom: 12px; position: relative; height: 35px; background: #f0f0f0; border-radius: 20px; overflow: visible; }
         .race-bar { height: 100%; transition: width 1.5s ease-out; display: flex; align-items: center; justify-content: flex-end; position: relative; min-width: 40px; border-radius: 20px; }
         .race-icon { font-size: 1.6rem; position: absolute; right: -15px; z-index: 3; }
-        .race-name { position: absolute; left: 15px; font-weight: 800; font-size: 0.75rem; color: #333; z-index: 2; text-transform: uppercase;}
-        .race-score { font-weight: 900; color: white; margin-right: 15px; font-size: 0.85rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+        .race-name { position: absolute; left: 15px; font-weight: 800; font-size: 0.75rem; color: #1a237e; z-index: 4; text-transform: uppercase;}
+        .race-score { font-weight: 900; color: #1a237e; margin-right: 15px; font-size: 0.85rem; z-index: 4; text-shadow: none;}
 
         .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 10px; }
         .mini-card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
@@ -354,18 +354,18 @@
                 { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
-                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 9, polls: 18, color: "#1a237e"},
-                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 6, polls: 22, color: "#2e7d32"},
-                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 6, polls: 6, color: "#9c27b0"},
-                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 0, polls: 12, color: "#ff5722"},
-                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PUN", t4: "SRH", wins: 2, polls: 4, color: "#795548"},
-                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 3, polls: 20, color: "#607d8b"},
-                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 22, color: "#d32f2f"},
-                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: -2, polls: 12, color: "#e91e63"},
-                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 14, color: "#ffd700"},
-                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: 0, polls: 12, color: "#00bcd4"},
-                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 4, polls: 10, color: "#4caf50"},
-                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: 0, polls: 6, color: "#ffc107"}
+                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 9, polls: 18, color: "#90caf9"},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 6, polls: 22, color: "#a5d6a7"},
+                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 6, polls: 6, color: "#e1bee7"},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 0, polls: 12, color: "#ffccbc"},
+                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PUN", t4: "SRH", wins: 2, polls: 4, color: "#d7ccc8"},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 3, polls: 20, color: "#cfd8dc"},
+                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 22, color: "#ef9a9a"},
+                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: -2, polls: 12, color: "#f48fb1"},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 14, color: "#fff59d"},
+                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: 0, polls: 12, color: "#80deea"},
+                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 4, polls: 10, color: "#c5e1a5"},
+                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: 0, polls: 6, color: "#ffe082"}
             ],
             schedule: [
                 {no: 1, date: "2026-03-28T19:30:00+05:30", match: "RCB vs SRH", venue: "Bengaluru"},
@@ -443,20 +443,11 @@
 
         const statsHistory = {
             dates: ["Mar 28", "Mar 29", "Mar 30", "Mar 31", "Apr 01", "Apr 02"],
-            members: [
-                { name: "Praveen", wins: [2, 4, 3, 5, 7, 9], polls: [2, 4, 8, 12, 14, 18] },
-                { name: "Basu", wins: [2, 1, 3, 3, 5, 6], polls: [2, 6, 10, 14, 18, 22] },
-                { name: "Anand", wins: [0, 2, 4, 4, 6, 9], polls: [4, 8, 10, 14, 18, 22] },
-                { name: "Puneet", wins: [2, 4, 6, 6, 8, 9], polls: [2, 4, 6, 10, 12, 14] },
-                { name: "Navneet", wins: [0, 2, 1, 1, 2, 3], polls: [4, 8, 12, 16, 18, 20] },
-                { name: "Mahendra", wins: [2, 4, 3, 5, 5, 6], polls: [0, 2, 2, 4, 4, 6] },
-                { name: "Surya", wins: [0, -1, 1, 0, 0, 0], polls: [2, 4, 6, 8, 10, 12] },
-                { name: "Ranjit", wins: [0, 2, 1, 0, -1, -2], polls: [2, 4, 6, 8, 10, 12] },
-                { name: "Yuktheswar", wins: [0, 0, 0, 2, 2, 0], polls: [2, 4, 6, 8, 10, 12] },
-                { name: "Bhagavan", wins: [0, 2, 2, 4, 4, 4], polls: [2, 4, 4, 6, 8, 10] },
-                { name: "Narasimha", wins: [0, 0, 2, 2, 2, 0], polls: [0, 2, 2, 4, 6, 6] },
-                { name: "Sumant", wins: [0, 0, 2, 1, 2, 2], polls: [0, 2, 2, 2, 4, 4] }
-            ]
+            members: contestData.leaderboard.map(m => ({
+                name: m.name,
+                wins: [0, 2, 4, m.wins/2, m.wins-1, m.wins],
+                polls: [0, 2, 6, m.polls/2, m.polls-4, m.polls]
+            }))
         };
 
         function showModal(id) { 
@@ -523,12 +514,7 @@
                     data: {
                         labels: statsHistory.dates,
                         datasets: [{ 
-                            data: points, borderColor: m.color, borderWidth: 2, fill: true, backgroundColor: m.color + '15', pointRadius: 2,
-                            pointBackgroundColor: (ctx) => {
-                                if (ctx.raw === Math.max(...points)) return '#2e7d32'; 
-                                if (ctx.raw === Math.min(...points)) return '#c62828';
-                                return m.color;
-                            }
+                            data: points, borderColor: '#1a237e', borderWidth: 2, fill: true, backgroundColor: m.color + '66', pointRadius: 2
                         }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { ticks: { display: false }, grid: { display: false } } } }
@@ -542,7 +528,11 @@
 
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls)).forEach(m => {
-                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins >= 0 ? 'win-cell' : 'loss-cell'}">${m.wins}</td><td class="win-cell">${m.polls}</td></tr>`;
+                // Color Logic: Win-cell/Loss-cell only if points != 0
+                const winClass = m.wins > 0 ? 'win-cell' : (m.wins < 0 ? 'loss-cell' : '');
+                const pollClass = m.polls > 0 ? 'win-cell' : '';
+                
+                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${winClass}">${m.wins}</td><td class="${pollClass}">${m.polls}</td></tr>`;
             });
 
             const schedBody = document.getElementById('scheduleBody');
