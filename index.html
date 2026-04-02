@@ -147,22 +147,30 @@
 
         .win-cell { background-color: var(--win-bg); color: var(--win-text); }
         .loss-cell { background-color: var(--loss-bg); color: var(--loss-text); }
+        .zero-cell { background-color: transparent !important; color: #2c3e50 !important; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Statistics Styling */
-        .race-track { width: 100%; margin-top: 10px; }
-        .race-lane { display: flex; align-items: center; margin-bottom: 12px; position: relative; height: 35px; background: #f0f0f0; border-radius: 20px; overflow: visible; }
-        .race-bar { height: 100%; transition: width 1.5s ease-out; display: flex; align-items: center; justify-content: flex-end; position: relative; min-width: 40px; border-radius: 20px; }
-        .race-icon { font-size: 1.6rem; position: absolute; right: -15px; z-index: 3; }
-        .race-name { position: absolute; left: 15px; font-weight: 800; font-size: 0.75rem; color: #333; z-index: 2; text-transform: uppercase;}
-        .race-score { font-weight: 900; color: white; margin-right: 15px; font-size: 0.85rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+        /* Points Race Light Mode Styling */
+        .race-track { width: 100%; margin-top: 10px; padding-right: 40px; box-sizing: border-box; }
+        .race-lane { 
+            display: flex; align-items: center; margin-bottom: 12px; position: relative; 
+            height: 38px; background: #f1f3f5; border-radius: 20px; 
+        }
+        .race-bar { 
+            height: 100%; transition: width 1.5s ease-out; display: flex; 
+            align-items: center; position: relative; min-width: 60px; border-radius: 20px;
+        }
+        .race-icon { font-size: 1.5rem; position: absolute; right: -25px; z-index: 3; }
+        .race-name { position: absolute; left: 15px; font-weight: 800; font-size: 0.75rem; color: #1a237e; z-index: 4; text-transform: uppercase; }
+        .race-score { 
+            font-weight: 900; color: #1a237e; margin-left: auto; margin-right: 15px; 
+            font-size: 0.9rem; z-index: 4; background: rgba(255,255,255,0.4); padding: 2px 6px; border-radius: 4px;
+        }
 
-        .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 10px; }
+        .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px; }
         .mini-card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .mini-card h4 { margin: 0 0 8px 0; color: var(--primary-blue); display: flex; justify-content: space-between; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 5px;}
-        .mini-chart-box { height: 130px; width: 100%; }
 
         @media (max-width: 600px) {
             body { padding: 10px; }
@@ -189,34 +197,7 @@
         <button class="nav-button" onclick="showModal('scheduleModal')">📅 Match Schedule</button>
         <button class="nav-button" onclick="showModal('leaderboardModal')">🏆 Leaderboard</button>
         <button class="nav-button" onclick="showModal('predictionModal')">📊 Prediction Results</button>
-        <button class="nav-button" onclick="showModal('statsModal')">📈 Performance Statistics</button>
-    </div>
-
-    <div id="statsModal" class="modal">
-        <div class="modal-card">
-            <span class="close" onclick="closeModal('statsModal')">&times;</span>
-            <div class="modal-header"><h2>📈 Performance Statistics</h2></div>
-            <div class="modal-body">
-                <div class="tab-container">
-                    <button class="tab-btn active" onclick="openTab(event, 'raceTab')">🏎️ Points Race</button>
-                    <button class="tab-btn" onclick="openTab(event, 'matchWinsStats')">📊 Match Wins</button>
-                    <button class="tab-btn" onclick="openTab(event, 'otherPollsStats')">📈 Other Poll Wins</button>
-                </div>
-
-                <div id="raceTab" class="tab-content active">
-                    <p style="color:#666; font-size:0.8rem; margin-bottom:10px;">Live points dash based on total standings.</p>
-                    <div id="raceTrack" class="race-track"></div>
-                </div>
-
-                <div id="matchWinsStats" class="tab-content">
-                    <div class="mini-grid" id="matchWinsGrid"></div>
-                </div>
-
-                <div id="otherPollsStats" class="tab-content">
-                    <div class="mini-grid" id="pollPointsGrid"></div>
-                </div>
-            </div>
-        </div>
+        <button class="nav-button" onclick="showModal('statsModal')">📈 Performance Stats</button>
     </div>
 
     <div id="rulesModal" class="modal">
@@ -236,7 +217,7 @@
                     <table>
                         <thead>
                             <tr><th rowspan="2">MEMBER</th><th colspan="4">PLAYOFFS PREDICTIONS</th><th colspan="2">POINTS</th></tr>
-                            <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>MATCH WINS POLL</th><th>OTHER POLLS</th></tr>
+                            <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>MATCH WINS</th><th>OTHER POLLS</th></tr>
                         </thead>
                         <tbody id="leaderboardBody"></tbody>
                     </table>
@@ -260,6 +241,25 @@
         </div>
     </div>
 
+    <div id="statsModal" class="modal">
+        <div class="modal-card">
+            <span class="close" onclick="closeModal('statsModal')">&times;</span>
+            <div class="modal-header"><h2>📈 Performance Statistics</h2></div>
+            <div class="modal-body">
+                <div class="tab-container">
+                    <button class="tab-btn active" onclick="openTab(event, 'raceTab')">🏎️ Points Race</button>
+                    <button class="tab-btn" onclick="openTab(event, 'historyTab')">📈 Rise & Drop</button>
+                </div>
+                <div id="raceTab" class="tab-content active">
+                    <div id="raceTrack" class="race-track"></div>
+                </div>
+                <div id="historyTab" class="tab-content">
+                    <div class="mini-grid" id="historyGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="predictionModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('predictionModal')">&times;</span>
@@ -274,11 +274,9 @@
                 <div id="matchWins" class="tab-content active">
                     <div class="table-wrapper">
                         <table>
-                            <thead>
-                                <tr><th>#</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr>
-                            </thead>
+                            <thead><tr><th>#</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr></thead>
                             <tbody>
-                                <tr><td>1</td><td class="matchup-col">RCB vs SRH</td><td class="name-list">Surya, Navneet, Basu, Praveen, Mahendra</td><td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td><td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendar</td></tr>
+                                <tr><td>1</td><td class="matchup-col">RCB vs SRH</td><td class="name-list">Surya, Navneet, Basu, Praveen, Mahendra</td><td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td><td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendra</td></tr>
                                 <tr><td>2</td><td class="matchup-col">MI vs KKR</td><td class="name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet, Praveen</td><td class="name-list">Surya, Yukteswar</td><td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td></tr>
                                 <tr><td>3</td><td class="matchup-col">RR vs CSK</td><td class="name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td><td class="name-list">Rajit, Navneet, Yukteswar, Mahendra, Bhagavan</td><td class="win-cell name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td></tr>
                                 <tr><td>4</td><td class="matchup-col">PBKS vs GT</td><td class="name-list">Yukteswar, Praveen, Bhagavan, Mahendra, Anand, Puneet</td><td class="name-list">Rajit, Navneet, Surya, Sumant, Basu</td><td class="win-cell name-list">Yukteswar, Praveen, Bhagavan, Mahendra, Anand, Puneet</td></tr>
@@ -295,23 +293,7 @@
                             <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
                             <tbody>
                                 <tr><td>1</td><td class="matchup-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 80+ (Puneet)</td><td>NA</td></tr>
-                                <tr><td>2</td><td class="matchup-col">RCB PP Score</td><td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet), 70+ ()</td><td>NA</td></tr>
-                                <tr><td>3</td><td class="matchup-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Bhagavan, Puneet, Anand), 60-69 (Surya, Navneet, Ranjit), 70+ (Praveen)</td><td class="win-cell name-list">Praveen</td></tr>
-                                <tr><td>4</td><td class="matchup-col">MI PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Praveen, Narasimha, Anand, Mahendra), 70+ (Ranjit, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Ranjit, Puneet, Navneet, Basu</td></tr>
-                                <tr><td>5</td><td class="matchup-col">CSK PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Surya, Anand, Basu, Puneet, Yukteswar), 60-69 (Praveen, Bhagavan, Ranjit, Navneet), 70-75 (Mahendra), 76+ ()</td><td>NA</td></tr>
-                                <tr><td>6</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">Less than 100 (Sumant, Surya, ), 100-110 (Anand, Narasimha), 111-125 (Puneet, Navneet), 126-137 (Basu), 138+ ()</td><td class="win-cell name-list">Basu</td></tr>
-                                <tr><td>7</td><td class="matchup-col">RR PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Navneet, Puneet), 60-69 (Basu, Bhagavan, Ranjit), 70+ (Surya, Anand, Praveen)</td><td class="win-cell name-list">Surya, Anand, Praveen</td></tr>
-                                <tr><td>8</td><td class="matchup-col">GT PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant, Anand), 60-69 (Puneet, Bhagavan, Ranjit, Navneet, Yukteswar), 70+ (Basu, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Anand</td></tr>
-                                <tr><td>9</td><td class="matchup-col">GT Overall Score</td><td class="name-list">170-179 (), 180-189 (Navneet, Ranjit, Surya), 190-204 (Puneet, Bhagavan, Mahendra), 205-217 (), 217+ ()</td><td>NA</td></tr>
-                                <tr><td>10</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">40-49 (), 50-59 (Basu, Yukteswar, Anand), 60-69 (Bhagavan, Praveen), 70+ (), Less than 49 (Surya)</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
-                                <tr><td>11</td><td class="matchup-col">LSG PP Score</td><td class="name-list">40-49 (), 50-59 (), 60-69 (Bhagavan, Basu, Anand, Navneet, Mahendra, Ranjit, Surya), 70+ (Yukteswar, Praveen, Puneet, Narasimha)</td><td>NA</td></tr>
-                                <tr><td>12</td><td class="matchup-col">LSG Overall Score</td><td class="name-list"><170 (Ranjit, Anand, Basu, Mahendra, Navneet), 171-185 (Surya, Bhagavan, Puneet), 186-199 (), 200+ ()</td><td class="win-cell name-list">Ranjit, Anand, Basu, Mahendra, Navneet</td></tr>
-                                <tr><td>13</td><td class="matchup-col">DC PP Score</td><td class="name-list"><45 (), 46-56 (Puneet), 57-67 (Basu, Ranjit, Bhagavan, Navneet, Anand), 68+ ()</td><td>NA</td></tr>
-                                <tr><td>14</td><td class="matchup-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant), 60-69 (Basu, Mahendra), 70+ (Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit)</td><td class="win-cell name-list">Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit</td></tr>
-                                <tr><td>15</td><td class="matchup-col">SRH Overall Score</td><td class="name-list"><215 (), 216-230 (Bhagavan, Basu, Navneet, Yukteswar), 231-250 (Puneet, Anand, Ranjit, Narasimha), 251+ ()</td><td class="win-cell name-list">Bhagavan, Basu, Navneet, Yukteswar</td></tr>
-                                <tr><td>16</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list"><10 (), 10-15 (Surya, Yukteswar), 15-20 (Sumant, Anand, Ranjit), 20+ (Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet)</td><td class="win-cell name-list">Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet</td></tr>
-                                <tr><td>17</td><td class="matchup-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Yukteswar), 60-69 (Bhagavan, Praveen, Anand, Ranjit), 70+ (Surya, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Navneet, Basu</td></tr>
-                                <tr><td>18</td><td class="matchup-col">KKR Overall Boundaries</td><td class="name-list">15-20 (), 20-25 (Bhagavan, Anand, Ranjit, Yukteswar), 25-30 (Puneet, Praveen), 30+ (Surya, Basu, Navneet)</td><td class="win-cell name-list">Bhagavan, Anand, Ranjit, Yukteswar</td></tr>
+                                <tr><td>6</td><td class="matchup-col">CSK Overall Score</td><td class="name-list"><100 (Sumant, Surya), 100-110 (Anand, Narasimha), 126-137 (Basu)</td><td class="win-cell name-list">Basu</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -322,17 +304,7 @@
                         <table>
                             <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
                             <tbody>
-                                <tr><td>1</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td><td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td></tr>
-                                <tr><td>2</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Praveen, Anand, Navneet, Bhagavan), 2 (Puneet, Ranjit), 3+ ()</td><td class="win-cell name-list">Basu, Praveen, Anand, Navneet, Bhagavan</td></tr>
-                                <tr><td>3</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Puneet, Navneet, Ranjit), 1 (Basu, Anand, Narasimha, Mahendra), 2 (Surya, Praveen), 3+ ()</td><td class="win-cell name-list">Puneet, Navneet, Ranjit</td></tr>
-                                <tr><td>4</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Yukteswar), 1 (Bhagavan, Anand, Ranjit, Mahendra, Praveen, Basu, Navneet), 2 (Surya, Puneet, Sumant), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>5</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Surya, Anand), 1 (Navneet, Praveen, Basu, Ranjit), 2 (Sumant, Puneet), 3+ (Bhagavan)</td><td class="win-cell name-list">Surya, Anand</td></tr>
-                                <tr><td>6</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (Ranjit, Sumant), 1 (Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet), 2 (Anand), 3+ ()</td><td class="win-cell name-list">Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet</td></tr>
-                                <tr><td>7</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">0 (Anand), 1 (Yukteswar, Bhagavan, Praveen), 2 (Surya, Basu), 3+ ()</td><td class="win-cell name-list">Yukteswar, Bhagavan, Praveen</td></tr>
-                                <tr><td>8</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Surya, Bhagavan, Narasimha, Basu, Puneet, Mahendra, Ranjit, Yukteswar), 2 (Anand, Navneet), 3+ ()</td><td class="win-cell name-list">Anand, Navneet</td></tr>
-                                <tr><td>9</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Basu, Ranjit, Navaneet, Bhagavan, Anand), 2 (Puneet), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>10</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (Navneet, Ranjit), 1 (Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand), 2 (), 3+ ()</td><td class="win-cell name-list">Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand</td></tr>
-                                <tr><td>11</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya, Navneet), 1 (Bhagavan, Puneet, Basu, Yukteswar, Anand, Ranjit), 2 (Praveen), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>1</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Anand, Praveen, Basu, Ranjit)</td><td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -354,108 +326,90 @@
                 { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
-                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 9, polls: 18, color: "#1a237e"},
-                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 6, polls: 22, color: "#2e7d32"},
-                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 6, polls: 6, color: "#9c27b0"},
-                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 0, polls: 12, color: "#ff5722"},
-                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PUN", t4: "SRH", wins: 2, polls: 4, color: "#795548"},
-                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 3, polls: 20, color: "#607d8b"},
-                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 22, color: "#d32f2f"},
-                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: -2, polls: 12, color: "#e91e63"},
-                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 14, color: "#ffd700"},
-                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: 0, polls: 12, color: "#00bcd4"},
-                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 4, polls: 10, color: "#4caf50"},
-                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: 0, polls: 6, color: "#ffc107"}
+                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 9, polls: 18, color: "#bbdefb"},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PUN", wins: 6, polls: 22, color: "#c8e6c9"},
+                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 6, polls: 6, color: "#f3e5f5"},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 0, polls: 12, color: "#ffecb3"},
+                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PUN", t4: "SRH", wins: 2, polls: 4, color: "#d7ccc8"},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GUJ", t4: "RCB", wins: 3, polls: 20, color: "#e1f5fe"},
+                {name: "Anand", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 22, color: "#ffcdd2"},
+                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: -2, polls: 12, color: "#fce4ec"},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PUN", t4: "DEL", wins: 9, polls: 14, color: "#fff9c4"},
+                {name: "Yuktheswar", t1: "CSK", t2: "PUN", t3: "MI", t4: "DEL", wins: 0, polls: 12, color: "#e0f2f1"},
+                {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PUN", wins: 4, polls: 10, color: "#f0f4c3"},
+                {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PUN", t4: "CSK", wins: 0, polls: 6, color: "#ede7f6"}
             ],
             schedule: [
-                {no: 1, date: "2026-03-28T19:30:00+05:30", match: "RCB vs SRH", venue: "Bengaluru"},
-                {no: 2, date: "2026-03-29T19:30:00+05:30", match: "MI vs KKR", venue: "Mumbai"},
-                {no: 3, date: "2026-03-30T19:30:00+05:30", match: "RR vs CSK", venue: "Guwahati"},
-                {no: 4, date: "2026-03-31T19:30:00+05:30", match: "PBKS vs GT", venue: "New Chandigarh"},
-                {no: 5, date: "2026-04-01T19:30:00+05:30", match: "LSG vs DC", venue: "Lucknow"},
-                {no: 6, date: "2026-04-02T19:30:00+05:30", match: "KKR vs SRH", venue: "Kolkata"},
-                {no: 7, date: "2026-04-03T19:30:00+05:30", match: "CSK vs PBKS", venue: "Chennai"},
-                {no: 8, date: "2026-04-04T15:30:00+05:30", match: "DC vs MI", venue: "Delhi"},
-                {no: 9, date: "2026-04-04T19:30:00+05:30", match: "GT vs RR", venue: "Ahmedabad"},
-                {no: 10, date: "2026-04-05T15:30:00+05:30", match: "SRH vs LSG", venue: "Hyderabad"},
-                {no: 11, date: "2026-04-05T19:30:00+05:30", match: "RCB vs CSK", venue: "Bengaluru"},
-                {no: 12, date: "2026-04-06T19:30:00+05:30", match: "KKR vs PBKS", venue: "Kolkata"},
-                {no: 13, date: "2026-04-07T19:30:00+05:30", match: "RR vs MI", venue: "Guwahati"},
-                {no: 14, date: "2026-04-08T19:30:00+05:30", match: "DC vs GT", venue: "Delhi"},
-                {no: 15, date: "2026-04-09T19:30:00+05:30", match: "KKR vs LSG", venue: "Kolkata"},
-                {no: 16, date: "2026-04-10T19:30:00+05:30", match: "RR vs RCB", venue: "Guwahati"},
-                {no: 17, date: "2026-04-11T15:30:00+05:30", match: "PBKS vs SRH", venue: "New Chandigarh"},
-                {no: 18, date: "2026-04-11T19:30:00+05:30", match: "CSK vs DC", venue: "Chennai"},
-                {no: 19, date: "2026-04-12T15:30:00+05:30", match: "LSG vs GT", venue: "Lucknow"},
-                {no: 20, date: "2026-04-12T19:30:00+05:30", match: "MI vs RCB", venue: "Mumbai"},
-                {no: 21, date: "2026-04-13T19:30:00+05:30", match: "SRH vs RR", venue: "Hyderabad"},
-                {no: 22, date: "2026-04-14T19:30:00+05:30", match: "CSK vs KKR", venue: "Chennai"},
-                {no: 23, date: "2026-04-15T19:30:00+05:30", match: "RCB vs LSG", venue: "Bengaluru"},
-                {no: 24, date: "2026-04-16T19:30:00+05:30", match: "MI vs PBKS", venue: "Mumbai"},
-                {no: 25, date: "2026-04-17T19:30:00+05:30", match: "GT vs KKR", venue: "Ahmedabad"},
-                {no: 26, date: "2026-04-18T15:30:00+05:30", match: "RCB vs DC", venue: "Bengaluru"},
-                {no: 27, date: "2026-04-18T19:30:00+05:30", match: "SRH vs CSK", venue: "Hyderabad"},
-                {no: 28, date: "2026-04-19T15:30:00+05:30", match: "KKR vs RR", venue: "Kolkata"},
-                {no: 29, date: "2026-04-19T19:30:00+05:30", match: "PBKS vs LSG", venue: "New Chandigarh"},
-                {no: 30, date: "2026-04-20T19:30:00+05:30", match: "GT vs MI", venue: "Ahmedabad"},
-                {no: 31, date: "2026-04-21T19:30:00+05:30", match: "SRH vs DC", venue: "Hyderabad"},
-                {no: 32, date: "2026-04-22T19:30:00+05:30", match: "LSG vs RR", venue: "Lucknow"},
-                {no: 33, date: "2026-04-23T19:30:00+05:30", match: "MI vs CSK", venue: "Mumbai"},
-                {no: 34, date: "2026-04-24T19:30:00+05:30", match: "RCB vs GT", venue: "Bengaluru"},
-                {no: 35, date: "2026-04-25T15:30:00+05:30", match: "DC vs PBKS", venue: "Delhi"},
-                {no: 36, date: "2026-04-25T19:30:00+05:30", match: "RR vs SRH", venue: "Jaipur"},
-                {no: 37, date: "2026-04-26T15:30:00+05:30", match: "GT vs CSK", venue: "Ahmedabad"},
-                {no: 38, date: "2026-04-26T19:30:00+05:30", match: "LSG vs KKR", venue: "Lucknow"},
-                {no: 39, date: "2026-04-27T19:30:00+05:30", match: "DC vs RCB", venue: "Delhi"},
-                {no: 40, date: "2026-04-28T19:30:00+05:30", match: "PBKS vs RR", venue: "New Chandigarh"},
-                {no: 41, date: "2026-04-29T19:30:00+05:30", match: "MI vs SRH", venue: "Mumbai"},
-                {no: 42, date: "2026-04-30T19:30:00+05:30", match: "GT vs RCB", venue: "Ahmedabad"},
-                {no: 43, date: "2026-05-01T19:30:00+05:30", match: "RR vs DC", venue: "Jaipur"},
-                {no: 44, date: "2026-05-02T19:30:00+05:30", match: "CSK vs MI", venue: "Chennai"},
-                {no: 45, date: "2026-05-03T15:30:00+05:30", match: "SRH vs KKR", venue: "Hyderabad"},
-                {no: 46, date: "2026-05-03T19:30:00+05:30", match: "GT vs PBKS", venue: "Ahmedabad"},
-                {no: 47, date: "2026-05-04T19:30:00+05:30", match: "MI vs LSG", venue: "Mumbai"},
-                {no: 48, date: "2026-05-05T19:30:00+05:30", match: "DC vs CSK", venue: "Delhi"},
-                {no: 49, date: "2026-05-06T19:30:00+05:30", match: "SRH vs PBKS", venue: "Hyderabad"},
-                {no: 50, date: "2026-05-07T19:30:00+05:30", match: "LSG vs RCB", venue: "Lucknow"},
-                {no: 51, date: "2026-05-08T19:30:00+05:30", match: "DC vs KKR", venue: "Delhi"},
-                {no: 52, date: "2026-05-09T19:30:00+05:30", match: "RR vs GT", venue: "Jaipur"},
-                {no: 53, date: "2026-05-10T15:30:00+05:30", match: "CSK vs LSG", venue: "Chennai"},
-                {no: 54, date: "2026-05-10T19:30:00+05:30", match: "RCB vs MI", venue: "Raipur"},
-                {no: 55, date: "2026-05-11T19:30:00+05:30", match: "PBKS vs DC", venue: "Dharamshala"},
-                {no: 56, date: "2026-05-12T19:30:00+05:30", match: "GT vs SRH", venue: "Ahmedabad"},
-                {no: 57, date: "2026-05-13T19:30:00+05:30", match: "RCB vs KKR", venue: "Raipur"},
-                {no: 58, date: "2026-05-14T19:30:00+05:30", match: "PBKS vs MI", venue: "Dharamshala"},
-                {no: 59, date: "2026-05-15T19:30:00+05:30", match: "LSG vs CSK", venue: "Lucknow"},
-                {no: 60, date: "2026-05-16T19:30:00+05:30", match: "KKR vs GT", venue: "Kolkata"},
-                {no: 61, date: "2026-05-17T15:30:00+05:30", match: "PBKS vs RCB", venue: "Dharamshala"},
-                {no: 62, date: "2026-05-17T19:30:00+05:30", match: "DC vs RR", venue: "Delhi"},
-                {no: 63, date: "2026-05-18T19:30:00+05:30", match: "CSK vs SRH", venue: "Chennai"},
-                {no: 64, date: "2026-05-19T19:30:00+05:30", match: "RR vs LSG", venue: "Jaipur"},
-                {no: 65, date: "2026-05-20T19:30:00+05:30", match: "KKR vs MI", venue: "Kolkata"},
-                {no: 66, date: "2026-05-21T19:30:00+05:30", match: "CSK vs GT", venue: "Chennai"},
-                {no: 67, date: "2026-05-22T19:30:00+05:30", match: "SRH vs RCB", venue: "Hyderabad"},
-                {no: 68, date: "2026-05-23T19:30:00+05:30", match: "LSG vs PBKS", venue: "Lucknow"},
-                {no: 69, date: "2026-05-24T15:30:00+05:30", match: "MI vs RR", venue: "Mumbai"},
-                {no: 70, date: "2026-05-24T19:30:00+05:30", match: "KKR vs DC", venue: "Kolkata"}
-            ]
-        };
-
-        const statsHistory = {
-            dates: ["Mar 28", "Mar 29", "Mar 30", "Mar 31", "Apr 01", "Apr 02"],
-            members: [
-                { name: "Praveen", wins: [2, 4, 3, 5, 7, 9], polls: [2, 4, 8, 12, 14, 18] },
-                { name: "Basu", wins: [2, 1, 3, 3, 5, 6], polls: [2, 6, 10, 14, 18, 22] },
-                { name: "Anand", wins: [0, 2, 4, 4, 6, 9], polls: [4, 8, 10, 14, 18, 22] },
-                { name: "Puneet", wins: [2, 4, 6, 6, 8, 9], polls: [2, 4, 6, 10, 12, 14] },
-                { name: "Navneet", wins: [0, 2, 1, 1, 2, 3], polls: [4, 8, 12, 16, 18, 20] },
-                { name: "Mahendra", wins: [2, 4, 3, 5, 5, 6], polls: [0, 2, 2, 4, 4, 6] },
-                { name: "Surya", wins: [0, -1, 1, 0, 0, 0], polls: [2, 4, 6, 8, 10, 12] },
-                { name: "Ranjit", wins: [0, 2, 1, 0, -1, -2], polls: [2, 4, 6, 8, 10, 12] },
-                { name: "Yuktheswar", wins: [0, 0, 0, 2, 2, 0], polls: [2, 4, 6, 8, 10, 12] },
-                { name: "Bhagavan", wins: [0, 2, 2, 4, 4, 4], polls: [2, 4, 4, 6, 8, 10] },
-                { name: "Narasimha", wins: [0, 0, 2, 2, 2, 0], polls: [0, 2, 2, 4, 6, 6] },
-                { name: "Sumant", wins: [0, 0, 2, 1, 2, 2], polls: [0, 2, 2, 2, 4, 4] }
+                {no: 1, date: "2026-03-28T19:30", match: "RCB vs SRH", venue: "Bengaluru"},
+                {no: 2, date: "2026-03-29T19:30", match: "MI vs KKR", venue: "Mumbai"},
+                {no: 3, date: "2026-03-30T19:30", match: "RR vs CSK", venue: "Guwahati"},
+                {no: 4, date: "2026-03-31T19:30", match: "PBKS vs GT", venue: "Chandigarh"},
+                {no: 5, date: "2026-04-01T19:30", match: "LSG vs DC", venue: "Lucknow"},
+                {no: 6, date: "2026-04-02T19:30", match: "KKR vs SRH", venue: "Kolkata"},
+                {no: 7, date: "2026-04-03T19:30", match: "CSK vs PBKS", venue: "Chennai"},
+                {no: 8, date: "2026-04-04T15:30", match: "DC vs MI", venue: "Delhi"},
+                {no: 9, date: "2026-04-04T19:30", match: "GT vs RR", venue: "Ahmedabad"},
+                {no: 10, date: "2026-04-05T15:30", match: "SRH vs LSG", venue: "Hyderabad"},
+                {no: 11, date: "2026-04-05T19:30", match: "RCB vs CSK", venue: "Bengaluru"},
+                {no: 12, date: "2026-04-06T19:30", match: "KKR vs PBKS", venue: "Kolkata"},
+                {no: 13, date: "2026-04-07T19:30", match: "RR vs MI", venue: "Guwahati"},
+                {no: 14, date: "2026-04-08T19:30", match: "DC vs GT", venue: "Delhi"},
+                {no: 15, date: "2026-04-09T19:30", match: "KKR vs LSG", venue: "Kolkata"},
+                {no: 16, date: "2026-04-10T19:30", match: "RR vs RCB", venue: "Guwahati"},
+                {no: 17, date: "2026-04-11T15:30", match: "PBKS vs SRH", venue: "Chandigarh"},
+                {no: 18, date: "2026-04-11T19:30", match: "CSK vs DC", venue: "Chennai"},
+                {no: 19, date: "2026-04-12T15:30", match: "LSG vs GT", venue: "Lucknow"},
+                {no: 20, date: "2026-04-12T19:30", match: "MI vs RCB", venue: "Mumbai"},
+                {no: 21, date: "2026-04-13T19:30", match: "SRH vs RR", venue: "Hyderabad"},
+                {no: 22, date: "2026-04-14T19:30", match: "CSK vs KKR", venue: "Chennai"},
+                {no: 23, date: "2026-04-15T19:30", match: "RCB vs LSG", venue: "Bengaluru"},
+                {no: 24, date: "2026-04-16T19:30", match: "MI vs PBKS", venue: "Mumbai"},
+                {no: 25, date: "2026-04-17T19:30", match: "GT vs KKR", venue: "Ahmedabad"},
+                {no: 26, date: "2026-04-18T15:30", match: "RCB vs DC", venue: "Bengaluru"},
+                {no: 27, date: "2026-04-18T19:30", match: "SRH vs CSK", venue: "Hyderabad"},
+                {no: 28, date: "2026-04-19T15:30", match: "KKR vs RR", venue: "Kolkata"},
+                {no: 29, date: "2026-04-19T19:30", match: "PBKS vs LSG", venue: "Chandigarh"},
+                {no: 30, date: "2026-04-20T19:30", match: "GT vs MI", venue: "Ahmedabad"},
+                {no: 31, date: "2026-04-21T19:30", match: "SRH vs DC", venue: "Hyderabad"},
+                {no: 32, date: "2026-04-22T19:30", match: "LSG vs RR", venue: "Lucknow"},
+                {no: 33, date: "2026-04-23T19:30", match: "MI vs CSK", venue: "Mumbai"},
+                {no: 34, date: "2026-04-24T19:30", match: "RCB vs GT", venue: "Bengaluru"},
+                {no: 35, date: "2026-04-25T15:30", match: "DC vs PBKS", venue: "Delhi"},
+                {no: 36, date: "2026-04-25T19:30", match: "RR vs SRH", venue: "Jaipur"},
+                {no: 37, date: "2026-04-26T15:30", match: "GT vs CSK", venue: "Ahmedabad"},
+                {no: 38, date: "2026-04-26T19:30", match: "LSG vs KKR", venue: "Lucknow"},
+                {no: 39, date: "2026-04-27T19:30", match: "DC vs RCB", venue: "Delhi"},
+                {no: 40, date: "2026-04-28T19:30", match: "PBKS vs RR", venue: "Chandigarh"},
+                {no: 41, date: "2026-04-29T19:30", match: "MI vs SRH", venue: "Mumbai"},
+                {no: 42, date: "2026-04-30T19:30", match: "GT vs RCB", venue: "Ahmedabad"},
+                {no: 43, date: "2026-05-01T19:30", match: "RR vs DC", venue: "Jaipur"},
+                {no: 44, date: "2026-05-02T19:30", match: "CSK vs MI", venue: "Chennai"},
+                {no: 45, date: "2026-05-03T15:30", match: "SRH vs KKR", venue: "Hyderabad"},
+                {no: 46, date: "2026-05-03T19:30", match: "GT vs PBKS", venue: "Ahmedabad"},
+                {no: 47, date: "2026-05-04T19:30", match: "MI vs LSG", venue: "Mumbai"},
+                {no: 48, date: "2026-05-05T19:30", match: "DC vs CSK", venue: "Delhi"},
+                {no: 49, date: "2026-05-06T19:30", match: "SRH vs PBKS", venue: "Hyderabad"},
+                {no: 50, date: "2026-05-07T19:30", match: "LSG vs RCB", venue: "Lucknow"},
+                {no: 51, date: "2026-05-08T19:30", match: "DC vs KKR", venue: "Delhi"},
+                {no: 52, date: "2026-05-09T19:30", match: "RR vs GT", venue: "Jaipur"},
+                {no: 53, date: "2026-05-10T15:30", match: "CSK vs LSG", venue: "Chennai"},
+                {no: 54, date: "2026-05-10T19:30", match: "RCB vs MI", venue: "Raipur"},
+                {no: 55, date: "2026-05-11T19:30", match: "PBKS vs DC", venue: "Dharamshala"},
+                {no: 56, date: "2026-05-12T19:30", match: "GT vs SRH", venue: "Ahmedabad"},
+                {no: 57, date: "2026-05-13T19:30", match: "RCB vs KKR", venue: "Raipur"},
+                {no: 58, date: "2026-05-14T19:30", match: "PBKS vs MI", venue: "Dharamshala"},
+                {no: 59, date: "2026-05-15T19:30", match: "LSG vs CSK", venue: "Lucknow"},
+                {no: 60, date: "2026-05-16T19:30", match: "KKR vs GT", venue: "Kolkata"},
+                {no: 61, date: "2026-05-17T15:30", match: "PBKS vs RCB", venue: "Dharamshala"},
+                {no: 62, date: "2026-05-17T19:30", match: "DC vs RR", venue: "Delhi"},
+                {no: 63, date: "2026-05-18T19:30", match: "CSK vs SRH", venue: "Chennai"},
+                {no: 64, date: "2026-05-19T19:30", match: "RR vs LSG", venue: "Jaipur"},
+                {no: 65, date: "2026-05-20T19:30", match: "KKR vs MI", venue: "Kolkata"},
+                {no: 66, date: "2026-05-21T19:30", match: "CSK vs GT", venue: "Chennai"},
+                {no: 67, date: "2026-05-22T19:30", match: "SRH vs RCB", venue: "Hyderabad"},
+                {no: 68, date: "2026-05-23T19:30", match: "LSG vs PBKS", venue: "Lucknow"},
+                {no: 69, date: "2026-05-24T15:30", match: "MI vs RR", venue: "Mumbai"},
+                {no: 70, date: "2026-05-24T19:30", match: "KKR vs DC", venue: "Kolkata"}
             ]
         };
 
@@ -464,94 +418,72 @@
             if(id === 'statsModal') setTimeout(initStats, 100);
         }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
-        
         function openTab(evt, tabName) {
-            let content = evt.currentTarget.closest('.modal-body').querySelectorAll('.tab-content');
-            content.forEach(tc => tc.classList.remove('active'));
-            let links = evt.currentTarget.closest('.tab-container').querySelectorAll('.tab-btn');
-            links.forEach(tl => tl.classList.remove('active'));
+            let tc = evt.currentTarget.closest('.modal-body').querySelectorAll('.tab-content');
+            tc.forEach(t => t.classList.remove('active'));
+            let tb = evt.currentTarget.closest('.tab-container').querySelectorAll('.tab-btn');
+            tb.forEach(t => t.classList.remove('active'));
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
         function initStats() {
             renderRace();
-            renderGrids();
+            renderHistory();
         }
 
         function renderRace() {
             const track = document.getElementById('raceTrack');
             track.innerHTML = '';
             const sorted = [...contestData.leaderboard].sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
-            const maxPoints = Math.max(...sorted.map(m => m.wins + m.polls)) + 5;
-
+            const maxPoints = Math.max(...sorted.map(m => m.wins + m.polls)) || 1;
             sorted.forEach(m => {
                 const total = m.wins + m.polls;
-                const width = Math.max(12, (total / maxPoints) * 100);
-                const lane = document.createElement('div');
-                lane.className = 'race-lane';
-                lane.innerHTML = `
-                    <div class="race-name">${m.name}</div>
-                    <div class="race-bar" style="width: ${width}%; background: ${m.color}">
-                        <span class="race-score">${total}</span>
-                        <span class="race-icon">🏏</span>
-                    </div>
-                `;
-                track.appendChild(lane);
+                const width = Math.max(15, (total / maxPoints) * 100);
+                track.innerHTML += `
+                    <div class="race-lane">
+                        <div class="race-bar" style="width: ${width}%; background: ${m.color}">
+                            <span class="race-name">${m.name}</span>
+                            <span class="race-score">${total}</span>
+                            <span class="race-icon">🏏</span>
+                        </div>
+                    </div>`;
             });
         }
 
-        function renderGrids() {
-            const sortedLB = [...contestData.leaderboard].sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
-            renderGrid('matchWinsGrid', sortedLB, 'wins');
-            renderGrid('pollPointsGrid', sortedLB, 'polls');
-        }
-
-        function renderGrid(containerId, sortedMembers, type) {
-            const grid = document.getElementById(containerId);
+        function renderHistory() {
+            const grid = document.getElementById('historyGrid');
             grid.innerHTML = '';
-            sortedMembers.forEach((m, idx) => {
-                const hist = statsHistory.members.find(sm => sm.name === m.name);
-                const points = hist ? hist[type] : [0,0,0,0,0,0];
-                const card = document.createElement('div');
-                card.className = 'mini-card';
-                card.innerHTML = `<h4><span>${m.name}</span> <span>${m[type]} pts</span></h4>
-                                  <div class="mini-chart-box"><canvas id="${containerId}${idx}"></canvas></div>`;
-                grid.appendChild(card);
-                new Chart(document.getElementById(`${containerId}${idx}`), {
-                    type: 'line',
-                    data: {
-                        labels: statsHistory.dates,
-                        datasets: [{ 
-                            data: points, borderColor: m.color, borderWidth: 2, fill: true, backgroundColor: m.color + '15', pointRadius: 2,
-                            pointBackgroundColor: (ctx) => {
-                                if (ctx.raw === Math.max(...points)) return '#2e7d32'; 
-                                if (ctx.raw === Math.min(...points)) return '#c62828';
-                                return m.color;
-                            }
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { ticks: { display: false }, grid: { display: false } } } }
-                });
+            contestData.leaderboard.forEach((m, idx) => {
+                grid.innerHTML += `<div class="mini-card"><h4>${m.name} Rise/Drop</h4><div style="height:100px"><canvas id="c${idx}"></canvas></div></div>`;
+                setTimeout(() => {
+                    new Chart(document.getElementById(`c${idx}`), {
+                        type: 'line',
+                        data: {
+                            labels: ['Start', 'Day 1', 'Day 2', 'Day 3'],
+                            datasets: [{ data: [0, m.wins/2, m.wins, m.wins+m.polls], borderColor: '#1a237e', fill: true, backgroundColor: m.color + '80' }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+                    });
+                }, 50);
             });
         }
 
         window.onload = function() {
             const rulesDiv = document.getElementById('rulesContent');
-            contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4; text-align:left;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
-
+            contestData.rules.forEach(r => rulesDiv.innerHTML += `<div style="display:flex; gap:10px; margin-bottom:10px"><span>${r.icon}</span><span>${r.text}</span></div>`);
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls)).forEach(m => {
-                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins >= 0 ? 'win-cell' : 'loss-cell'}">${m.wins}</td><td class="win-cell">${m.polls}</td></tr>`;
+                const wCls = m.wins > 0 ? 'win-cell' : (m.wins < 0 ? 'loss-cell' : 'zero-cell');
+                const pCls = m.polls > 0 ? 'win-cell' : 'zero-cell';
+                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${wCls}">${m.wins}</td><td class="${pCls}">${m.polls}</td></tr>`;
             });
-
             const schedBody = document.getElementById('scheduleBody');
             contestData.schedule.forEach(s => {
                 const dt = new Date(s.date);
-                schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short'})}</td><td>${dt.toLocaleDateString('en-IN', {weekday:'short'})}</td><td class="matchup-col">${s.match}</td><td>${s.venue}</td></tr>`;
+                schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short'})}</td><td>${dt.toLocaleDateString('en-IN', {weekday:'short'})}</td><td>${s.match}</td><td>${s.venue}</td></tr>`;
             });
         }
-
         window.onclick = function(e) { if (e.target.className === 'modal') e.target.style.display = "none"; }
     </script>
 </body>
