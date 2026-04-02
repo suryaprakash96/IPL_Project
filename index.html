@@ -55,17 +55,6 @@
             text-align: center;
         }
 
-        .sponsor-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-            font-weight: 600;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
         .nav-container {
             display: flex;
             gap: 15px;
@@ -92,17 +81,10 @@
             white-space: nowrap;
         }
 
-        .nav-button:hover {
-            background: var(--gold);
-            color: var(--primary-blue);
-            transform: translateY(-3px);
-        }
+        .nav-button:hover { background: var(--gold); color: var(--primary-blue); transform: translateY(-3px); }
 
         /* Modals */
-        .modal {
-            display: none; position: fixed; z-index: 1001; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
-        }
+        .modal { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
         .modal-card {
             background-color: white; margin: 5vh auto; width: 95%; max-width: 1100px;
             border-radius: 15px; position: relative; overflow: hidden;
@@ -111,77 +93,45 @@
         }
         
         .modal-header { padding: 20px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .modal-header h2 { margin: 0; color: var(--primary-blue); text-transform: uppercase; font-size: clamp(1.1rem, 4vw, 1.5rem); }
+        .modal-header h2 { margin: 0; color: var(--primary-blue); text-transform: uppercase; font-size: clamp(1.1rem, 4vw, 1.4rem); }
         .modal-body { padding: 0 15px 20px 15px; overflow-y: auto; flex-grow: 1; }
         .close { position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: #888; z-index: 100; }
 
         /* Tabs System */
-        .tab-container {
-            display: flex;
-            overflow-x: auto;
-            border-bottom: 2px solid #eee;
-            margin-bottom: 15px;
-            scrollbar-width: none;
-        }
-        .tab-btn {
-            padding: 12px 15px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-weight: bold;
-            color: #7f8c8d;
-            white-space: nowrap;
-            font-size: 0.9rem;
-        }
+        .tab-container { display: flex; overflow-x: auto; border-bottom: 2px solid #eee; margin-bottom: 15px; scrollbar-width: none; }
+        .tab-btn { padding: 12px 15px; cursor: pointer; border: none; background: none; font-weight: bold; color: #7f8c8d; white-space: nowrap; font-size: 0.9rem; }
         .tab-btn.active { color: var(--primary-blue); border-bottom: 4px solid var(--primary-blue); }
 
-        /* Tables & Responsive Wrapper */
+        /* Tables */
         .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 10px; border-radius: 8px; }
         table { width: 100%; border-collapse: collapse; background: #fff; min-width: 700px; }
         th { background-color: var(--primary-blue); color: white; padding: 12px 10px; font-size: 0.85rem; text-align: center; }
         td { padding: 14px 10px; border: 1px solid #eee; text-align: center; font-weight: 700; font-size: 0.85rem; color: #2c3e50; line-height: 1.4; }
-        
         .matchup-col { white-space: nowrap; padding: 12px 25px !important; color: var(--primary-blue); }
         .name-col { text-align: left; padding-left: 15px !important; color: var(--primary-blue); }
         .name-list { font-weight: 500; text-align: left; font-size: 0.8rem; line-height: 1.6; padding: 12px !important; }
-
         .win-cell { background-color: var(--win-bg); color: var(--win-text); }
         .loss-cell { background-color: var(--loss-bg); color: var(--loss-text); }
-
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Statistics Styling */
-        .bump-chart-container { height: 500px; width: 100%; margin-top: 10px; }
-        .mini-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
-            padding: 10px;
-        }
-        .mini-card { 
-            background: #fdfdfd; 
-            border: 1px solid #eee; 
-            border-radius: 12px; 
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .mini-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        .mini-chart-box { height: 160px; width: 100%; }
+        /* Stats Tab Specifics */
+        .bump-container { height: 450px; width: 100%; margin-top: 10px; }
+        .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; padding: 10px; }
+        .mini-card { background: #fdfdfd; border: 1px solid #ddd; border-radius: 12px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .mini-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 5px; display: flex; justify-content: space-between; }
+        .mini-chart-box { height: 140px; width: 100%; }
 
         @media (max-width: 600px) {
             body { padding: 10px; }
             .nav-container { flex-direction: column; width: 90%; }
             .nav-button { width: 100%; justify-content: center; }
-            .modal-card { width: 98%; height: 95vh; margin: 2.5vh auto; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1>IPL 2026</h1>
-    </div>
+    <div class="hero"><h1>IPL 2026</h1></div>
 
     <div class="sponsor-box">
         <div class="sponsor-item">
@@ -200,21 +150,24 @@
     <div id="statsModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('statsModal')">&times;</span>
-            <div class="modal-header"><h2>📈 Points Statistics</h2></div>
+            <div class="modal-header"><h2>📈 Member Performance Analysis</h2></div>
             <div class="modal-body">
                 <div class="tab-container">
-                    <button class="tab-btn active" onclick="openTab(event, 'bumpView')">🏎️ Rank Race (Bump)</button>
-                    <button class="tab-btn" onclick="openTab(event, 'gridView')">📦 Member Grids</button>
+                    <button class="tab-btn active" onclick="openTab(event, 'rankRaceTab')">🏎️ Rank Race</button>
+                    <button class="tab-btn" onclick="openTab(event, 'matchGridTab')">🏆 Match Wins Grid</button>
+                    <button class="tab-btn" onclick="openTab(event, 'pollGridTab')">🗳️ Poll Point Grid</button>
                 </div>
 
-                <div id="bumpView" class="tab-content active">
-                    <div class="bump-chart-container">
-                        <canvas id="bumpChart"></canvas>
-                    </div>
+                <div id="rankRaceTab" class="tab-content active">
+                    <div class="bump-container"><canvas id="rankBumpChart"></canvas></div>
                 </div>
 
-                <div id="gridView" class="tab-content">
-                    <div class="mini-grid" id="miniChartsGrid"></div>
+                <div id="matchGridTab" class="tab-content">
+                    <div class="mini-grid" id="matchWinsMiniGrid"></div>
+                </div>
+
+                <div id="pollGridTab" class="tab-content">
+                    <div class="mini-grid" id="pollPointsMiniGrid"></div>
                 </div>
             </div>
         </div>
@@ -271,13 +224,10 @@
                     <button class="tab-btn" onclick="openTab(event, 'scores')">🏏 Scores</button>
                     <button class="tab-btn" onclick="openTab(event, 'wickets')">☝️ Wickets</button>
                 </div>
-
                 <div id="matchWins" class="tab-content active">
                     <div class="table-wrapper">
                         <table>
-                            <thead>
-                                <tr><th>#</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr>
-                            </thead>
+                            <thead><tr><th>#</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr></thead>
                             <tbody>
                                 <tr><td>1</td><td class="matchup-col">RCB vs SRH</td><td class="name-list">Surya, Navneet, Basu, Praveen, Mahendra</td><td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td><td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendar</td></tr>
                                 <tr><td>2</td><td class="matchup-col">MI vs KKR</td><td class="name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet, Praveen</td><td class="name-list">Surya, Yukteswar</td><td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td></tr>
@@ -289,51 +239,40 @@
                         </table>
                     </div>
                 </div>
-
                 <div id="scores" class="tab-content">
                     <div class="table-wrapper">
                         <table>
                             <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
                             <tbody>
-                                <tr><td>1</td><td class="matchup-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 80+ (Puneet)</td><td>NA</td></tr>
-                                <tr><td>2</td><td class="matchup-col">RCB PP Score</td><td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet), 70+ ()</td><td>NA</td></tr>
                                 <tr><td>3</td><td class="matchup-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Bhagavan, Puneet, Anand), 60-69 (Surya, Navneet, Ranjit), 70+ (Praveen)</td><td class="win-cell name-list">Praveen</td></tr>
                                 <tr><td>4</td><td class="matchup-col">MI PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Praveen, Narasimha, Anand, Mahendra), 70+ (Ranjit, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Ranjit, Puneet, Navneet, Basu</td></tr>
-                                <tr><td>5</td><td class="matchup-col">CSK PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Surya, Anand, Basu, Puneet, Yukteswar), 60-69 (Praveen, Bhagavan, Ranjit, Navneet), 70-75 (Mahendra), 76+ ()</td><td>NA</td></tr>
-                                <tr><td>6</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">Less than 100 (Sumant, Surya, ), 100-110 (Anand, Narasimha), 111-125 (Puneet, Navneet), 126-137 (Basu), 138+ ()</td><td class="win-cell name-list">Basu</td></tr>
-                                <tr><td>7</td><td class="matchup-col">RR PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Navneet, Puneet), 60-69 (Basu, Bhagavan, Ranjit), 70+ (Surya, Anand, Praveen)</td><td class="win-cell name-list">Surya, Anand, Praveen</td></tr>
-                                <tr><td>8</td><td class="matchup-col">GT PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant, Anand), 60-69 (Puneet, Bhagavan, Ranjit, Navneet, Yukteswar), 70+ (Basu, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Anand</td></tr>
-                                <tr><td>9</td><td class="matchup-col">GT Overall Score</td><td class="name-list">170-179 (), 180-189 (Navneet, Ranjit, Surya), 190-204 (Puneet, Bhagavan, Mahendra), 205-217 (), 217+ ()</td><td>NA</td></tr>
-                                <tr><td>10</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">40-49 (), 50-59 (Basu, Yukteswar, Anand), 60-69 (Bhagavan, Praveen), 70+ (), Less than 49 (Surya)</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
-                                <tr><td>11</td><td class="matchup-col">LSG PP Score</td><td class="name-list">40-49 (), 50-59 (), 60-69 (Bhagavan, Basu, Anand, Navneet, Mahendra, Ranjit, Surya), 70+ (Yukteswar, Praveen, Puneet, Narasimha)</td><td>NA</td></tr>
-                                <tr><td>12</td><td class="matchup-col">LSG Overall Score</td><td class="name-list"><170 (Ranjit, Anand, Basu, Mahendra, Navneet), 171-185 (Surya, Bhagavan, Puneet), 186-199 (), 200+ ()</td><td class="win-cell name-list">Ranjit, Anand, Basu, Mahendra, Navneet</td></tr>
-                                <tr><td>13</td><td class="matchup-col">DC PP Score</td><td class="name-list"><45 (), 46-56 (Puneet), 57-67 (Basu, Ranjit, Bhagavan, Navneet, Anand), 68+ ()</td><td>NA</td></tr>
-                                <tr><td>14</td><td class="matchup-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant), 60-69 (Basu, Mahendra), 70+ (Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit)</td><td class="win-cell name-list">Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit</td></tr>
-                                <tr><td>15</td><td class="matchup-col">SRH Overall Score</td><td class="name-list"><215 (), 216-230 (Bhagavan, Basu, Navneet, Yukteswar), 231-250 (Puneet, Anand, Ranjit, Narasimha), 251+ ()</td><td class="win-cell name-list">Bhagavan, Basu, Navneet, Yukteswar</td></tr>
-                                <tr><td>16</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list"><10 (), 10-15 (Surya, Yukteswar), 15-20 (Sumant, Anand, Ranjit), 20+ (Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet)</td><td class="win-cell name-list">Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet</td></tr>
-                                <tr><td>17</td><td class="matchup-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Yukteswar), 60-69 (Bhagavan, Praveen, Anand, Ranjit), 70+ (Surya, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Navneet, Basu</td></tr>
-                                <tr><td>18</td><td class="matchup-col">KKR Overall Boundaries</td><td class="name-list">15-20 (), 20-25 (Bhagavan, Anand, Ranjit, Yukteswar), 25-30 (Puneet, Praveen), 30+ (Surya, Basu, Navneet)</td><td class="win-cell name-list">Bhagavan, Anand, Ranjit, Yukteswar</td></tr>
+                                <tr><td>6</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">126-137 (Basu)</td><td class="win-cell name-list">Basu</td></tr>
+                                <tr><td>7</td><td class="matchup-col">RR PP Score</td><td class="name-list">70+ (Surya, Anand, Praveen)</td><td class="win-cell name-list">Surya, Anand, Praveen</td></tr>
+                                <tr><td>8</td><td class="matchup-col">GT PP Score</td><td class="name-list">50-59 (Surya, Sumant, Anand)</td><td class="win-cell name-list">Surya, Sumant, Anand</td></tr>
+                                <tr><td>10</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">50-59 (Basu, Yukteswar, Anand)</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
+                                <tr><td>12</td><td class="matchup-col">LSG Overall Score</td><td class="name-list"><170 (Ranjit, Anand, Basu, Mahendra, Navneet)</td><td class="win-cell name-list">Ranjit, Anand, Basu, Mahendra, Navneet</td></tr>
+                                <tr><td>14</td><td class="matchup-col">SRH PP Score</td><td class="name-list">70+ (Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit)</td><td class="win-cell name-list">Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit</td></tr>
+                                <tr><td>15</td><td class="matchup-col">SRH Overall Score</td><td class="name-list">216-230 (Bhagavan, Basu, Navneet, Yukteswar)</td><td class="win-cell name-list">Bhagavan, Basu, Navneet, Yukteswar</td></tr>
+                                <tr><td>16</td><td class="matchup-col">SRH Boundaries</td><td class="name-list">20+ (Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet)</td><td class="win-cell name-list">Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet</td></tr>
+                                <tr><td>17</td><td class="matchup-col">KKR PP Score</td><td class="name-list">70+ (Surya, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Navneet, Basu</td></tr>
+                                <tr><td>18</td><td class="matchup-col">KKR Boundaries</td><td class="name-list">20-25 (Bhagavan, Anand, Ranjit, Yukteswar)</td><td class="win-cell name-list">Bhagavan, Anand, Ranjit, Yukteswar</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <div id="wickets" class="tab-content">
                     <div class="table-wrapper">
                         <table>
                             <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
                             <tbody>
-                                <tr><td>1</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td><td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td></tr>
-                                <tr><td>2</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Praveen, Anand, Navneet, Bhagavan), 2 (Puneet, Ranjit), 3+ ()</td><td class="win-cell name-list">Basu, Praveen, Anand, Navneet, Bhagavan</td></tr>
-                                <tr><td>3</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Puneet, Navneet, Ranjit), 1 (Basu, Anand, Narasimha, Mahendra), 2 (Surya, Praveen), 3+ ()</td><td class="win-cell name-list">Puneet, Navneet, Ranjit</td></tr>
-                                <tr><td>4</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Yukteswar), 1 (Bhagavan, Anand, Ranjit, Mahendra, Praveen, Basu, Navneet), 2 (Surya, Puneet, Sumant), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>5</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Surya, Anand), 1 (Navneet, Praveen, Basu, Ranjit), 2 (Sumant, Puneet), 3+ (Bhagavan)</td><td class="win-cell name-list">Surya, Anand</td></tr>
-                                <tr><td>6</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (Ranjit, Sumant), 1 (Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet), 2 (Anand), 3+ ()</td><td class="win-cell name-list">Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet</td></tr>
-                                <tr><td>7</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">0 (Anand), 1 (Yukteswar, Bhagavan, Praveen), 2 (Surya, Basu), 3+ ()</td><td class="win-cell name-list">Yukteswar, Bhagavan, Praveen</td></tr>
-                                <tr><td>8</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Surya, Bhagavan, Narasimha, Basu, Puneet, Mahendra, Ranjit, Yukteswar), 2 (Anand, Navneet), 3+ ()</td><td class="win-cell name-list">Anand, Navneet</td></tr>
-                                <tr><td>9</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Basu, Ranjit, Navaneet, Bhagavan, Anand), 2 (Puneet), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>10</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (Navneet, Ranjit), 1 (Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand), 2 (), 3+ ()</td><td class="win-cell name-list">Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand</td></tr>
-                                <tr><td>11</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya, Navneet), 1 (Bhagavan, Puneet, Basu, Yukteswar, Anand, Ranjit), 2 (Praveen), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>1</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">1 (Anand, Praveen, Basu, Ranjit)</td><td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td></tr>
+                                <tr><td>2</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">1 (Basu, Praveen, Anand, Navneet, Bhagavan)</td><td class="win-cell name-list">Basu, Praveen, Anand, Navneet, Bhagavan</td></tr>
+                                <tr><td>3</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Puneet, Navneet, Ranjit)</td><td class="win-cell name-list">Puneet, Navneet, Ranjit</td></tr>
+                                <tr><td>5</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Surya, Anand)</td><td class="win-cell name-list">Surya, Anand</td></tr>
+                                <tr><td>6</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">1 (Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet)</td><td class="win-cell name-list">Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet</td></tr>
+                                <tr><td>7</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">1 (Yukteswar, Bhagavan, Praveen)</td><td class="win-cell name-list">Yukteswar, Bhagavan, Praveen</td></tr>
+                                <tr><td>8</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">2 (Anand, Navneet)</td><td class="win-cell name-list">Anand, Navneet</td></tr>
+                                <tr><td>10</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">1 (Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand)</td><td class="win-cell name-list">Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -345,14 +284,13 @@
     <script>
         const contestData = {
             rules: [
-                { icon: "🏆", text: "Each team qualified for playoffs will be awarded with <b>+5 points</b>." },
-                { icon: "🔒", text: "Playoff predictions are locked; winners decided based on qualified teams." },
-                { icon: "⏱️", text: "Cutoff time is strictly enforced for all daily predictions." },
-                { icon: "🕒", text: "Match prediction cutoff: Match Start. Other polls: As decided by organizer." },
+                { icon: "🏆", text: "Each team qualified for playoffs awarded with <b>+5 points</b>." },
+                { icon: "🔒", text: "Playoff predictions are locked." },
+                { icon: "⏱️", text: "Cutoff time strictly enforced." },
                 { icon: "📊", text: "Daily Match: <b>Win +2 / Loss -1</b>. Playoffs: <b>Win +3 / Loss -2</b>." },
-                { icon: "💡", text: "Other Polls: <b>+2 points</b> per correct prediction (No negative points)." },
+                { icon: "💡", text: "Other Polls: <b>+2 points</b> per correct prediction." },
                 { icon: "🚫", text: "Cancelled matches result in cancelled polls." },
-                { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
+                { icon: "⚡", text: "Tie/Super Over: <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
                 {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PUN", wins: 9, polls: 18},
@@ -445,105 +383,113 @@
         const statsHistory = {
             dates: ["Mar 28", "Mar 29", "Mar 30", "Mar 31", "Apr 01", "Apr 02"],
             members: [
-                { name: "Praveen", history: [2, 6, 12, 18, 24, 27], color: "#1a237e" },
-                { name: "Basu", history: [4, 8, 10, 16, 22, 28], color: "#2e7d32" },
-                { name: "Mahendra", history: [2, 3, 5, 8, 10, 12], color: "#9c27b0" },
-                { name: "Surya", history: [0, 2, 4, 8, 10, 12], color: "#ff5722" },
-                { name: "Sumant", history: [0, 1, 2, 4, 5, 6], color: "#795548" },
-                { name: "Navneet", history: [4, 8, 10, 14, 18, 23], color: "#607d8b" },
-                { name: "Anand", history: [4, 10, 15, 20, 26, 31], color: "#d32f2f" },
-                { name: "Ranjit", history: [2, 4, 6, 8, 10, 10], color: "#e91e63" },
-                { name: "Puneet", history: [2, 6, 10, 12, 18, 23], color: "#ffd700" },
-                { name: "Yuktheswar", history: [2, 4, 6, 8, 10, 12], color: "#00bcd4" },
-                { name: "Bhagavan", history: [2, 4, 6, 8, 12, 14], color: "#4caf50" },
-                { name: "Narasimha", history: [0, 2, 2, 4, 6, 6], color: "#ffc107" }
+                { name: "Praveen", wins: [2, 4, 3, 5, 7, 9], polls: [2, 4, 8, 12, 14, 18], color: "#1a237e" },
+                { name: "Basu", wins: [2, 1, 3, 3, 5, 6], polls: [2, 6, 10, 14, 18, 22], color: "#2e7d32" },
+                { name: "Anand", wins: [0, 2, 4, 4, 6, 9], polls: [4, 8, 10, 14, 18, 22], color: "#d32f2f" },
+                { name: "Puneet", wins: [2, 4, 6, 6, 8, 9], polls: [2, 4, 6, 10, 12, 14], color: "#ffd700" },
+                { name: "Navneet", wins: [0, 2, 1, 1, 2, 3], polls: [4, 8, 12, 16, 18, 20], color: "#607d8b" },
+                { name: "Mahendra", wins: [2, 4, 3, 5, 5, 6], polls: [0, 2, 2, 4, 4, 6], color: "#9c27b0" },
+                { name: "Surya", wins: [0, -1, 1, 0, 0, 0], polls: [2, 4, 6, 8, 10, 12], color: "#ff5722" },
+                { name: "Ranjit", wins: [0, 2, 1, 0, -1, -2], polls: [2, 4, 6, 8, 10, 12], color: "#e91e63" },
+                { name: "Yuktheswar", wins: [0, 0, 0, 2, 2, 0], polls: [2, 4, 6, 8, 10, 12], color: "#00bcd4" },
+                { name: "Bhagavan", wins: [0, 2, 2, 4, 4, 4], polls: [2, 4, 4, 6, 8, 10], color: "#4caf50" },
+                { name: "Narasimha", wins: [0, 0, 2, 2, 2, 0], polls: [0, 2, 2, 4, 6, 6], color: "#673ab7" },
+                { name: "Sumant", wins: [0, 0, 2, 1, 2, 2], polls: [0, 2, 2, 2, 4, 4], color: "#795548" }
             ]
         };
 
         function showModal(id) { 
             document.getElementById(id).style.display = "block"; 
-            if(id === 'statsModal') setTimeout(initStatistics, 100);
+            if(id === 'statsModal') setTimeout(renderStats, 100);
         }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
         
         function openTab(evt, tabName) {
-            let i, tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) tabcontent[i].classList.remove("active");
-            let tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            let content = evt.currentTarget.parentElement.nextElementSibling;
+            while(content && !content.classList.contains('tab-content')) {
+                let tabcontents = evt.currentTarget.closest('.modal-body').querySelectorAll('.tab-content');
+                tabcontents.forEach(tc => tc.classList.remove('active'));
+                break;
+            }
+            let i, tabcontent = evt.currentTarget.closest('.modal-body').querySelectorAll('.tab-content');
+            tabcontent.forEach(tc => tc.classList.remove('active'));
+            let tablinks = evt.currentTarget.closest('.tab-container').querySelectorAll('.tab-btn');
+            tablinks.forEach(tl => tl.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
 
-        function initStatistics() {
-            renderBumpChart();
-            renderMiniGrids();
-        }
+        let mainBumpChart;
+        function renderStats() {
+            // Sort members by current Total Points for Grid priority
+            const sortedMembers = [...statsHistory.members].sort((a,b) => {
+                const totalA = a.wins[a.wins.length-1] + a.polls[a.polls.length-1];
+                const totalB = b.wins[b.wins.length-1] + b.polls[b.polls.length-1];
+                return totalB - totalA;
+            });
 
-        let bumpChartInstance;
-        function renderBumpChart() {
+            // Calculate Ranks
             const ranks = [];
             for (let i = 0; i < statsHistory.dates.length; i++) {
-                const dayScores = statsHistory.members.map(m => ({ name: m.name, score: m.history[i] }));
-                dayScores.sort((a, b) => b.score - a.score);
+                const day = statsHistory.members.map(m => ({ name: m.name, score: m.wins[i] + m.polls[i] }))
+                             .sort((a,b) => b.score - a.score);
                 const dayRank = {};
-                dayScores.forEach((s, idx) => dayRank[s.name] = idx + 1);
+                day.forEach((s, idx) => dayRank[s.name] = idx + 1);
                 ranks.push(dayRank);
             }
 
-            const datasets = statsHistory.members.map(m => ({
-                label: m.name,
-                data: ranks.map(r => r[m.name]),
-                borderColor: m.color,
-                backgroundColor: m.color,
-                tension: 0.4,
-                borderWidth: 3,
-                pointRadius: 5
-            }));
-
-            if(bumpChartInstance) bumpChartInstance.destroy();
-            bumpChartInstance = new Chart(document.getElementById('bumpChart'), {
+            if(mainBumpChart) mainBumpChart.destroy();
+            mainBumpChart = new Chart(document.getElementById('rankBumpChart'), {
                 type: 'line',
-                data: { labels: statsHistory.dates, datasets: datasets },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: { y: { reverse: true, min: 1, max: 12, ticks: { stepSize: 1 } } },
-                    plugins: { legend: { position: 'right' } }
-                }
+                data: {
+                    labels: statsHistory.dates,
+                    datasets: statsHistory.members.map(m => ({
+                        label: m.name, data: ranks.map(r => r[m.name]), borderColor: m.color, tension: 0.4, borderWidth: 3, pointRadius: 4
+                    }))
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { reverse: true, min: 1, max: 12, ticks: { stepSize: 1 } } }, plugins: { legend: { position: 'right', labels: { boxWidth: 10 } } } }
             });
+
+            renderGrid('matchWinsMiniGrid', sortedMembers, 'wins');
+            renderGrid('pollPointsMiniGrid', sortedMembers, 'polls');
         }
 
-        function renderMiniGrids() {
-            const grid = document.getElementById('miniChartsGrid');
+        function renderGrid(containerId, members, key) {
+            const grid = document.getElementById(containerId);
             grid.innerHTML = '';
-            statsHistory.members.forEach((m, idx) => {
+            members.forEach((m, idx) => {
                 const card = document.createElement('div');
                 card.className = 'mini-card';
-                card.innerHTML = `<h4><span>${m.name}</span> <small>${m.history[m.history.length-1]} pts</small></h4><div class="mini-chart-box"><canvas id="miniChart${idx}"></canvas></div>`;
+                card.innerHTML = `<h4><span>${m.name}</span> <span>${m[key][m[key].length-1]} pts</span></h4>
+                                  <div class="mini-chart-box"><canvas id="${containerId}${idx}"></canvas></div>`;
                 grid.appendChild(card);
-                new Chart(document.getElementById(`miniChart${idx}`), {
+                new Chart(document.getElementById(`${containerId}${idx}`), {
                     type: 'line',
                     data: {
                         labels: statsHistory.dates,
-                        datasets: [{ data: m.history, borderColor: m.color, borderWidth: 2, pointRadius: 0, fill: true, backgroundColor: m.color + '15' }]
+                        datasets: [{ 
+                            data: m[key], borderColor: m.color, borderWidth: 2, fill: true, backgroundColor: m.color + '15', pointRadius: 2,
+                            pointBackgroundColor: (ctx) => {
+                                const val = ctx.raw;
+                                if (val === Math.max(...m[key])) return '#2e7d32'; 
+                                if (val === Math.min(...m[key])) return '#c62828';
+                                return m.color;
+                            }
+                        }]
                     },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: { x: { display: false }, y: { display: true, ticks: { display: false } } }
-                    }
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { ticks: { display: false }, grid: { display: false } } } }
                 });
             });
         }
 
         window.onload = function() {
             const rulesDiv = document.getElementById('rulesContent');
-            contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4; text-align:left;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
+            contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
 
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
             contestData.leaderboard.forEach(m => {
-                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins > 0 ? 'win-cell' : (m.wins < 0 ? 'loss-cell' : '')}">${m.wins}</td><td class="${m.polls > 0 ? 'win-cell' : ''}">${m.polls}</td></tr>`;
+                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${m.wins >= 0 ? 'win-cell' : 'loss-cell'}">${m.wins}</td><td class="win-cell">${m.polls}</td></tr>`;
             });
 
             const schedBody = document.getElementById('scheduleBody');
