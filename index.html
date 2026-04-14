@@ -605,7 +605,7 @@
             // Filters schedule for matches that haven't started yet
             const upcoming = contestData.schedule
                 .filter(s => new Date(s.date) > now)
-                .slice(0, 1); 
+                .slice(0, 2); 
 
             if (upcoming.length === 0) {
                 timerBox.innerHTML = "<p>All matches completed!</p>";
