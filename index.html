@@ -598,6 +598,14 @@
                                 <tr><td>72</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">SRH Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Surya), 6-7 (Yukteswar, Navneet, Praveen, Anand, Mahendra), 7+ (Ranjit, Basu, Puneet)</td><td class="win-cell name-list">Ranjit, Basu, Puneet</td></tr>
                                 <tr><td>73</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (Bhagavan, Ranjit), 1 (Sumant, Praveen, Puneet, Yukteswar, Navneet), 2 (Basu, Anand), 2+ (Surya)</td><td class="win-cell name-list">Surya</td></tr>
                                 <tr><td>74</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">CSK Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Bhagavan, Navneet, Puneet, Yukteswar), 6-7 (Sumant, Anand), 7+ (Ranjit, Praveen, Basu, Surya)</td><td class="win-cell name-list">Ranjit, Praveen, Basu, Surya</td></tr>
+                                <tr><td>75</td><td class="date-cell"></td><td class="matchup-col">KKR vs RR</td><td class="poll-type-col">RR PP Wickets</td><td class="name-list">0 (Ranjit), 1 (Anand, Navneet, Basu), 2 (Puneet, Sumant), 2+ (Surya)</td><td>Ranjit</td></tr>
+                                <tr><td>76</td><td class="date-cell"></td><td class="matchup-col">KKR vs RR</td><td class="poll-type-col">RR Innings Wickets</td><td class="name-list">0-3 (), 4-6 (Sumant, Navneet), 7+ (Surya, Puneet, Basu, Ranjit, Anand)</td><td class="win-cell name-list">Surya, Puneet, Basu, Ranjit, Anand</td></tr>
+                                <tr><td>77</td><td class="date-cell"></td><td class="matchup-col">KKR vs RR</td><td class="poll-type-col">KKR PP Wickets</td><td class="name-list">0 (Sumant), 1 (Surya, Navneet, Basu, Ranjit, Yukteswar), 2 (Puneet, Anand), 2+ ()</td><td>NA</td></tr>
+                                <tr><td>78</td><td class="date-cell"></td><td class="matchup-col">KKR vs RR</td><td class="poll-type-col">KKR Innings Wickets</td><td class="name-list">0-3 (Surya, Ranjit, Sumant), 4-5 (Yukteswar, Navneet, Basu), 6-7 (Puneet, Anand)</td><td class="win-cell name-list">Puneet, Anand</td></tr>
+                                <tr><td>79</td><td class="date-cell"></td><td class="matchup-col">PBKS vs LSG</td><td class="poll-type-col">PBKS PP Wickets</td><td class="name-list">0 (), 1 (Yukteswar, Ranjit, Anand, Navneet, Puneet), 2 (Surya, Basu, Sumant), 2+ ()</td><td class="win-cell name-list">Yukteswar, Ranjit, Anand, Navneet, Puneet</td></tr>
+                                <tr><td>80</td><td class="date-cell"></td><td class="matchup-col">PBKS vs LSG</td><td class="poll-type-col">PBKS Innings Wickets</td><td class="name-list">0-3 (), 4-7 (Sumant, Surya, Yukteswar, Anand, Navneet, Puneet), 7+ (Ranjit, Basu)</td><td class="win-cell name-list">Sumant, Surya, Yukteswar, Anand, Navneet, Puneet</td></tr>
+                                <tr><td>81</td><td class="date-cell"></td><td class="matchup-col">PBKS vs LSG</td><td class="poll-type-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Surya, Basu, Sumant, Yukteswar), 2 (Navneet, Anand, Puneet), 2+ ()</td><td class="win-cell name-list">Surya, Basu, Sumant, Yukteswar</td></tr>
+                                <tr><td>82</td><td class="date-cell"></td><td class="matchup-col">PBKS vs LSG</td><td class="poll-type-col">LSG Innings Wickets</td><td class="name-list">0-3 (), 4-5 (), 6-7 (Sumant, Surya), 7+ (Yukteswar, Anand, Basu, Navneet, Puneet)</td><td>NA</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -680,15 +688,15 @@ const getTeamHTML = (teamStr) => {
             ],
             leaderboard: [
                 {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PBKS", wins: 31, polls: 112, color: "#90caf9"},
-                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PBKS", wins: 17, polls: 98, color: "#a5d6a7"},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PBKS", wins: 17, polls: 102, color: "#a5d6a7"},
                 {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 10, polls: 72, color: "#e1bee7"},
-                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 8, polls: 100, color: "#ffccbc"},
-                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PBKS", t4: "SRH", wins: 25, polls: 114, color: "#d7ccc8"},
-                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GT", t4: "RCB", wins: 20, polls: 126, color: "#cfd8dc"},
-                {name: "Anand", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 23, polls: 126, color: "#ef9a9a"},
-                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 0, polls: 112, color: "#f48fb1"},
-                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 13, polls: 126, color: "#fff59d"},
-                {name: "Yuktheswar", t1: "CSK", t2: "PBKS", t3: "MI", t4: "DC", wins: 20, polls: 86, color: "#80deea"},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 8, polls: 106, color: "#ffccbc"},
+                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PBKS", t4: "SRH", wins: 25, polls: 118, color: "#d7ccc8"},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GT", t4: "RCB", wins: 20, polls: 130, color: "#cfd8dc"},
+                {name: "Anand", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 23, polls: 134, color: "#ef9a9a"},
+                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 0, polls: 118, color: "#f48fb1"},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 13, polls: 134, color: "#fff59d"},
+                {name: "Yuktheswar", t1: "CSK", t2: "PBKS", t3: "MI", t4: "DC", wins: 20, polls: 92, color: "#80deea"},
                 {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PBKS", wins: 6, polls: 44, color: "#c5e1a5"},
                 {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PBKS", t4: "CSK", wins: -4, polls: 6, color: "#ffe082"}
             ],
