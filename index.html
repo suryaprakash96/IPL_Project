@@ -937,7 +937,7 @@ function renderAchievements() {
     // Append the Streak Form Guide Section
     html += `
     <div style="grid-column: 1 / -1; margin-top: 25px; border-top: 2px dashed #ddd; padding-top: 20px;">
-        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 15px; text-align: center;">🔥 Last 7 Match Wins (Oldest -> Latest))</h3>
+        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 15px; text-align: center;">🔥 Last 7 Match Wins (Oldest -> Latest)</h3>
         <div style="display: flex; flex-direction: column; gap: 8px;">
             ${lb.map(m => {
                 const userStreak = streaks[m.name] || [];
