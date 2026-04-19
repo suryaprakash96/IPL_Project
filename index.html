@@ -990,7 +990,7 @@ function getDailyTopPerformer() {
 function updateMainPageMVP() {
     const dailyHero = getDailyTopPerformer();
     const now = new Date();
-    const label = (now.getHours() >= 22) ? "🔥 Today's MVP" : "🔥 Yesterday's MVP";
+    const label = (now.getHours() >= 24) ? "🔥 Today's MVP" : "🔥 Yesterday's MVP";
     
     document.getElementById('mvpLabel').innerText = label;
     document.getElementById('mvpName').innerText = dailyHero;
