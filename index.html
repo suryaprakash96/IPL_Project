@@ -15,7 +15,6 @@
             --loss-text: #c62828;
             --gold: #ffd700;
         }
-
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -31,16 +30,22 @@
             padding: 20px;
             box-sizing: border-box;
         }
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            color: var(--gold);
-            text-shadow: 4px 4px 20px rgba(0,0,0,1);
-            margin: 0 0 10px 0;
-            font-weight: 900;
-            text-align: center;
-        }
-
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--gold);
+    text-shadow: 4px 4px 20px rgba(0,0,0,1);
+    margin: 0;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 2px;
+}
         .sponsor-box {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
@@ -54,7 +59,6 @@
             box-sizing: border-box;
             text-align: center;
         }
-
         .sponsor-item {
             display: flex;
             align-items: center;
@@ -65,7 +69,6 @@
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
-
         .nav-container {
             display: flex;
             gap: 15px;
@@ -74,7 +77,6 @@
             width: 100%;
             max-width: 1100px;
         }
-
         .nav-button {
             background: rgba(255, 255, 255, 0.1); /* Transparent white */
             backdrop-filter: blur(10px);          /* Glass blur */
@@ -93,13 +95,11 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             white-space: nowrap;
         }
-
         .nav-button:hover {
             background: var(--gold);
             color: var(--primary-blue);
             transform: translateY(-3px);
         }
-
         /* Modals */
         .modal {
             display: none; position: fixed; z-index: 1001; left: 0; top: 0;
@@ -111,12 +111,10 @@
             border-top: 8px solid var(--accent-red); color: #333;
             max-height: 85vh; display: flex; flex-direction: column;
         }
-        
         .modal-header { padding: 20px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
         .modal-header h2 { margin: 0; color: var(--primary-blue); text-transform: uppercase; font-size: clamp(1.1rem, 4vw, 1.5rem); }
         .modal-body { padding: 0 15px 20px 15px; overflow-y: auto; flex-grow: 1; }
         .close { position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: #888; z-index: 100; }
-
         /* Tabs System */
         .tab-container {
             display: flex;
@@ -138,20 +136,31 @@
         .tab-btn.active { color: var(--primary-blue); border-bottom: 4px solid var(--primary-blue); }
         /* Tables & Responsive Wrapper */
         .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 10px; border-radius: 8px; }
-        table { width: 100%; border-collapse: collapse; background: #fff; min-width: 700px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; min-width: 850px; }
         th { background-color: var(--primary-blue); color: white; padding: 12px 10px; font-size: 0.85rem; text-align: center; }
-        td { padding: 14px 10px; border: 1px solid #eee; text-align: center; font-weight: 700; font-size: 0.85rem; color: #2c3e50; line-height: 1.4; }
-        
-        .matchup-col { white-space: nowrap; padding: 12px 25px !important; color: var(--primary-blue); }
+        td { padding: 14px 10px; border: 1px solid #eee; text-align: center; font-weight: 700; font-size: 0.85rem; color: #2c3e50; line-height: 1.4; }        
+/* Specific spacing for the VS text in schedules and results */
+.matchup-col {
+    display: flex;
+    padding: 12px 18px !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between logo containers and VS */
+}
+#matchWinsBody td, #scoresBody td, #wicketsBody td {
+    vertical-align: middle;
+}
+        .poll-type-col {
+    color: var(--primary-blue);
+    font-weight: 800;
+    min-width: 120px;
+}
         .name-col { text-align: left; padding-left: 15px !important; color: var(--primary-blue); }
         .name-list { font-weight: 500; text-align: left; font-size: 0.8rem; line-height: 1.6; padding: 12px !important; }
-
         .win-cell { background-color: var(--win-bg); color: var(--win-text); }
         .loss-cell { background-color: var(--loss-bg); color: var(--loss-text); }
-
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
         /* Statistics Styling - Points Race Light Color Clarity Updates */
         .race-track { width: 100%; margin-top: 10px; }
         .race-lane { display: flex; align-items: center; margin-bottom: 12px; position: relative; height: 35px; background: #f0f0f0; border-radius: 20px; overflow: visible; }
@@ -159,12 +168,10 @@
         .race-icon { font-size: 1.6rem; position: absolute; right: -15px; z-index: 3; }
         .race-name { position: absolute; left: 15px; font-weight: 800; font-size: 0.75rem; color: #1a237e; z-index: 4; text-transform: uppercase;}
         .race-score { font-weight: 900; color: #1a237e; margin-right: 15px; font-size: 0.85rem; z-index: 4; text-shadow: none;}
-
         .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 10px; }
         .mini-card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .mini-card h4 { margin: 0 0 8px 0; color: var(--primary-blue); display: flex; justify-content: space-between; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 5px;}
         .mini-chart-box { height: 130px; width: 100%; }
-
         @media (max-width: 600px) {
             body { padding: 10px; }
             .nav-container { flex-direction: column; width: 90%; }
@@ -179,6 +186,7 @@
             flex-wrap: wrap;
             justify-content: center;
             width: 100%;
+            max-width: 800px;
         }
         .timer-card {
             background: rgba(255, 255, 255, 0.1);
@@ -193,20 +201,41 @@
         .timer-card h3 { margin: 0 0 10px 0; color: var(--gold); font-size: 1rem; text-shadow: 0 0 10px rgba(255, 165, 0, 0.7); }
         .countdown { font-family: monospace; font-size: 1.5rem; font-weight: bold; color: white; }
         .match-label { font-size: 0.8rem; opacity: 0.8; margin-top: 5px; display: block; }
+        .achievement-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            border-left: 5px solid var(--gold);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+       .achievement-card i { font-size: 1.2rem; color: var(--primary-blue); margin-bottom: 5px; font-weight: 800; display: block;}
+       .achievement-title { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+       .achievement-name { font-size: 1.1rem; color: var(--accent-red); font-weight: 900; margin-top: 5px; }
     </style>
 </head>
 <body>
-
-    <div class="hero">
-        <h1>IPL 2026</h1>
-    </div>
-
+<div class="hero">
+    <div style="font-size: clamp(4rem, 15vw, 8rem); text-shadow: 0 0 30px rgba(255, 215, 0, 0.6); margin-bottom: 10px; filter: drop-shadow(2px 4px 6px black);">🏆</div>
+    <h1>IPL 2026</h1>
+</div>
     <div class="sponsor-box">
         <div class="sponsor-item">
             <span>🎁 Prize Money Sponsor for Leaderboard Winner: <b>Anand</b> (₹1000 Amazon Voucher)</span>
         </div>
     </div>
-<div id="nextMatchTimers" class="timer-container"></div>
+<div class="timer-container">
+    <div id="nextMatchTimers" style="flex: 1; min-width: 250px;"></div>
+    
+    <div class="timer-card" id="mainPageMVP" style="flex: 1; min-width: 250px;">
+        <h3 id="mvpLabel">🔥 Yesterday's MVP</h3>
+        <div class="countdown" id="mvpName" style="color: #ff4d4d; font-weight: 900; font-family: 'Segoe UI';">Loading...</div>
+        <span class="match-label">Most Poll Wins Of The Day</span>
+    </div>
+</div>
     <div class="nav-container">
         <button class="nav-button" onclick="showModal('rulesModal')">📜 Contest Rules</button>
         <button class="nav-button" onclick="showModal('scheduleModal')">📅 Match Schedule</button>
@@ -214,7 +243,6 @@
         <button class="nav-button" onclick="showModal('predictionModal')">📊 Prediction Results</button>
         <button class="nav-button" onclick="showModal('statsModal')">📈 Performance Statistics</button>
     </div>
-
     <div id="statsModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('statsModal')">&times;</span>
@@ -222,26 +250,19 @@
             <div class="modal-body">
                 <div class="tab-container">
                     <button class="tab-btn active" onclick="openTab(event, 'raceTab')">🏎️ Points Race</button>
-                    <button class="tab-btn" onclick="openTab(event, 'matchWinsStats')">📊 Match Wins</button>
-                    <button class="tab-btn" onclick="openTab(event, 'otherPollsStats')">📈 Other Poll Wins</button>
+                    <button class="tab-btn" onclick="openTab(event, 'achievementsTab')">🏅 Hall of Fame</button>
                 </div>
-
                 <div id="raceTab" class="tab-content active">
                     <p style="color:#666; font-size:0.8rem; margin-bottom:10px;">Live points dash based on total standings.</p>
                     <div id="raceTrack" class="race-track"></div>
                 </div>
-
-                <div id="matchWinsStats" class="tab-content">
-                    <div class="mini-grid" id="matchWinsGrid"></div>
-                </div>
-
-                <div id="otherPollsStats" class="tab-content">
-                    <div class="mini-grid" id="pollPointsGrid"></div>
+                <div id="achievementsTab" class="tab-content">
+                   <div class="mini-grid" id="achievementsGrid">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div id="rulesModal" class="modal">
         <div class="modal-card" style="max-width: 700px;">
             <span class="close" onclick="closeModal('rulesModal')">&times;</span>
@@ -249,7 +270,6 @@
             <div class="modal-body" id="rulesContent"></div>
         </div>
     </div>
-
     <div id="leaderboardModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('leaderboardModal')">&times;</span>
@@ -267,7 +287,6 @@
             </div>
         </div>
     </div>
-
     <div id="scheduleModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('scheduleModal')">&times;</span>
@@ -282,7 +301,6 @@
             </div>
         </div>
     </div>
-
     <div id="predictionModal" class="modal">
         <div class="modal-card">
             <span class="close" onclick="closeModal('predictionModal')">&times;</span>
@@ -293,254 +311,251 @@
                     <button class="tab-btn" onclick="openTab(event, 'scores')">🏏 Scores</button>
                     <button class="tab-btn" onclick="openTab(event, 'wickets')">☝️ Wickets</button>
                 </div>
-
                 <div id="matchWins" class="tab-content active">
                     <div class="table-wrapper">
                         <table>
                             <thead>
-                                <tr><th>#</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr>
+                                <tr><th>#</th><th>Date</th><th>Matchup</th><th>Team 1 Votes</th><th>Team 2 Votes</th><th>Winner(s)</th></tr>
                             </thead>
-                            <tbody>
-                                <tr><td>1</td><td class="matchup-col">RCB vs SRH</td><td class="name-list">Surya, Navneet, Basu, Praveen, Mahendra</td><td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td><td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendar</td></tr>
-                                <tr><td>2</td><td class="matchup-col">MI vs KKR</td><td class="name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet, Praveen</td><td class="name-list">Surya, Yukteswar</td><td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td></tr>
-                                <tr><td>3</td><td class="matchup-col">RR vs CSK</td><td class="name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td><td class="name-list">Rajit, Navneet, Yukteswar, Mahendra, Bhagavan</td><td class="win-cell name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td></tr>
-                                <tr><td>4</td><td class="matchup-col">PBKS vs GT</td><td class="name-list">Yukteswar, Praveen, Bhagavan, Mahendra, Anand, Puneet</td><td class="name-list">Rajit, Navneet, Surya, Sumant, Basu</td><td class="win-cell name-list">Anand, Yukteswar, Praveen, Bhagavan, Mahendra, Puneet</td></tr>
-                                <tr><td>5</td><td class="matchup-col">LSG vs DC</td><td class="name-list">Yukteswar, Praveen, Surya, Mahendra, Narasimha, Sumant, Ranjit</td><td class="name-list">Basu, Navneet, Puneet, Anand</td><td class="win-cell name-list">Anand, Basu, Navneet, Puneet</td></tr>
-                                <tr><td>6</td><td class="matchup-col">KKR vs SRH</td><td class="name-list">Surya, Basu, Ranjit, Navneet</td><td class="name-list">Praveen, Mahendra, Bhagavan, Puneet, Yukteswar, Sumant, Anand</td><td class="win-cell name-list">Anand, Praveen, Mahendra, Bhagavan, Puneet, Yukteswar, Sumant</td></tr>
-                                <tr><td>7</td><td class="matchup-col">CSK vs PBKS</td><td class="name-list">Mahendra, Ranjit, Yukteswar</td><td class="name-list">Anand, Puneet, Sumant, Navneet, Basu, Surya</td><td class="win-cell name-list">Anand, Puneet, Sumant, Navneet, Basu, Surya</td></tr>
-                                <tr><td>8</td><td class="matchup-col">DC vs MI</td><td class="name-list">Surya, Basu, Praveen, Anand, Yukteswar</td><td class="name-list">Navneet, Mahendra, Ranjit, Puneet, Sumant</td><td class="win-cell name-list">Anand, Surya, Basu, Praveen, Yukteswar</td></tr>
-                                <tr><td>9</td><td class="matchup-col">GT vs RR</td><td class="name-list">Navneet, Mahendra, Surya, Puneet</td><td class="name-list">Anand, Sumant, Bhagavan, Yukteswar, Ranjit, Basu, Praveen</td><td class="win-cell name-list">Anand, Sumant, Bhagavan, Yukteswar, Ranjit, Basu, Praveen</td></tr>
-                                <tr><td>10</td><td class="matchup-col">SRH vs LSG</td><td class="name-list">Ranjit, Praveen, Basu, Navneet, Sumant, Bhagavan, Mahendra</td><td class="name-list">Anand, Surya, Puneet, Yukteswar</td><td class="win-cell name-list">Anand, Surya, Puneet, Yukteswar</td></tr>
-                                <tr><td>11</td><td class="matchup-col">RCB vs CSK</td><td class="name-list">Surya, Basu, Navneet, Sumant, Praveen, Anand, Mahendra</td><td class="name-list">Puneet, Ranjit, Bhagavan, Yukteswar</td><td class="win-cell name-list">Anand, Surya, Basu, Navneet, Sumant, Praveen, Mahendra</td></tr>
-                                <tr><td>12</td><td class="matchup-col">KKR vs PBKS</td><td class="name-list">Surya, Ranjit, Navneet, Mahendra</td><td class="name-list">Puneet, Anand, Narasimha, Yukteswar, Sumant, Praveen, Basu</td><td>Match Cancelled</td></tr>
-                                <tr><td>13</td><td class="matchup-col">RR vs MI</td><td class="name-list">Sumant, Yukteswar, Anand</td><td class="name-list">Puneet, Ranjit, Navneet, Narasimha, Mahendra, Praveen, Basu, Surya</td><td class="win-cell name-list">Sumant, Yukteswar, Anand</td></tr>
-                                <tr><td>14</td><td class="matchup-col">DC vs GT</td><td class="name-list">Mahendra, Anand, Basu, Ranjit, Puneet</td><td class="name-list">Surya, Sumant, Praveen, Yukteswar, Navneet</td><td class="win-cell name-list">Surya, Sumant, Praveen, Yukteswar, Navneet</td></tr>
-                                <tr><td>15</td><td class="matchup-col">KKR vs LSG</td><td class="name-list">Surya, Anand, Basu, Navneet, Mahendra, Yukteswar, Narasimha</td><td class="name-list">Sumant, Ranjit, Puneet, Praveen</td><td class="win-cell name-list">Sumant, Ranjit, Puneet, Praveen</td></tr>
-                                <tr><td>16</td><td class="matchup-col">RR vs RCB</td><td class="name-list">Surya, Sumant, Yukteswar, Anand, Puneet, Bhagavan</td><td class="name-list">Navneet, Ranjit, Basu, Praveen, Mahendra</td><td class="win-cell name-list">Surya, Sumant, Yukteswar, Anand, Puneet, Bhagavan</td></tr>
-                                <tr><td>17</td><td class="matchup-col">PBKS vs SRH</td><td class="name-list">Basu, Praveen, Yukteswar, Anand, Puneet, Bhagavan, Navneet, Ranjit</td><td class="name-list">Surya, Mahendra, Sumant</td><td class="win-cell name-list">Basu, Praveen, Yukteswar, Anand, Puneet, Bhagavan, Navneet, Ranjit</td></tr>
-                                <tr><td>18</td><td class="matchup-col">CSK vs DC</td><td class="name-list">Navneet, Ranjit, Mahendra, Bhagavan, Yukteswar</td><td class="name-list">Surya, Narasimha, Praveen, Basu, Puneet, Anand, Sumant</td><td class="win-cell name-list">Navneet, Ranjit, Bhagavan, Mahendra, Yukteswar</td></tr>
-                                <tr><td>19</td><td class="matchup-col">LSG vs GT</td><td class="name-list">Surya, Yukteswar, Basu, Puneet, Anand</td><td class="name-list">Sumant, Mahendra, Praveen, Ranjit, Navneet</td><td class="win-cell name-list">Sumant, Mahendra, Praveen, Ranjit, Navneet</td></tr>
-                                <tr><td>20</td><td class="matchup-col">MI vs RCB</td><td class="name-list">Surya, Yukteswar, Ranjit, Puneet, Anand</td><td class="name-list">Sumant, Mahendra, Praveen, Basu, Navneet</td><td class="win-cell name-list">Sumant, Mahendra, Praveen, Basu, Navneet</td></tr>
-                                <tr><td>21</td><td class="matchup-col">SRH vs RR</td><td class="name-list">Surya, Yukteswar, Sumant, Basu, Praveen, Mahendra</td><td class="name-list">Navneet, Puneet, Anand, Ranjit</td><td class="win-cell name-list">Surya, Yukteswar, Sumant, Basu, Praveen, Mahendra</td></tr>
-                                <tr><td>22</td><td class="matchup-col">CSK vs KKR</td><td class="name-list">Navneet, Puneet, Mahendra, Ranjit, Yukteswar</td><td class="name-list">Surya, Anand, Sumant, Basu, Praveen, Narasimha</td><td class="win-cell name-list">Navneet, Puneet, Mahendra, Ranjit, Yukteswar</td></tr>
-                                <tr><td>23</td><td class="matchup-col">LSG vs RCB</td><td class="name-list">Surya, Ranjit, Puneet</td><td class="name-list">Sumant, Praveen, Navneet, Basu, Yukteswar, Mahendra, Anand</td><td class="win-cell name-list">Sumant, Praveen, Navneet, Basu, Yukteswar, Mahendra, Anand</td></tr>
-                                <tr><td>24</td><td class="matchup-col">MI vs PBKS</td><td class="name-list">Surya, Sumant, Puneet, Mahendra, Ranjit</td><td class="name-list">Anand, Praveen, Navneet, Basu, Yukteswar</td><td class="win-cell name-list">Anand, Praveen, Navneet, Basu, Yukteswar</td></tr>
-                                <tr><td>25</td><td class="matchup-col">KKR vs GT</td><td class="name-list">Surya, Ranjit, Puneet, Anand, Basu, Mahendra</td><td class="name-list">Sumant, Praveen, Navneet, Yukteswar</td><td class="win-cell name-list">Sumant, Praveen, Navneet, Yukteswar</td></tr>
-                                <tr><td>26</td><td class="matchup-col">RCB vs DC</td><td class="name-list">Sumant, Praveen, Yukteswar, Anand, Navneet, Mahendra</td><td class="name-list">Surya, Puneet, Ranjit</td><td class="win-cell name-list">Surya, Puneet, Ranjit</td></tr>
-                                <tr><td>27</td><td class="matchup-col">SRH vs CSK</td><td class="name-list">Surya, Basu, Sumant, Praveen, Anand</td><td class="name-list">Ranjit, Yukteswar, Navneet, Puneet, Bhagavan</td><td class="win-cell name-list">Surya, Basu, Sumant, Praveen, Anand</td></tr>
+                            <tbody id="matchWinsBody">
+                                <tr><td>1</td><td class="date-cell"></td><td class="matchup-col">RCB vs SRH</td><td class="name-list">Surya, Navneet, Basu, Praveen, Mahendra</td><td class="name-list">Bhagavan, Yuktheswar, Narasimha, Anand, Puneet</td><td class="win-cell name-list">Surya, Navneet, Basu, Praveen, Mahendar</td></tr>
+                                <tr><td>2</td><td class="date-cell"></td><td class="matchup-col">MI vs KKR</td><td class="name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet, Praveen</td><td class="name-list">Surya, Yukteswar</td><td class="win-cell name-list">Anand, Basu, Bhagavan, Ranjit, Navneet, Mahendra, Puneet</td></tr>
+                                <tr><td>3</td><td class="date-cell"></td><td class="matchup-col">RR vs CSK</td><td class="name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td><td class="name-list">Rajit, Navneet, Yukteswar, Mahendra, Bhagavan</td><td class="win-cell name-list">Anand, Surya, Praveen, Puneet, Basu, Sumant, Narasimha</td></tr>
+                                <tr><td>4</td><td class="date-cell"></td><td class="matchup-col">PBKS vs GT</td><td class="name-list">Yukteswar, Praveen, Bhagavan, Mahendra, Anand, Puneet</td><td class="name-list">Rajit, Navneet, Surya, Sumant, Basu</td><td class="win-cell name-list">Anand, Yukteswar, Praveen, Bhagavan, Mahendra, Puneet</td></tr>
+                                <tr><td>5</td><td class="date-cell"></td><td class="matchup-col">LSG vs DC</td><td class="name-list">Yukteswar, Praveen, Surya, Mahendra, Narasimha, Sumant, Ranjit</td><td class="name-list">Basu, Navneet, Puneet, Anand</td><td class="win-cell name-list">Anand, Basu, Navneet, Puneet</td></tr>
+                                <tr><td>6</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="name-list">Surya, Basu, Ranjit, Navneet</td><td class="name-list">Praveen, Mahendra, Bhagavan, Puneet, Yukteswar, Sumant, Anand</td><td class="win-cell name-list">Anand, Praveen, Mahendra, Bhagavan, Puneet, Yukteswar, Sumant</td></tr>
+                                <tr><td>7</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="name-list">Mahendra, Ranjit, Yukteswar</td><td class="name-list">Anand, Puneet, Sumant, Navneet, Basu, Surya</td><td class="win-cell name-list">Anand, Puneet, Sumant, Navneet, Basu, Surya</td></tr>
+                                <tr><td>8</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="name-list">Surya, Basu, Praveen, Anand, Yukteswar</td><td class="name-list">Navneet, Mahendra, Ranjit, Puneet, Sumant</td><td class="win-cell name-list">Anand, Surya, Basu, Praveen, Yukteswar</td></tr>
+                                <tr><td>9</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="name-list">Navneet, Mahendra, Surya, Puneet</td><td class="name-list">Anand, Sumant, Bhagavan, Yukteswar, Ranjit, Basu, Praveen</td><td class="win-cell name-list">Anand, Sumant, Bhagavan, Yukteswar, Ranjit, Basu, Praveen</td></tr>
+                                <tr><td>10</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="name-list">Ranjit, Praveen, Basu, Navneet, Sumant, Bhagavan, Mahendra</td><td class="name-list">Anand, Surya, Puneet, Yukteswar</td><td class="win-cell name-list">Anand, Surya, Puneet, Yukteswar</td></tr>
+                                <tr><td>11</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="name-list">Surya, Basu, Navneet, Sumant, Praveen, Anand, Mahendra</td><td class="name-list">Puneet, Ranjit, Bhagavan, Yukteswar</td><td class="win-cell name-list">Anand, Surya, Basu, Navneet, Sumant, Praveen, Mahendra</td></tr>
+                                <tr><td>12</td><td class="date-cell"></td><td class="matchup-col">KKR vs PBKS</td><td class="name-list">Surya, Ranjit, Navneet, Mahendra</td><td class="name-list">Puneet, Anand, Narasimha, Yukteswar, Sumant, Praveen, Basu</td><td>Match Cancelled</td></tr>
+                                <tr><td>13</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="name-list">Sumant, Yukteswar, Anand</td><td class="name-list">Puneet, Ranjit, Navneet, Narasimha, Mahendra, Praveen, Basu, Surya</td><td class="win-cell name-list">Sumant, Yukteswar, Anand</td></tr>
+                                <tr><td>14</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="name-list">Mahendra, Anand, Basu, Ranjit, Puneet</td><td class="name-list">Surya, Sumant, Praveen, Yukteswar, Navneet</td><td class="win-cell name-list">Surya, Sumant, Praveen, Yukteswar, Navneet</td></tr>
+                                <tr><td>15</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="name-list">Surya, Anand, Basu, Navneet, Mahendra, Yukteswar, Narasimha</td><td class="name-list">Sumant, Ranjit, Puneet, Praveen</td><td class="win-cell name-list">Sumant, Ranjit, Puneet, Praveen</td></tr>
+                                <tr><td>16</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="name-list">Surya, Sumant, Yukteswar, Anand, Puneet, Bhagavan</td><td class="name-list">Navneet, Ranjit, Basu, Praveen, Mahendra</td><td class="win-cell name-list">Surya, Sumant, Yukteswar, Anand, Puneet, Bhagavan</td></tr>
+                                <tr><td>17</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="name-list">Basu, Praveen, Yukteswar, Anand, Puneet, Bhagavan, Navneet, Ranjit</td><td class="name-list">Surya, Mahendra, Sumant</td><td class="win-cell name-list">Basu, Praveen, Yukteswar, Anand, Puneet, Bhagavan, Navneet, Ranjit</td></tr>
+                                <tr><td>18</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="name-list">Navneet, Ranjit, Mahendra, Bhagavan, Yukteswar</td><td class="name-list">Surya, Narasimha, Praveen, Basu, Puneet, Anand, Sumant</td><td class="win-cell name-list">Navneet, Ranjit, Bhagavan, Mahendra, Yukteswar</td></tr>
+                                <tr><td>19</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="name-list">Surya, Yukteswar, Basu, Puneet, Anand</td><td class="name-list">Sumant, Mahendra, Praveen, Ranjit, Navneet</td><td class="win-cell name-list">Sumant, Mahendra, Praveen, Ranjit, Navneet</td></tr>
+                                <tr><td>20</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="name-list">Surya, Yukteswar, Ranjit, Puneet, Anand</td><td class="name-list">Sumant, Mahendra, Praveen, Basu, Navneet</td><td class="win-cell name-list">Sumant, Mahendra, Praveen, Basu, Navneet</td></tr>
+                                <tr><td>21</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="name-list">Surya, Yukteswar, Sumant, Basu, Praveen, Mahendra</td><td class="name-list">Navneet, Puneet, Anand, Ranjit</td><td class="win-cell name-list">Surya, Yukteswar, Sumant, Basu, Praveen, Mahendra</td></tr>
+                                <tr><td>22</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="name-list">Navneet, Puneet, Mahendra, Ranjit, Yukteswar</td><td class="name-list">Surya, Anand, Sumant, Basu, Praveen, Narasimha</td><td class="win-cell name-list">Navneet, Puneet, Mahendra, Ranjit, Yukteswar</td></tr>
+                                <tr><td>23</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="name-list">Sumant, Praveen, Navneet, Basu, Yukteswar, Mahendra, Anand</td><td class="name-list">Surya, Ranjit, Puneet</td><td class="win-cell name-list">Sumant, Praveen, Navneet, Basu, Yukteswar, Mahendra, Anand</td></tr>
+                                <tr><td>24</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="name-list">Surya, Sumant, Puneet, Mahendra, Ranjit</td><td class="name-list">Anand, Praveen, Navneet, Basu, Yukteswar</td><td class="win-cell name-list">Anand, Praveen, Navneet, Basu, Yukteswar</td></tr>
+                                <tr><td>25</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="name-list">Sumant, Praveen, Navneet, Yukteswar</td><td class="name-list">Surya, Ranjit, Puneet, Anand, Basu, Mahendra</td><td class="win-cell name-list">Sumant, Praveen, Navneet, Yukteswar</td></tr>
+                                <tr><td>26</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="name-list">Sumant, Praveen, Yukteswar, Anand, Navneet, Mahendra</td><td class="name-list">Surya, Puneet, Ranjit</td><td class="win-cell name-list">Surya, Puneet, Ranjit</td></tr>
+                                <tr><td>27</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="name-list">Surya, Basu, Sumant, Praveen, Anand</td><td class="name-list">Ranjit, Yukteswar, Navneet, Puneet, Bhagavan</td><td class="win-cell name-list">Surya, Basu, Sumant, Praveen, Anand</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <div id="scores" class="tab-content">
                     <div class="table-wrapper">
                         <table>
-                            <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
-                            <tbody>
-                                <tr><td>1</td><td class="matchup-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 80+ (Puneet)</td><td>NA</td></tr>
-                                <tr><td>2</td><td class="matchup-col">RCB PP Score</td><td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet), 70+ ()</td><td>NA</td></tr>
-                                <tr><td>3</td><td class="matchup-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Bhagavan, Puneet, Anand), 60-69 (Surya, Navneet, Ranjit), 70+ (Praveen)</td><td class="win-cell name-list">Praveen</td></tr>
-                                <tr><td>4</td><td class="matchup-col">MI PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Praveen, Narasimha, Anand, Mahendra), 70+ (Ranjit, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Ranjit, Puneet, Navneet, Basu</td></tr>
-                                <tr><td>5</td><td class="matchup-col">CSK PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Surya, Anand, Basu, Puneet, Yukteswar), 60-69 (Praveen, Bhagavan, Ranjit, Navneet), 70-75 (Mahendra), 76+ ()</td><td>NA</td></tr>
-                                <tr><td>6</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">Less than 100 (Sumant, Surya, ), 100-110 (Anand, Narasimha), 111-125 (Puneet, Navneet), 126-137 (Basu), 138+ ()</td><td class="win-cell name-list">Basu</td></tr>
-                                <tr><td>7</td><td class="matchup-col">RR PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Navneet, Puneet), 60-69 (Basu, Bhagavan, Ranjit), 70+ (Surya, Anand, Praveen)</td><td class="win-cell name-list">Surya, Anand, Praveen</td></tr>
-                                <tr><td>8</td><td class="matchup-col">GT PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant, Anand), 60-69 (Puneet, Bhagavan, Ranjit, Navneet, Yukteswar), 70+ (Basu, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Anand</td></tr>
-                                <tr><td>9</td><td class="matchup-col">GT Overall Score</td><td class="name-list">170-179 (), 180-189 (Navneet, Ranjit, Surya), 190-204 (Puneet, Bhagavan, Mahendra), 205-217 (), 217+ ()</td><td>NA</td></tr>
-                                <tr><td>10</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">40-49 (), 50-59 (Basu, Yukteswar, Anand), 60-69 (Bhagavan, Praveen), 70+ (), Less than 49 (Surya)</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
-                                <tr><td>11</td><td class="matchup-col">LSG PP Score</td><td class="name-list">40-49 (), 50-59 (), 60-69 (Bhagavan, Basu, Anand, Navneet, Mahendra, Ranjit, Surya), 70+ (Yukteswar, Praveen, Puneet, Narasimha)</td><td>NA</td></tr>
-                                <tr><td>12</td><td class="matchup-col">LSG Overall Score</td><td class="name-list"> Less than 170 (Ranjit, Anand, Basu, Mahendra, Navneet), 171-185 (Surya, Bhagavan, Puneet), 186-199 (), 200+ ()</td><td class="win-cell name-list">Ranjit, Anand, Basu, Mahendra, Navneet</td></tr>
-                                <tr><td>13</td><td class="matchup-col">DC PP Score</td><td class="name-list">Less than 45 (), 46-56 (Puneet), 57-67 (Basu, Ranjit, Bhagavan, Navneet, Anand), 68+ ()</td><td>NA</td></tr>
-                                <tr><td>14</td><td class="matchup-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant), 60-69 (Basu, Mahendra), 70+ (Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit)</td><td class="win-cell name-list">Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit</td></tr>
-                                <tr><td>15</td><td class="matchup-col">SRH Overall Score</td><td class="name-list">Less than 215 (), 216-230 (Bhagavan, Basu, Navneet, Yukteswar), 231-250 (Puneet, Anand, Ranjit, Narasimha), 251+ ()</td><td class="win-cell name-list">Bhagavan, Basu, Navneet, Yukteswar</td></tr>
-                                <tr><td>16</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list">Less than 10 (), 10-15 (Surya, Yukteswar), 15-20 (Sumant, Anand, Ranjit), 20+ (Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet)</td><td class="win-cell name-list">Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet</td></tr>
-                                <tr><td>17</td><td class="matchup-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Yukteswar), 60-69 (Bhagavan, Praveen, Anand, Ranjit), 70+ (Surya, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Navneet, Basu</td></tr>
-                                <tr><td>18</td><td class="matchup-col">KKR Overall Boundaries</td><td class="name-list">15-20 (), 20-25 (Bhagavan, Anand, Ranjit, Yukteswar), 25-30 (Puneet, Praveen), 30+ (Surya, Basu, Navneet)</td><td class="win-cell name-list">Bhagavan, Anand, Ranjit, Yukteswar</td></tr>
-                                <tr><td>19</td><td class="matchup-col">CSK PP Score</td><td class="name-list">Less than 49 (), 49-59 (Sumant, Basu, Puneet, Yukteswar, Navneet, Anand), 60-70 (Surya, Praveen, Bhagavan), 70+ (Ranjit)</td><td class="win-cell name-list">Sumant, Basu, Puneet, Yukteswar, Navneet, Anand</td></tr>
-                                <tr><td>20</td><td class="matchup-col">CSK Overall Boundaries</td><td class="name-list">10-15 (), 15-20 (Surya, Sumant, Basu), 20-25 (Puneet, Ranjit, Yukteswar), 25+ (Praveen, Navneet)</td><td class="win-cell name-list">Praveen, Navneet</td></tr>
-                                <tr><td>21</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">Less than 180 (), 181-189 (), 190-199 (Surya, Bhagavan, Anand), 200-209 (Puneet, Yukteswar), 210+ (Navneet, Sumant, Ranjit)</td><td class="win-cell name-list">Puneet, Yukteswar</td></tr>
-                                <tr><td>22</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">Less than 40 (), 41-53 (), 54-64 (Mahendra, Sumant, Yukteswar), 65-73 (Ranjit, Puneet, Navneet, Praveen, Anand), 73+ (Surya, Basu)</td><td class="win-cell name-list">Ranjit, Puneet, Navneet, Praveen, Anand</td></tr>
-                                <tr><td>23</td><td class="matchup-col">PBKS Overall Boundaries</td><td class="name-list">Less than 15 (Ranjit), 16-24 (Manhendra, Sumant, Yukteswar), 25-33 (Surya, Puneet, Basu, Navneet, Praveen, Anand, Bhagavan), 33+ ()</td><td class="win-cell name-list">Surya, Puneet, Basu, Navneet, Praveen, Anand, Bhagavan</td></tr>
-                                <tr><td>24</td><td class="matchup-col">MI PP Score</td><td class="name-list">Less than 45 (), 46-57 (Surya, Sumant), 58-69 (Basu, Puneet, Navneet, Praveen, Anand), 70+ ()</td><td>NA</td></tr>
-                                <tr><td>25</td><td class="matchup-col">MI Overall Boundaries</td><td class="name-list">Less than 20 (), 21-26 (Surya, Sumant, Ranjit, Anand), 27-32 (Basu, Navneet), 33+ (Praveen, Puneet)</td><td class="win-cell name-list">Surya, Sumant, Ranjit, Anand</td></tr>
-                                <tr><td>26</td><td class="matchup-col">MI Overall Score</td><td class="name-list">Less than 185 (Surya, Basu, Bhagavan, Ranjit), 186-196 (Puneet, Anand, Sumant), 197-207 (), 208+ (Narasimha)</td><td class="win-cell name-list">Surya, Basu, Bhagavan, Ranjit</td></tr>
-                                <tr><td>27</td><td class="matchup-col">DC PP Score</td><td class="name-list">Less than 40 (Puneet), 40-47 (), 48-56 (Navneet, Sumant), 56-65 (Surya, Yukteswar, Basu, Ranjit, Anand), 66-72 (), 72+ ()</td><td>NA</td></tr>
-                                <tr><td>28</td><td class="matchup-col">DC Overall Boundaries</td><td class="name-list">10-15 (), 16-20 (Navneet, Puneet, Sumant), 21-27 (Basu, Surya, Ranjit, Anand), 27-32 (), 32+ ()</td><td class="win-cell name-list">Surya, Basu, Ranjit, Anand</td></tr>
-                                <tr><td>29</td><td class="matchup-col">RR PP Score</td><td class="name-list">Less than 45 (), 46-55 (Surya, Navneet, Yukteswar), 56-63 (Sumant, Puneet, Ranjit), 64-73 (Anand), 73+ (Basu)</td><td class="win-cell name-list">Anand</td></tr>
-                                <tr><td>30</td><td class="matchup-col">RR Overall Boundaries</td><td class="name-list">Less than 15 (), 16-20 (Sumant, Yukteswar), 21-24 (Surya, Ranjit), 25-30 (Navneet, Puneet, Anand), 30+ (Basu)</td><td class="win-cell name-list">Navneet, Puneet, Anand</td></tr>
-                                <tr><td>31</td><td class="matchup-col">RR Overall Score</td><td class="name-list">Less than 170 (), 170-182 (Surya), 183-191 (Navneet), 192-203 (), 203-215 (Ranjit, Yukteswar, Puneet, Sumant, Anand), 215+ ()</td><td class="win-cell name-list">Ranjit, Yukteswar, Puneet, Sumant, Anand</td></tr>
-                                <tr><td>32</td><td class="matchup-col">GT PP Score</td><td class="name-list">Less than 40 (Puneet), 41-52 (), 53-64 (Basu, Yukteswar, Anand), 65-74 (Surya, Bhagavan, Puneet), 74+ ()</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
-                                <tr><td>33</td><td class="matchup-col">GT Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-27 (Basu, Yukteswar), 28-33 (Surya, Anand, Bhagavan, Puneet), 33+ ()</td><td class="win-cell name-list">Surya, Anand, Bhagavan, Puneet</td></tr>
-                                <tr><td>34</td><td class="matchup-col">SRH PP Score</td><td class="name-list">Less than 45 (), 46-52 (), 53-61 (), 61-70 (Anand, Ranjit, Yukteswar, Puneet), 71+ (Basu, Praveen, Sumant, Navneet)</td><td>NA</td></tr>
-                                <tr><td>35</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list">Less than 15 (), 16-25 (Sumant, Surya, Ranjit), 26-32 (Navneet, Puneet, Anand, Yukteswar), 32+ (Basu,Praveen, Mahendra)</td><td class="win-cell name-list">Sumant, Surya, Ranjit</td></tr>
-                                <tr><td>36</td><td class="matchup-col">SRH Overall Score</td><td class="name-list">Less than 115 (), 116-126 (), 127-137 (Sumant, Puneet, Ranjit, Surya), 138+ (Mahendra, Basu)</td><td class="win-cell name-list">Mahendra, Basu</td></tr>
-                                <tr><td>37</td><td class="matchup-col">LSG PP Score</td><td class="name-list">Less than 40 (), 41-48 (Basu), 49-57 (Puneet, Anand, Yukteswar, Mahendra, Sumant), 58-69 (Surya, Ranjit, Praveen, Navneet), 69+ ()</td><td class="win-cell name-list">Puneet, Anand, Yukteswar, Mahendra, Sumant</td></tr>
-                                <tr><td>38</td><td class="matchup-col">LSG Overall Boundaries</td><td class="name-list">Less than 10 (), 11-16 (), 17-23 (Surya, Sumant, Ranjit, Basu, Navneet, Anand, Yukteswar, Mahendra), 23+ (Praveen, Puneet)</td><td class="win-cell name-list">Surya, Sumant, Ranjit, Basu, Navneet, Anand, Yukteswar, Mahendra</td></tr>
-                                <tr><td>39</td><td class="matchup-col">RCB PP Score</td><td class="name-list">Less than 40 (), 41-47 (), 48-55 (), 56-65 (Navneet, Puneet, Ranjit, Sumant, Yukteswar, Anand), 66+ (Basu, Praveen, Surya, Mahendra)</td><td>NA</td></tr>
-                                <tr><td>40</td><td class="matchup-col">RCB Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-28 (Sumant, Ranjit), 29-34 (Surya, Puneet, Praveen, Yukteswar, Anand), 34+ (Mahendra, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Praveen, Yukteswar, Anand</td></tr>
-                                <tr><td>41</td><td class="matchup-col">RCB Overall Score</td><td class="name-list">Less than 150 (), 151-169 (), 170-195 (Ranjit), 196-209 (Navneet, Puneet, Yukteswar, Anand), 210+ (Surya, Mahendra, Basu, Praveen, Sumant)</td><td class="win-cell name-list">Surya, Mahendra, Basu, Praveen, Sumant</td></tr>
-                                <tr><td>42</td><td class="matchup-col">CSK PP Score</td><td class="name-list">Less than 48 (Navneet), 49-58 (Surya, Mahendra), 59-68 (Basu, Praveen, Yukteswar, Anand), 68+ (Puneet, Ranjit)</td><td class="win-cell name-list">Puneet, Ranjit</td></tr>
-                                <tr><td>43</td><td class="matchup-col">CSK Overall Boundaries</td><td class="name-list">Less than 18 (), 18-23 (Navneet, Surya, Anand), 24-29 (Basu, Ranjit, Praveen), 29+ (Puneet)</td><td class="win-cell name-list">Puneet</td></tr>
-                                <tr><td>44</td><td class="matchup-col">Vaibhav Score in Match 13</td><td class="name-list">0 (), 1-9 (), 10-19 (Navneet, Puneet), 20-29 (Surya), 30+ (Ranjit, Mahendra, Sumant, Anand)</td><td class="win-cell name-list">Ranjit, Mahendra, Sumant, Anand</td></tr>
-                                <tr><td>45</td><td class="matchup-col">RR PP Score</td><td class="name-list">Less than 30 (), 31-39 (), 40-48 (), 56-65 (Surya, Puneet, Ranjit, Basu, Praveen, Anand, Navneet), 49+ (Sumant)</td><td class="win-cell name-list">Sumant</td></tr>
-                                <tr><td>46</td><td class="matchup-col">RR Overall Boundaries</td><td class="name-list">Less than 10 (), 11-14 (Anand), 15-19 (Surya, Basu, Puneet, Navneet, Sumant, Ranjit), 20+ (Praveen)</td><td class="win-cell name-list">Praveen</td></tr>
-                                <tr><td>47</td><td class="matchup-col">RR Overall Score</td><td class="name-list">Less than 90 (), 91-99 (), 100-109 (), 110-119 (Basu, Puneet, Anand), 120+ (Surya, Navneet, Sumant, Praveen, Ranjit)</td><td class="win-cell name-list">Surya, Navneet, Sumant, Praveen, Ranjit</td></tr>
-                                <tr><td>48</td><td class="matchup-col">MI PP Score</td><td class="name-list">Less than 35 (), 36-44 (), 45-52 (Surya, Praveen, Sumant, Anand), 52+ (Puneet, Basu, Navneet, Mahendra, Ranjit)</td><td>NA</td></tr>
-                                <tr><td>49</td><td class="matchup-col">MI Overall Boundaries</td><td class="name-list">Less than 13 (), 13-17 (Surya), 18-22 (Mahendra, Sumant, Anand), 22+ (Puneet, Ranjit, Navneet, Basu, Praveen)</td><td class="win-cell name-list">Surya</td></tr>
-                                <tr><td>50</td><td class="matchup-col">GT PP Score</td><td class="name-list">Less than 40 (), 41-48 (), 49-58 (Mahendra, Sumant, Basu, Puneet, Yukteswar, Anand), 59-69 (Surya, Navneet, Praveen), 70+ (Ranjit)</td><td class="win-cell name-list">Surya, Praveen, Navneet</td></tr>
-                                <tr><td>51</td><td class="matchup-col">GT Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-28 (Mahendra, Sumant, Praveen, Ranjit, Puneet, Basu, Navneet, Yukteswar, Anand), 29+ (Surya)</td><td class="win-cell name-list">Surya</td></tr>
-                                <tr><td>52</td><td class="matchup-col">GT Overall Score</td><td class="name-list">Less than 150 (), 151-167 (), 168-179 (), 180-199 (Mahendra, Sumant, Ranjit, Basu, Puneet, Navneet, Yukteswar), 200-209 (Anand), 209+ (Surya, Praveen)</td><td class="win-cell name-list">Surya, Praveen</td></tr>
-                                <tr><td>53</td><td class="matchup-col">DC PP Score</td><td class="name-list">Less than 40 (), 41-49 (Surya), 50-58 (Navneet, Yukteswar, Sumant), 59-69 (Basu, Ranjit, Puneet, Anand, Praveen), 69+ ()</td><td class="win-cell name-list">Basu, Ranjit, Puneet, Anand, Praveen</td></tr>
-                                <tr><td>54</td><td class="matchup-col">DC Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (Surya, Yukteswar), 20-29 (Ranjit, Sumant, Basu, Praveen, Puneet, Anand, Navneet), 30+ ()</td><td>NA</td></tr>
-                                <tr><td>55</td><td class="matchup-col">KKR PP Score</td><td class="name-list">Less than 40 (), 41-48 (), 49-58 (Navneet, Bhagavan, Sumant), 59-69 (Mahendra, Anand, Praveen, Ranjit, Puneet), 70+ (Surya, Basu)</td><td class="win-cell name-list">Navneet, Bhagavan, Sumant</td></tr>
-                                <tr><td>56</td><td class="matchup-col">KKR Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (), 20-27 (Mahendra, Ranjit, Sumant, Bhagavan, Navneet, Anand), 28+ (Surya, Puneet, Basu, Praveen)</td><td class="win-cell name-list">Mahendra, Ranjit, Sumant, Bhagavan, Navneet, Anand</td></tr>
-                                <tr><td>57</td><td class="matchup-col">KKR Overall Score</td><td class="name-list">Less than 155 (), 156-173 (Sumant), 174-197 (Navneet, Ranjit, Bhagavan, Puneet), 198-207 (Mahendra, Anand, Praveen), 208+ (Surya, Basu)</td><td class="win-cell name-list">Navneet, Ranjit, Bhagavan, Puneet</td></tr>
-                                <tr><td>58</td><td class="matchup-col">LSG PP Score</td><td class="name-list">Less than 45 (Surya), 46-53 (Navneet), 54-65 (Sumant, Puneet, Basu, Anand, Praveen, Yukteswar), 66+ ()</td><td class="win-cell name-list">Sumant, Puneet, Basu, Anand, Praveen, Yukteswar</td></tr>
-                                <tr><td>59</td><td class="matchup-col">LSG Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (Surya), 20-25 (Sumant, Anand, Puneet, Navneet, Basu, Yukteswar), 26+ (Praveen)</td><td class="win-cell name-list">Sumant, Anand, Puneet, Navneet, Basu, Yukteswar</td></tr>
-                                <tr><td>60</td><td class="matchup-col">RCB PP Score</td><td class="name-list">Less than 45 (), 46-54 (), 55-64 (Surya, Puneet, Yukteswar, Navneet), 65+ (Sumant, Basu, Mahendra, Praveen, Ranjit)</td><td class="win-cell name-list">Surya, Puneet, Yukteswar, Navneet</td></tr>
-                                <tr><td>61</td><td class="matchup-col">RCB Overall Boundaries</td><td class="name-list">Less than 15 (), 16-23 (), 24-29 (Surya, Sumant, Puneet, Yukteswar, Ranjit, Navneet), 30+ (Mahendra, Basu, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Puneet, Yukteswar, Ranjit, Navneet</td></tr>
-                                <tr><td>62</td><td class="matchup-col">RCB Overall Score</td><td class="name-list">Less than 150 (), 151-168 (), 169-183 (), 184-199 (Surya, Puneet, Navneet), 200+ (Sumant, Basu, Mahendra, Ranjit, Praveen)</td><td class="win-cell name-list">Sumant, Basu, Mahendra, Ranjit, Praveen</td></tr>
-                                <tr><td>63</td><td class="matchup-col">RR PP Score</td><td class="name-list">Less than 45 (), 46-54 (), 55-67 (Yukteswar, Basu, Navneet, Praveen), 68+ (Surya, Ranjit, Sumant, Puneet)</td><td class="win-cell name-list">Surya, Ranjit, Sumant, Puneet</td></tr>
-                                <tr><td>64</td><td class="matchup-col">RR Overall Boundaries</td><td class="name-list">Less than 15 (), 16-22 (), 23-28 (Sumant, Surya, Puneet, Navneet, Basu, Yukteswar, Praveen, Ranjit), 29+ ()</td><td>NA</td></tr>
-                                <tr><td>65</td><td class="matchup-col">SRH PP Score</td><td class="name-list">Less than 50 (), 51-60 (), 61-70 (Puneet, Praveen, Yukteswar), 70+ (Surya, Ranjit, Navneet)</td><td class="win-cell name-list">Surya, Ranjit, Navneet</td></tr>
-                                <tr><td>66</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list">Less than 17 (), 17-23 (Ranjit), 24-30 (Sumant, Basu, Anand, Puneet, Navneet, Yukteswar), 30+ (Surya, Praveen)</td><td class="win-cell name-list">Sumant, Basu, Anand, Puneet, Navneet, Yukteswar</td></tr>
-                                <tr><td>67</td><td class="matchup-col">SRH Overall Score</td><td class="name-list">Less than 180 (Ranjit), 181-190 (Basu), 191-200 (Navneet), 200+ (Surya, Sumant, Anand, Puneet, Yukteswar, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Anand, Puneet, Yukteswar, Praveen</td></tr>
-                                <tr><td>68</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">Less than 48 (), 48-55 (Sumant), 56-63 (Surya, Mahendra), 63+ (Ranjit, Navneet, Basu, Anand, Praveen, Puneet)</td><td class="win-cell name-list">Ranjit, Navneet, Basu, Anand, Praveen, Puneet</td></tr>
-                                <tr><td>69</td><td class="matchup-col">PBKS Overall Boundaries</td><td class="name-list">Less than 16 (), 16-22 (Surya), 23-29 (Sumant, Navneet, Mahendra, Anand, Puneet), 29+ (Ranjit, Basu, Praveen)</td><td class="win-cell name-list">Ranjit, Basu, Praveen</td></tr>
-                                <tr><td>70</td><td class="matchup-col">CSK PP Score</td><td class="name-list">Less than 48 (), 48-56 (Sumant, Navneet), 57-65 (Surya, Mahendra, Anand, Puneet), 65+ (Ranjit, Basu, Praveen)</td><td class="win-cell name-list">Surya, Mahendra, Anand, Puneet</td></tr>
-                                <tr><td>71</td><td class="matchup-col">CSK Overall Boundaries</td><td class="name-list">Less than 18 (), 18-23 (Navneet), 24-29 (Surya, Mahendra, Ranjit, Basu, Praveen, Sumant, Anand), 29+ (Puneet)</td><td class="win-cell name-list">Puneet</td></tr>
-                                <tr><td>72</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">Less than 187 (Navneet), 187-195 (Surya, Sumant), 196-204 (Anand), 204+ (Mahendra, Ranjit, Puneet, Basu, Praveen)</td><td class="win-cell name-list">Mahendra, Ranjit, Puneet, Basu, Praveen</td></tr>
-                                <tr><td>73</td><td class="matchup-col">DC PP Score</td><td class="name-list">Less than 48 (), 48-56 (), 57-65 (Puneet, Mahendra, Navneet), 65+ (Surya, Basu, Praveen, Ranjit, Sumant, Anand)</td><td class="win-cell name-list">Surya, Basu, Praveen, Ranjit, Sumant, Anand</td></tr>
-                                <tr><td>74</td><td class="matchup-col">DC Overall Boundaries</td><td class="name-list">Less than 18 (), 18-23 (), 24-29 (Ranjit, Navneet, Sumant, Mahendra), 29+ (Surya, Praveen, Basu, Puneet, Anand)</td><td class="win-cell name-list">Ranjit, Navneet, Sumant, Mahendra</td></tr>
-                                <tr><td>75</td><td class="matchup-col">LSG PP Score</td><td class="name-list">Less than 45 (), 46-55 (), 56-67 (Praveen, Ranjit, Puneet, Anand, Mahendra), 68+ (Surya, Sumant, Navneet, Basu)</td><td class="win-cell name-list">Praveen, Ranjit, Puneet, Anand, Mahendra</td></tr>
-                                <tr><td>76</td><td class="matchup-col">LSG Overall Boundaries</td><td class="name-list">Less than 16 (), 17-25 (Ranjit), 26-30 (Sumant, Mahendra, Praveen, Navneet, Anand, Puneet), 30+ (Surya)</td><td class="win-cell name-list">Ranjit</td></tr>
-                                <tr><td>77</td><td class="matchup-col">LSG Overall Score</td><td class="name-list">Less than 165 (), 166-178 (), 179-189 (Ranjit), 190-206 (Navneet, Sumant, Praveen, Puneet), 206+ (Surya, Anand)</td><td>NA</td></tr>
-                                <tr><td>78</td><td class="matchup-col">GT PP Score</td><td class="name-list">Less than 40 (), 41-47 (Surya), 48-54 (Puneet, Anand), 55-63 (Ranjit, Navneet, Basu), 63+ (Sumant, Praveen)</td><td class="win-cell name-list">Puneet, Anand</td></tr>
-                                <tr><td>79</td><td class="matchup-col">GT Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (Surya), 20-26 (Sumant, Yukteswar, Puneet, Praveen, Basu, Anand, Navneet, Ranjit), 26+ ()</td><td class="win-cell name-list">Sumant, Yukteswar, Puneet, Praveen, Basu, Anand, Navneet, Ranjit</td></tr>
-                                <tr><td>80</td><td class="matchup-col">RCB PP Score</td><td class="name-list">Less than 45 (), 46-54 (Surya), 55-67 (Yukteswar, Puneet, Ranjit), 67+ (Sumant, Navneet, Anand, Basu, Praveen, Mahendra)</td><td class="win-cell name-list">Sumant, Navneet, Anand, Basu, Praveen, Mahendra</td></tr>
-                                <tr><td>81</td><td class="matchup-col">RCB Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-27 (Surya, Sumant, Ranjit, Yukteswar, Anand), 27+ (Puneet, Praveen, Mahendra, Navneet, Basu)</td><td class="win-cell name-list">Puneet, Praveen, Mahendra, Navneet, Basu</td></tr>
-                                <tr><td>82</td><td class="matchup-col">RCB Overall Score</td><td class="name-list">Less than 160 (), 161-173 (), 174-191 (Surya, Ranjit), 192-210 (Anand, Puneet), 210+ (Mahendra, Praveen, Basu, Yukteswar, Sumant, Navneet)</td><td class="win-cell name-list">Mahendra, Praveen, Basu, Yukteswar, Sumant, Navneet</td></tr>
-                                <tr><td>83</td><td class="matchup-col">MI PP Score</td><td class="name-list">Less than 50 (), 51-59 (), 60-69 (Navneet, Mahendra, Praveen, Yukteswar), 69+ (Surya, Ranjit, Puneet, Sumant, Anand)</td><td class="win-cell name-list">Navneet, Mahendra, Praveen, Yukteswar</td></tr>
-                                <tr><td>84</td><td class="matchup-col">MI Overall Boundaries</td><td class="name-list">Less than 20 (), 21-27 (), 28-33 (Surya, Ranjit, Sumant, Navneet, Mahendra), 33+ (Anand, Praveen, Yukteswar, Puneet)</td><td class="win-cell name-list">Surya, Ranjit, Sumant, Navneet, Mahendra</td></tr>
-                                <tr><td>85</td><td class="matchup-col">SRH PP Score</td><td class="name-list">Less than 55 (), 55-63 (Anand), 64-72 (Surya, Sumant, Mahendra, Ranjit), 72+ (Yukteswar, Basu, Praveen, Puneet, Navneet)</td><td>NA</td></tr>
-                                <tr><td>86</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list">Less than 18 (), 18-24 (), 25-31 (Surya, Sumant, Ranjit, Puneet, Anand), 31+ (Yukteswar, Praveen, Mahendra, Navneet, Basu)</td><td class="win-cell name-list">Surya, Sumant, Ranjit, Puneet, Anand</td></tr>
-                                <tr><td>87</td><td class="matchup-col">SRH Overall Score</td><td class="name-list">Less than 189 (), 189-200 (Ranjit), 201-212 (Sumant, Anand), 213-224 (Surya, Mahendra, Praveen, Puneet, Navneet), 224+ (Basu)</td><td class="win-cell name-list">Surya, Mahendra, Praveen, Puneet, Navneet</td></tr>
-                                <tr><td>88</td><td class="matchup-col">RR PP Score</td><td class="name-list">Less than 45 (), 46-54 (), 55-63 (), 64-73 (Praveen, Mahendra, Basu, Yukteswar, Puneet, Sumant, Anand), 73+ (Surya, Navneet, Ranjit)</td><td>NA</td></tr>
-                                <tr><td>89</td><td class="matchup-col">RR Overall Boundaries</td><td class="name-list">Less than 18 (), 19-23 (), 24-29 (Puneet, Anand, Yukteswar, Basu, Navneet, Sumant), 29+ (Surya, Mahendra, Ranjit, Praveen)</td><td>NA</td></tr>
-                                <tr><td>90</td><td class="matchup-col">CSK PP Score</td><td class="name-list">Less than 45 (), 46-54 (Surya), 55-65 (Praveen, Sumant, Mahendra, Anand, Yukteswar, Basu, Puneet), 65+ (Bhagavan, Navneet, Ranjit)</td><td class="win-cell name-list">Bhagavan, Navneet, Ranjit</td></tr>
-                                <tr><td>91</td><td class="matchup-col">CSK Overall Boundaries</td><td class="name-list">Less than 17 (), 18-23 (Surya), 24-29 (Mahendra, Sumant, Ranjit, Anand, Yukteswar, Praveen, Basu, Bhagavan, Navneet), 29+ (Puneet)</td><td class="win-cell name-list">Mahendra, Sumant, Ranjit, Anand, Yukteswar, Praveen, Basu, Bhagavan, Navneet</td></tr>
-                                <tr><td>92</td><td class="matchup-col">CSK Overall Score</td><td class="name-list">Less than 170 (Surya), 171-187 (Navneet), 188-199 (Sumant, Praveen, Ranjit), 199+ (Basu, Puneet, Anand, Yukteswar, Bhagavan, Mahendra)</td><td class="win-cell name-list">Sumant, Praveen, Ranjit</td></tr>
-                                <tr><td>93</td><td class="matchup-col">KKR PP Score</td><td class="name-list">Less than 58 (Bhagavan), 58-65 (Sumant, Mahendra, Ranjit, Puneet), 66-73 (Basu, Yukteswar, Praveen, Anand), 73+ (Surya, Navneet)</td><td class="win-cell name-list">Bhagavan</td></tr>
-                                <tr><td>94</td><td class="matchup-col">KKR Overall Boundaries</td><td class="name-list">Less than 20 (), 20-24 (Bhagavan), 25-29 (Surya, Basu, Yukteswar, Sumant, Mahendra, Praveen, Anand, Navneet, Puneet, Ranjit), 29+ ()</td><td>NA</td></tr>
-                                <tr><td>95</td><td class="matchup-col">LSG PP Score</td><td class="name-list">Less than 58 (), 58-65 (Praveen, Yukteswar, Basu, Navneet, Ranjit, Mahendra, Anand, Bhagavan), 65-73 (Puneet), 73+ ()</td><td>NA</td></tr>
-                                <tr><td>96</td><td class="matchup-col">LSG Overall Boundaries</td><td class="name-list">Less than 17 (), 17-22 (), 23-28 (Sumant, Mahendra, Yukteswar, Navneet, Basu, Anand), 28+ (Surya, Bhagavan, Puneet, Praveen)</td><td>NA</td></tr>
-                                <tr><td>97</td><td class="matchup-col">LSG Overall Score</td><td class="name-list">Less than 189 (Navneet), 189-197 (Sumant, Basu, Mahendra, Ranjit), 198-206 (Surya, Bhagavan, Anand, Praveen, Yukteswar), 206+ (Puneet)</td><td class="win-cell name-list">Navneet</td></tr>
-                                <tr><td>98</td><td class="matchup-col">RCB PP Score</td><td class="name-list">Less than 60 (Basu, Puneet), 60-67 (Sumant, Navneet, Yukteswar), 68-74 (Mahendra, Praveen, Ranjit, Anand), 74+ ()</td><td class="win-cell name-list">Sumant, Navneet, Yukteswar</td></tr>
-                                <tr><td>99</td><td class="matchup-col">RCB Overall Boundaries</td><td class="name-list">Less than 17 (), 17-21 (Surya, Basu, Sumant, Navneet, Yukteswar, Puneet, Anand), 22-24 (Mahendra, Ranjit, Praveen), 24+ ()</td><td class="win-cell name-list">Surya, Basu, Sumant, Navneet, Yukteswar, Puneet, Anand</td></tr>
-                                <tr><td>100</td><td class="matchup-col">MI PP Score</td><td class="name-list">Less than 50 (), 50-59 (Praveen, Anand, Yukteswar), 60-69 (Sumant, Mahendra, Navneet, Basu, Ranjit, Bhagavan, Surya, Puneet), 70-76 (), 76+ ()</td><td>NA</td></tr>
-                                <tr><td>101</td><td class="matchup-col">MI Overall Boundaries</td><td class="name-list">Less than 20 (), 20-24 (), 25-29 (Sumant, Mahendra, Yukteswar, Navneet, Basu, Anand, Praveen, Ranjit, Bhagavan), 29+ (Surya, Puneet)</td><td>NA</td></tr>
-                                <tr><td>102</td><td class="matchup-col">MI Overall Score</td><td class="name-list">Less than 165 (), 165-178 (), 179-194 (Basu, Navneet, Praveen), 195-210 (Bhagavan, Ranjit, Mahendra, Anand, Yukteswar), 210+ (Surya, Sumant, Puneet)</td><td class="win-cell name-list">Bhagavan, Ranjit, Mahendra, Anand, Yukteswar</td></tr>
-                                <tr><td>103</td><td class="matchup-col">PBKS PP Score</td><td class="name-list">Less than 61 (Surya, Puneet), 61-66 (Sumant, Mahendra, Yukteswar), 67-72 (Anand), 72+ (Ranjit, Navneet)</td><td class="win-cell name-list">Sumant, Mahendra, Yukteswar</td></tr>
-                                <tr><td>104</td><td class="matchup-col">PBKS Overall Boundaries</td><td class="name-list">Less than 18 (), 18-24 (Surya, Sumant, Mahendra), 25-29 (Anand, Navneet, Puneet, Yukteswar, Ranjit), 29+ ()</td><td>NA</td></tr>
-                                <tr><td>105</td><td class="matchup-col">KKR PP Score</td><td class="name-list">Less than 58 (Sumant), 58-64 (Praveen, Yukteswar, Mahendra, Anand, Bhagavan), 65-71 (Ranjit, Navneet), 71+ (Surya, Puneet)</td><td class="win-cell name-list">Sumant</td></tr>
-                                <tr><td>106</td><td class="matchup-col">KKR Overall Boundaries</td><td class="name-list">Less than 19 (), 19-24 (Bhagavan, Sumant, Yukteswar), 25-29 (Ranjit, Mahendra, Puneet, Navneet, Praveen, Anand), 28+ (Basu)</td><td class="win-cell name-list">Ranjit, Mahendra, Puneet, Navneet, Praveen, Anand</td></tr>
-                                <tr><td>107</td><td class="matchup-col">KKR Overall Score</td><td class="name-list">Less than 189 (Sumant), 189-197 (Praveen, Ranjit), 198-208 (Bhagavan, Anand, Mahendra, Yukteswar), 208+ (Puneet, Navneet, Basu)</td><td class="win-cell name-list">Sumant</td></tr>
-                                <tr><td>108</td><td class="matchup-col">GT PP Score</td><td class="name-list">Less than 54 (Puneet), 54-60 (Sumant, Praveen, Anand), 61-66 (Navneet), 66+ ()</td><td>NA</td></tr>
-                                <tr><td>109</td><td class="matchup-col">GT Overall Boundaries</td><td class="name-list">Less than 20 (), 20-23 (), 24-27 (Bhagavan, Puneet, Praveen, Anand, Sumant, Navneet), 27+ ()</td><td>NA</td></tr>
-                                <tr><td>110</td><td class="matchup-col">RCB PP Score</td><td class="name-list">Less than 50 (), 50-59 (Surya, Anand, Puneet), 60-69 (Ranjit, Navneet, Bhagavan, Sumant), 69+ (Praveen Mahendra)</td><td class="win-cell name-list">Surya, Anand, Puneet</td></tr>
-                                <tr><td>111</td><td class="matchup-col">RCB Overall Boundaries</td><td class="name-list">Less than 20 (), 20-25 (Surya, Anand), 26-30 (Yukteswar, Bhagavan, Puneet, Navneet, Sumant, Ranjit, Mahendra), 30+ (Praveen)</td><td>NA</td></tr>
-                                <tr><td>112</td><td class="matchup-col">RCB Overall Score</td><td class="name-list">Less than 160 (), 160-174 (), 175-186 (Surya), 187-202 (Yukteswar, Navneet, Anand, Ranjit), 202+ (Praveen, Bhagavan, Sumant, Mahendra, Puneet)</td><td class="win-cell name-list">Surya</td></tr>
-                                <tr><td>113</td><td class="matchup-col">DC PP Score</td><td class="name-list">Less than 51 (), 51-55 (Sumant, Navneet), 56-60 (Puneet), 61+ (Surya, Ranjit, Anand)</td><td>NA</td></tr>
-                                <tr><td>114</td><td class="matchup-col">DC Overall Boundaries</td><td class="name-list">Less than 17 (), 17-22 (Sumant, Navneet, Anand), 23-28 (Surya, Ranjit, Puneet), 28+ ()</td><td class="win-cell name-list">Sumant, Navneet, Anand</td></tr>
-                                <tr><td>115</td><td class="matchup-col">SRH PP Score</td><td class="name-list">Less than 66 (Mahendra, Puneet, Navneet), 66-72 (Ranjit, Yukteswar, Sumant, Anand), 73-79 (Surya, Praveen, Basu), 79+ ()</td><td class="win-cell name-list">Surya, Praveen, Basu</td></tr>
-                                <tr><td>116</td><td class="matchup-col">SRH Overall Boundaries</td><td class="name-list">Less than 20 (), 20-25 (Navneet), 26-30 (Ranjit, Mahendra, Puneet, Yukteswar, Praveen, Anand, Surya, Sumant, Basu), 30+ ()</td><td class="win-cell name-list">Ranjit, Mahendra, Puneet, Yukteswar, Praveen, Anand, Surya, Sumant, Basu</td></tr>
-                                <tr><td>117</td><td class="matchup-col">SRH Overall Score</td><td class="name-list">Less than 200 (Puneet, Ranjit, Navneet), 201-207 (), 208-215 (Basu, Anand, Mahendra, Yukteswar, Sumant), 215+ (Praveen, Surya)</td><td class="win-cell name-list">Puneet, Ranjit, Navneet</td></tr>
-                                <tr><td>118</td><td class="matchup-col">CSK PP Score</td><td class="name-list">Less than 51 (Surya, Anand), 51-57 (Sumant, Praveen, Yukteswar), 58-64 (Navneet, Basu, Puneet), 64+ (Bhagavan, Ranjit)</td><td class="win-cell name-list">Bhagavan, Ranjit</td></tr>
-                                <tr><td>119</td><td class="matchup-col">CSK Overall Boundaries</td><td class="name-list">Less than 18 (Surya), 18-22 (Sumant, Praveen, Yukteswar), 23-27 (Bhagavan, Puneet, Anand, Ranjit, Navneet, Basu), 27+ ()</td><td class="win-cell name-list">Sumant, Praveen, Yukteswar</td></tr>
+                            <thead><tr><th>#</th><th>Date</th><th>Matchup</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
+                            <tbody id="scoresBody">
+                                <tr><td>1</td><td class="date-cell"></td><td class="matchup-col">RCB vs SRH</td><td class="poll-type-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Anand, Basu, Praveen, Navneet), 80+ (Puneet)</td><td>NA</td></tr>
+                                <tr><td>2</td><td class="date-cell"></td><td class="matchup-col">RCB vs SRH</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">40-49 (Anand), 50-59 (Surya), 60-69 (Praveen, Navneet), 70+ ()</td><td>NA</td></tr>
+                                <tr><td>3</td><td class="date-cell"></td><td class="matchup-col">MI vs KKR</td><td class="poll-type-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Bhagavan, Puneet, Anand), 60-69 (Surya, Navneet, Ranjit), 70+ (Praveen)</td><td class="win-cell name-list">Praveen</td></tr>
+                                <tr><td>4</td><td class="date-cell"></td><td class="matchup-col">MI vs KKR</td><td class="poll-type-col">MI PP Score</td><td class="name-list">40-49 (), 50-59 (Surya), 60-69 (Praveen, Narasimha, Anand, Mahendra), 70+ (Ranjit, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Ranjit, Puneet, Navneet, Basu</td></tr>
+                                <tr><td>5</td><td class="date-cell"></td><td class="matchup-col">RR vs CSK</td><td class="poll-type-col">CSK PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Surya, Anand, Basu, Puneet, Yukteswar), 60-69 (Praveen, Bhagavan, Ranjit, Navneet), 70-75 (Mahendra), 76+ ()</td><td>NA</td></tr>
+                                <tr><td>6</td><td class="date-cell"></td><td class="matchup-col">RR vs CSK</td><td class="poll-type-col">CSK Overall Score</td><td class="name-list">Less than 100 (Sumant, Surya, ), 100-110 (Anand, Narasimha), 111-125 (Puneet, Navneet), 126-137 (Basu), 138+ ()</td><td class="win-cell name-list">Basu</td></tr>
+                                <tr><td>7</td><td class="date-cell"></td><td class="matchup-col">RR vs CSK</td><td class="poll-type-col">RR PP Score</td><td class="name-list">40-49 (Sumant), 50-59 (Navneet, Puneet), 60-69 (Basu, Bhagavan, Ranjit), 70+ (Surya, Anand, Praveen)</td><td class="win-cell name-list">Surya, Anand, Praveen</td></tr>
+                                <tr><td>8</td><td class="date-cell"></td><td class="matchup-col">PBKS vs GT</td><td class="poll-type-col">GT PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant, Anand), 60-69 (Puneet, Bhagavan, Ranjit, Navneet, Yukteswar), 70+ (Basu, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Anand</td></tr>
+                                <tr><td>9</td><td class="date-cell"></td><td class="matchup-col">PBKS vs GT</td><td class="poll-type-col">GT Overall Score</td><td class="name-list">170-179 (), 180-189 (Navneet, Ranjit, Surya), 190-204 (Puneet, Bhagavan, Mahendra), 205-217 (), 217+ ()</td><td>NA</td></tr>
+                                <tr><td>10</td><td class="date-cell"></td><td class="matchup-col">PBKS vs GT</td><td class="poll-type-col">PBKS PP Score</td><td class="name-list">40-49 (), 50-59 (Basu, Yukteswar, Anand), 60-69 (Bhagavan, Praveen), 70+ (), Less than 49 (Surya)</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
+                                <tr><td>11</td><td class="date-cell"></td><td class="matchup-col">LSG vs DC</td><td class="poll-type-col">LSG PP Score</td><td class="name-list">40-49 (), 50-59 (), 60-69 (Bhagavan, Basu, Anand, Navneet, Mahendra, Ranjit, Surya), 70+ (Yukteswar, Praveen, Puneet, Narasimha)</td><td>NA</td></tr>
+                                <tr><td>12</td><td class="date-cell"></td><td class="matchup-col">LSG vs DC</td><td class="poll-type-col">LSG Overall Score</td><td class="name-list"> Less than 170 (Ranjit, Anand, Basu, Mahendra, Navneet), 171-185 (Surya, Bhagavan, Puneet), 186-199 (), 200+ ()</td><td class="win-cell name-list">Ranjit, Anand, Basu, Mahendra, Navneet</td></tr>
+                                <tr><td>13</td><td class="date-cell"></td><td class="matchup-col">LSG vs DC</td><td class="poll-type-col">DC PP Score</td><td class="name-list">Less than 45 (), 46-56 (Puneet), 57-67 (Basu, Ranjit, Bhagavan, Navneet, Anand), 68+ ()</td><td>NA</td></tr>
+                                <tr><td>14</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">SRH PP Score</td><td class="name-list">40-49 (), 50-59 (Surya, Sumant), 60-69 (Basu, Mahendra), 70+ (Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit)</td><td class="win-cell name-list">Puneet, Praveen, Navneet, Narasimha, Anand, Ranjit</td></tr>
+                                <tr><td>15</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">SRH Overall Score</td><td class="name-list">Less than 215 (), 216-230 (Bhagavan, Basu, Navneet, Yukteswar), 231-250 (Puneet, Anand, Ranjit, Narasimha), 251+ ()</td><td class="win-cell name-list">Bhagavan, Basu, Navneet, Yukteswar</td></tr>
+                                <tr><td>16</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">SRH Overall Boundaries</td><td class="name-list">Less than 10 (), 10-15 (Surya, Yukteswar), 15-20 (Sumant, Anand, Ranjit), 20+ (Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet)</td><td class="win-cell name-list">Puneet, Narasimha, Praveen, Basu, Mahendra, Navneet</td></tr>
+                                <tr><td>17</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">KKR PP Score</td><td class="name-list">40-49 (), 50-59 (Yukteswar), 60-69 (Bhagavan, Praveen, Anand, Ranjit), 70+ (Surya, Puneet, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Navneet, Basu</td></tr>
+                                <tr><td>18</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">KKR Overall Boundaries</td><td class="name-list">15-20 (), 20-25 (Bhagavan, Anand, Ranjit, Yukteswar), 25-30 (Puneet, Praveen), 30+ (Surya, Basu, Navneet)</td><td class="win-cell name-list">Bhagavan, Anand, Ranjit, Yukteswar</td></tr>
+                                <tr><td>19</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">CSK PP Score</td><td class="name-list">Less than 49 (), 49-59 (Sumant, Basu, Puneet, Yukteswar, Navneet, Anand), 60-70 (Surya, Praveen, Bhagavan), 70+ (Ranjit)</td><td class="win-cell name-list">Sumant, Basu, Puneet, Yukteswar, Navneet, Anand</td></tr>
+                                <tr><td>20</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">CSK Overall Boundaries</td><td class="name-list">10-15 (), 15-20 (Surya, Sumant, Basu), 20-25 (Puneet, Ranjit, Yukteswar), 25+ (Praveen, Navneet)</td><td class="win-cell name-list">Praveen, Navneet</td></tr>
+                                <tr><td>21</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">CSK Overall Score</td><td class="name-list">Less than 180 (), 181-189 (), 190-199 (Surya, Bhagavan, Anand), 200-209 (Puneet, Yukteswar), 210+ (Navneet, Sumant, Ranjit)</td><td class="win-cell name-list">Puneet, Yukteswar</td></tr>
+                                <tr><td>22</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">PBKS PP Score</td><td class="name-list">Less than 40 (), 41-53 (), 54-64 (Mahendra, Sumant, Yukteswar), 65-73 (Ranjit, Puneet, Navneet, Praveen, Anand), 73+ (Surya, Basu)</td><td class="win-cell name-list">Ranjit, Puneet, Navneet, Praveen, Anand</td></tr>
+                                <tr><td>23</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">PBKS Overall Boundaries</td><td class="name-list">Less than 15 (Ranjit), 16-24 (Manhendra, Sumant, Yukteswar), 25-33 (Surya, Puneet, Basu, Navneet, Praveen, Anand, Bhagavan), 33+ ()</td><td class="win-cell name-list">Surya, Puneet, Basu, Navneet, Praveen, Anand, Bhagavan</td></tr>
+                                <tr><td>24</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">MI PP Score</td><td class="name-list">Less than 45 (), 46-57 (Surya, Sumant), 58-69 (Basu, Puneet, Navneet, Praveen, Anand), 70+ ()</td><td>NA</td></tr>
+                                <tr><td>25</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">MI Overall Boundaries</td><td class="name-list">Less than 20 (), 21-26 (Surya, Sumant, Ranjit, Anand), 27-32 (Basu, Navneet), 33+ (Praveen, Puneet)</td><td class="win-cell name-list">Surya, Sumant, Ranjit, Anand</td></tr>
+                                <tr><td>26</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">MI Overall Score</td><td class="name-list">Less than 185 (Surya, Basu, Bhagavan, Ranjit), 186-196 (Puneet, Anand, Sumant), 197-207 (), 208+ (Narasimha)</td><td class="win-cell name-list">Surya, Basu, Bhagavan, Ranjit</td></tr>
+                                <tr><td>27</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">DC PP Score</td><td class="name-list">Less than 40 (Puneet), 40-47 (), 48-56 (Navneet, Sumant), 56-65 (Surya, Yukteswar, Basu, Ranjit, Anand), 66-72 (), 72+ ()</td><td>NA</td></tr>
+                                <tr><td>28</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">DC Overall Boundaries</td><td class="name-list">10-15 (), 16-20 (Navneet, Puneet, Sumant), 21-27 (Basu, Surya, Ranjit, Anand), 27-32 (), 32+ ()</td><td class="win-cell name-list">Surya, Basu, Ranjit, Anand</td></tr>
+                                <tr><td>29</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">RR PP Score</td><td class="name-list">Less than 45 (), 46-55 (Surya, Navneet, Yukteswar), 56-63 (Sumant, Puneet, Ranjit), 64-73 (Anand), 73+ (Basu)</td><td class="win-cell name-list">Anand</td></tr>
+                                <tr><td>30</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">RR Overall Boundaries</td><td class="name-list">Less than 15 (), 16-20 (Sumant, Yukteswar), 21-24 (Surya, Ranjit), 25-30 (Navneet, Puneet, Anand), 30+ (Basu)</td><td class="win-cell name-list">Navneet, Puneet, Anand</td></tr>
+                                <tr><td>31</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">RR Overall Score</td><td class="name-list">Less than 170 (), 170-182 (Surya), 183-191 (Navneet), 192-203 (), 203-215 (Ranjit, Yukteswar, Puneet, Sumant, Anand), 215+ ()</td><td class="win-cell name-list">Ranjit, Yukteswar, Puneet, Sumant, Anand</td></tr>
+                                <tr><td>32</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">GT PP Score</td><td class="name-list">Less than 40 (Puneet), 41-52 (), 53-64 (Basu, Yukteswar, Anand), 65-74 (Surya, Bhagavan, Puneet), 74+ ()</td><td class="win-cell name-list">Basu, Yukteswar, Anand</td></tr>
+                                <tr><td>33</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">GT Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-27 (Basu, Yukteswar), 28-33 (Surya, Anand, Bhagavan, Puneet), 33+ ()</td><td class="win-cell name-list">Surya, Anand, Bhagavan, Puneet</td></tr>
+                                <tr><td>34</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">SRH PP Score</td><td class="name-list">Less than 45 (), 46-52 (), 53-61 (), 61-70 (Anand, Ranjit, Yukteswar, Puneet), 71+ (Basu, Praveen, Sumant, Navneet)</td><td>NA</td></tr>
+                                <tr><td>35</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">SRH Overall Boundaries</td><td class="name-list">Less than 15 (), 16-25 (Sumant, Surya, Ranjit), 26-32 (Navneet, Puneet, Anand, Yukteswar), 32+ (Basu,Praveen, Mahendra)</td><td class="win-cell name-list">Sumant, Surya, Ranjit</td></tr>
+                                <tr><td>36</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">SRH Overall Score</td><td class="name-list">Less than 115 (), 116-126 (), 127-137 (Sumant, Puneet, Ranjit, Surya), 138+ (Mahendra, Basu)</td><td class="win-cell name-list">Mahendra, Basu</td></tr>
+                                <tr><td>37</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">LSG PP Score</td><td class="name-list">Less than 40 (), 41-48 (Basu), 49-57 (Puneet, Anand, Yukteswar, Mahendra, Sumant), 58-69 (Surya, Ranjit, Praveen, Navneet), 69+ ()</td><td class="win-cell name-list">Puneet, Anand, Yukteswar, Mahendra, Sumant</td></tr>
+                                <tr><td>38</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">LSG Overall Boundaries</td><td class="name-list">Less than 10 (), 11-16 (), 17-23 (Surya, Sumant, Ranjit, Basu, Navneet, Anand, Yukteswar, Mahendra), 23+ (Praveen, Puneet)</td><td class="win-cell name-list">Surya, Sumant, Ranjit, Basu, Navneet, Anand, Yukteswar, Mahendra</td></tr>
+                                <tr><td>39</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">Less than 40 (), 41-47 (), 48-55 (), 56-65 (Navneet, Puneet, Ranjit, Sumant, Yukteswar, Anand), 66+ (Basu, Praveen, Surya, Mahendra)</td><td>NA</td></tr>
+                                <tr><td>40</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">RCB Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-28 (Sumant, Ranjit), 29-34 (Surya, Puneet, Praveen, Yukteswar, Anand), 34+ (Mahendra, Navneet, Basu)</td><td class="win-cell name-list">Surya, Puneet, Praveen, Yukteswar, Anand</td></tr>
+                                <tr><td>41</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">RCB Overall Score</td><td class="name-list">Less than 150 (), 151-169 (), 170-195 (Ranjit), 196-209 (Navneet, Puneet, Yukteswar, Anand), 210+ (Surya, Mahendra, Basu, Praveen, Sumant)</td><td class="win-cell name-list">Surya, Mahendra, Basu, Praveen, Sumant</td></tr>
+                                <tr><td>42</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">CSK PP Score</td><td class="name-list">Less than 48 (Navneet), 49-58 (Surya, Mahendra), 59-68 (Basu, Praveen, Yukteswar, Anand), 68+ (Puneet, Ranjit)</td><td class="win-cell name-list">Puneet, Ranjit</td></tr>
+                                <tr><td>43</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">CSK Overall Boundaries</td><td class="name-list">Less than 18 (), 18-23 (Navneet, Surya, Anand), 24-29 (Basu, Ranjit, Praveen), 29+ (Puneet)</td><td class="win-cell name-list">Puneet</td></tr>
+                                <tr><td>44</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">Vaibhav Score in Match 13</td><td class="name-list">0 (), 1-9 (), 10-19 (Navneet, Puneet), 20-29 (Surya), 30+ (Ranjit, Mahendra, Sumant, Anand)</td><td class="win-cell name-list">Ranjit, Mahendra, Sumant, Anand</td></tr>
+                                <tr><td>45</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">RR PP Score</td><td class="name-list">Less than 30 (), 31-39 (), 40-48 (), 56-65 (Surya, Puneet, Ranjit, Basu, Praveen, Anand, Navneet), 49+ (Sumant)</td><td class="win-cell name-list">Sumant</td></tr>
+                                <tr><td>46</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">RR Overall Boundaries</td><td class="name-list">Less than 10 (), 11-14 (Anand), 15-19 (Surya, Basu, Puneet, Navneet, Sumant, Ranjit), 20+ (Praveen)</td><td class="win-cell name-list">Praveen</td></tr>
+                                <tr><td>47</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">RR Overall Score</td><td class="name-list">Less than 90 (), 91-99 (), 100-109 (), 110-119 (Basu, Puneet, Anand), 120+ (Surya, Navneet, Sumant, Praveen, Ranjit)</td><td class="win-cell name-list">Surya, Navneet, Sumant, Praveen, Ranjit</td></tr>
+                                <tr><td>48</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">MI PP Score</td><td class="name-list">Less than 35 (), 36-44 (), 45-52 (Surya, Praveen, Sumant, Anand), 52+ (Puneet, Basu, Navneet, Mahendra, Ranjit)</td><td>NA</td></tr>
+                                <tr><td>49</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">MI Overall Boundaries</td><td class="name-list">Less than 13 (), 13-17 (Surya), 18-22 (Mahendra, Sumant, Anand), 22+ (Puneet, Ranjit, Navneet, Basu, Praveen)</td><td class="win-cell name-list">Surya</td></tr>
+                                <tr><td>50</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">GT PP Score</td><td class="name-list">Less than 40 (), 41-48 (), 49-58 (Mahendra, Sumant, Basu, Puneet, Yukteswar, Anand), 59-69 (Surya, Navneet, Praveen), 70+ (Ranjit)</td><td class="win-cell name-list">Surya, Praveen, Navneet</td></tr>
+                                <tr><td>51</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">GT Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-28 (Mahendra, Sumant, Praveen, Ranjit, Puneet, Basu, Navneet, Yukteswar, Anand), 29+ (Surya)</td><td class="win-cell name-list">Surya</td></tr>
+                                <tr><td>52</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">GT Overall Score</td><td class="name-list">Less than 150 (), 151-167 (), 168-179 (), 180-199 (Mahendra, Sumant, Ranjit, Basu, Puneet, Navneet, Yukteswar), 200-209 (Anand), 209+ (Surya, Praveen)</td><td class="win-cell name-list">Surya, Praveen</td></tr>
+                                <tr><td>53</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">DC PP Score</td><td class="name-list">Less than 40 (), 41-49 (Surya), 50-58 (Navneet, Yukteswar, Sumant), 59-69 (Basu, Ranjit, Puneet, Anand, Praveen), 69+ ()</td><td class="win-cell name-list">Basu, Ranjit, Puneet, Anand, Praveen</td></tr>
+                                <tr><td>54</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">DC Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (Surya, Yukteswar), 20-29 (Ranjit, Sumant, Basu, Praveen, Puneet, Anand, Navneet), 30+ ()</td><td>NA</td></tr>
+                                <tr><td>55</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">KKR PP Score</td><td class="name-list">Less than 40 (), 41-48 (), 49-58 (Navneet, Bhagavan, Sumant), 59-69 (Mahendra, Anand, Praveen, Ranjit, Puneet), 70+ (Surya, Basu)</td><td class="win-cell name-list">Navneet, Bhagavan, Sumant</td></tr>
+                                <tr><td>56</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">KKR Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (), 20-27 (Mahendra, Ranjit, Sumant, Bhagavan, Navneet, Anand), 28+ (Surya, Puneet, Basu, Praveen)</td><td class="win-cell name-list">Mahendra, Ranjit, Sumant, Bhagavan, Navneet, Anand</td></tr>
+                                <tr><td>57</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">KKR Overall Score</td><td class="name-list">Less than 155 (), 156-173 (Sumant), 174-197 (Navneet, Ranjit, Bhagavan, Puneet), 198-207 (Mahendra, Anand, Praveen), 208+ (Surya, Basu)</td><td class="win-cell name-list">Navneet, Ranjit, Bhagavan, Puneet</td></tr>
+                                <tr><td>58</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">LSG PP Score</td><td class="name-list">Less than 45 (Surya), 46-53 (Navneet), 54-65 (Sumant, Puneet, Basu, Anand, Praveen, Yukteswar), 66+ ()</td><td class="win-cell name-list">Sumant, Puneet, Basu, Anand, Praveen, Yukteswar</td></tr>
+                                <tr><td>59</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">LSG Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (Surya), 20-25 (Sumant, Anand, Puneet, Navneet, Basu, Yukteswar), 26+ (Praveen)</td><td class="win-cell name-list">Sumant, Anand, Puneet, Navneet, Basu, Yukteswar</td></tr>
+                                <tr><td>60</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">Less than 45 (), 46-54 (), 55-64 (Surya, Puneet, Yukteswar, Navneet), 65+ (Sumant, Basu, Mahendra, Praveen, Ranjit)</td><td class="win-cell name-list">Surya, Puneet, Yukteswar, Navneet</td></tr>
+                                <tr><td>61</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RCB Overall Boundaries</td><td class="name-list">Less than 15 (), 16-23 (), 24-29 (Surya, Sumant, Puneet, Yukteswar, Ranjit, Navneet), 30+ (Mahendra, Basu, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Puneet, Yukteswar, Ranjit, Navneet</td></tr>
+                                <tr><td>62</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RCB Overall Score</td><td class="name-list">Less than 150 (), 151-168 (), 169-183 (), 184-199 (Surya, Puneet, Navneet), 200+ (Sumant, Basu, Mahendra, Ranjit, Praveen)</td><td class="win-cell name-list">Sumant, Basu, Mahendra, Ranjit, Praveen</td></tr>
+                                <tr><td>63</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RR PP Score</td><td class="name-list">Less than 45 (), 46-54 (), 55-67 (Yukteswar, Basu, Navneet, Praveen), 68+ (Surya, Ranjit, Sumant, Puneet)</td><td class="win-cell name-list">Surya, Ranjit, Sumant, Puneet</td></tr>
+                                <tr><td>64</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RR Overall Boundaries</td><td class="name-list">Less than 15 (), 16-22 (), 23-28 (Sumant, Surya, Puneet, Navneet, Basu, Yukteswar, Praveen, Ranjit), 29+ ()</td><td>NA</td></tr>
+                                <tr><td>65</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">SRH PP Score</td><td class="name-list">Less than 50 (), 51-60 (), 61-70 (Puneet, Praveen, Yukteswar), 70+ (Surya, Ranjit, Navneet)</td><td class="win-cell name-list">Surya, Ranjit, Navneet</td></tr>
+                                <tr><td>66</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">SRH Overall Boundaries</td><td class="name-list">Less than 17 (), 17-23 (Ranjit), 24-30 (Sumant, Basu, Anand, Puneet, Navneet, Yukteswar), 30+ (Surya, Praveen)</td><td class="win-cell name-list">Sumant, Basu, Anand, Puneet, Navneet, Yukteswar</td></tr>
+                                <tr><td>67</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">SRH Overall Score</td><td class="name-list">Less than 180 (Ranjit), 181-190 (Basu), 191-200 (Navneet), 200+ (Surya, Sumant, Anand, Puneet, Yukteswar, Praveen)</td><td class="win-cell name-list">Surya, Sumant, Anand, Puneet, Yukteswar, Praveen</td></tr>
+                                <tr><td>68</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">PBKS PP Score</td><td class="name-list">Less than 48 (), 48-55 (Sumant), 56-63 (Surya, Mahendra), 63+ (Ranjit, Navneet, Basu, Anand, Praveen, Puneet)</td><td class="win-cell name-list">Ranjit, Navneet, Basu, Anand, Praveen, Puneet</td></tr>
+                                <tr><td>69</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">PBKS Overall Boundaries</td><td class="name-list">Less than 16 (), 16-22 (Surya), 23-29 (Sumant, Navneet, Mahendra, Anand, Puneet), 29+ (Ranjit, Basu, Praveen)</td><td class="win-cell name-list">Ranjit, Basu, Praveen</td></tr>
+                                <tr><td>70</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">CSK PP Score</td><td class="name-list">Less than 48 (), 48-56 (Sumant, Navneet), 57-65 (Surya, Mahendra, Anand, Puneet), 65+ (Ranjit, Basu, Praveen)</td><td class="win-cell name-list">Surya, Mahendra, Anand, Puneet</td></tr>
+                                <tr><td>71</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">CSK Overall Boundaries</td><td class="name-list">Less than 18 (), 18-23 (Navneet), 24-29 (Surya, Mahendra, Ranjit, Basu, Praveen, Sumant, Anand), 29+ (Puneet)</td><td class="win-cell name-list">Puneet</td></tr>
+                                <tr><td>72</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">CSK Overall Score</td><td class="name-list">Less than 187 (Navneet), 187-195 (Surya, Sumant), 196-204 (Anand), 204+ (Mahendra, Ranjit, Puneet, Basu, Praveen)</td><td class="win-cell name-list">Mahendra, Ranjit, Puneet, Basu, Praveen</td></tr>
+                                <tr><td>73</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">DC PP Score</td><td class="name-list">Less than 48 (), 48-56 (), 57-65 (Puneet, Mahendra, Navneet), 65+ (Surya, Basu, Praveen, Ranjit, Sumant, Anand)</td><td class="win-cell name-list">Surya, Basu, Praveen, Ranjit, Sumant, Anand</td></tr>
+                                <tr><td>74</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">DC Overall Boundaries</td><td class="name-list">Less than 18 (), 18-23 (), 24-29 (Ranjit, Navneet, Sumant, Mahendra), 29+ (Surya, Praveen, Basu, Puneet, Anand)</td><td class="win-cell name-list">Ranjit, Navneet, Sumant, Mahendra</td></tr>
+                                <tr><td>75</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">LSG PP Score</td><td class="name-list">Less than 45 (), 46-55 (), 56-67 (Praveen, Ranjit, Puneet, Anand, Mahendra), 68+ (Surya, Sumant, Navneet, Basu)</td><td class="win-cell name-list">Praveen, Ranjit, Puneet, Anand, Mahendra</td></tr>
+                                <tr><td>76</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">LSG Overall Boundaries</td><td class="name-list">Less than 16 (), 17-25 (Ranjit), 26-30 (Sumant, Mahendra, Praveen, Navneet, Anand, Puneet), 30+ (Surya)</td><td class="win-cell name-list">Ranjit</td></tr>
+                                <tr><td>77</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">LSG Overall Score</td><td class="name-list">Less than 165 (), 166-178 (), 179-189 (Ranjit), 190-206 (Navneet, Sumant, Praveen, Puneet), 206+ (Surya, Anand)</td><td>NA</td></tr>
+                                <tr><td>78</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">GT PP Score</td><td class="name-list">Less than 40 (), 41-47 (Surya), 48-54 (Puneet, Anand), 55-63 (Ranjit, Navneet, Basu), 63+ (Sumant, Praveen)</td><td class="win-cell name-list">Puneet, Anand</td></tr>
+                                <tr><td>79</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">GT Overall Boundaries</td><td class="name-list">Less than 15 (), 16-19 (Surya), 20-26 (Sumant, Yukteswar, Puneet, Praveen, Basu, Anand, Navneet, Ranjit), 26+ ()</td><td class="win-cell name-list">Sumant, Yukteswar, Puneet, Praveen, Basu, Anand, Navneet, Ranjit</td></tr>
+                                <tr><td>80</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">Less than 45 (), 46-54 (Surya), 55-67 (Yukteswar, Puneet, Ranjit), 67+ (Sumant, Navneet, Anand, Basu, Praveen, Mahendra)</td><td class="win-cell name-list">Sumant, Navneet, Anand, Basu, Praveen, Mahendra</td></tr>
+                                <tr><td>81</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">RCB Overall Boundaries</td><td class="name-list">Less than 15 (), 16-21 (), 22-27 (Surya, Sumant, Ranjit, Yukteswar, Anand), 27+ (Puneet, Praveen, Mahendra, Navneet, Basu)</td><td class="win-cell name-list">Puneet, Praveen, Mahendra, Navneet, Basu</td></tr>
+                                <tr><td>82</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">RCB Overall Score</td><td class="name-list">Less than 160 (), 161-173 (), 174-191 (Surya, Ranjit), 192-210 (Anand, Puneet), 210+ (Mahendra, Praveen, Basu, Yukteswar, Sumant, Navneet)</td><td class="win-cell name-list">Mahendra, Praveen, Basu, Yukteswar, Sumant, Navneet</td></tr>
+                                <tr><td>83</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">MI PP Score</td><td class="name-list">Less than 50 (), 51-59 (), 60-69 (Navneet, Mahendra, Praveen, Yukteswar), 69+ (Surya, Ranjit, Puneet, Sumant, Anand)</td><td class="win-cell name-list">Navneet, Mahendra, Praveen, Yukteswar</td></tr>
+                                <tr><td>84</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">MI Overall Boundaries</td><td class="name-list">Less than 20 (), 21-27 (), 28-33 (Surya, Ranjit, Sumant, Navneet, Mahendra), 33+ (Anand, Praveen, Yukteswar, Puneet)</td><td class="win-cell name-list">Surya, Ranjit, Sumant, Navneet, Mahendra</td></tr>
+                                <tr><td>85</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">SRH PP Score</td><td class="name-list">Less than 55 (), 55-63 (Anand), 64-72 (Surya, Sumant, Mahendra, Ranjit), 72+ (Yukteswar, Basu, Praveen, Puneet, Navneet)</td><td>NA</td></tr>
+                                <tr><td>86</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">SRH Overall Boundaries</td><td class="name-list">Less than 18 (), 18-24 (), 25-31 (Surya, Sumant, Ranjit, Puneet, Anand), 31+ (Yukteswar, Praveen, Mahendra, Navneet, Basu)</td><td class="win-cell name-list">Surya, Sumant, Ranjit, Puneet, Anand</td></tr>
+                                <tr><td>87</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">SRH Overall Score</td><td class="name-list">Less than 189 (), 189-200 (Ranjit), 201-212 (Sumant, Anand), 213-224 (Surya, Mahendra, Praveen, Puneet, Navneet), 224+ (Basu)</td><td class="win-cell name-list">Surya, Mahendra, Praveen, Puneet, Navneet</td></tr>
+                                <tr><td>88</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">RR PP Score</td><td class="name-list">Less than 45 (), 46-54 (), 55-63 (), 64-73 (Praveen, Mahendra, Basu, Yukteswar, Puneet, Sumant, Anand), 73+ (Surya, Navneet, Ranjit)</td><td>NA</td></tr>
+                                <tr><td>89</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">RR Overall Boundaries</td><td class="name-list">Less than 18 (), 19-23 (), 24-29 (Puneet, Anand, Yukteswar, Basu, Navneet, Sumant), 29+ (Surya, Mahendra, Ranjit, Praveen)</td><td>NA</td></tr>
+                                <tr><td>90</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">CSK PP Score</td><td class="name-list">Less than 45 (), 46-54 (Surya), 55-65 (Praveen, Sumant, Mahendra, Anand, Yukteswar, Basu, Puneet), 65+ (Bhagavan, Navneet, Ranjit)</td><td class="win-cell name-list">Bhagavan, Navneet, Ranjit</td></tr>
+                                <tr><td>91</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">CSK Overall Boundaries</td><td class="name-list">Less than 17 (), 18-23 (Surya), 24-29 (Mahendra, Sumant, Ranjit, Anand, Yukteswar, Praveen, Basu, Bhagavan, Navneet), 29+ (Puneet)</td><td class="win-cell name-list">Mahendra, Sumant, Ranjit, Anand, Yukteswar, Praveen, Basu, Bhagavan, Navneet</td></tr>
+                                <tr><td>92</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">CSK Overall Score</td><td class="name-list">Less than 170 (Surya), 171-187 (Navneet), 188-199 (Sumant, Praveen, Ranjit), 199+ (Basu, Puneet, Anand, Yukteswar, Bhagavan, Mahendra)</td><td class="win-cell name-list">Sumant, Praveen, Ranjit</td></tr>
+                                <tr><td>93</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">KKR PP Score</td><td class="name-list">Less than 58 (Bhagavan), 58-65 (Sumant, Mahendra, Ranjit, Puneet), 66-73 (Basu, Yukteswar, Praveen, Anand), 73+ (Surya, Navneet)</td><td class="win-cell name-list">Bhagavan</td></tr>
+                                <tr><td>94</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">KKR Overall Boundaries</td><td class="name-list">Less than 20 (), 20-24 (Bhagavan), 25-29 (Surya, Basu, Yukteswar, Sumant, Mahendra, Praveen, Anand, Navneet, Puneet, Ranjit), 29+ ()</td><td>NA</td></tr>
+                                <tr><td>95</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">LSG PP Score</td><td class="name-list">Less than 58 (), 58-65 (Praveen, Yukteswar, Basu, Navneet, Ranjit, Mahendra, Anand, Bhagavan), 65-73 (Puneet), 73+ ()</td><td>NA</td></tr>
+                                <tr><td>96</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">LSG Overall Boundaries</td><td class="name-list">Less than 17 (), 17-22 (), 23-28 (Sumant, Mahendra, Yukteswar, Navneet, Basu, Anand), 28+ (Surya, Bhagavan, Puneet, Praveen)</td><td>NA</td></tr>
+                                <tr><td>97</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">LSG Overall Score</td><td class="name-list">Less than 189 (Navneet), 189-197 (Sumant, Basu, Mahendra, Ranjit), 198-206 (Surya, Bhagavan, Anand, Praveen, Yukteswar), 206+ (Puneet)</td><td class="win-cell name-list">Navneet</td></tr>
+                                <tr><td>98</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">Less than 60 (Basu, Puneet), 60-67 (Sumant, Navneet, Yukteswar), 68-74 (Mahendra, Praveen, Ranjit, Anand), 74+ ()</td><td class="win-cell name-list">Sumant, Navneet, Yukteswar</td></tr>
+                                <tr><td>99</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">RCB Overall Boundaries</td><td class="name-list">Less than 17 (), 17-21 (Surya, Basu, Sumant, Navneet, Yukteswar, Puneet, Anand), 22-24 (Mahendra, Ranjit, Praveen), 24+ ()</td><td class="win-cell name-list">Surya, Basu, Sumant, Navneet, Yukteswar, Puneet, Anand</td></tr>
+                                <tr><td>100</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">MI PP Score</td><td class="name-list">Less than 50 (), 50-59 (Praveen, Anand, Yukteswar), 60-69 (Sumant, Mahendra, Navneet, Basu, Ranjit, Bhagavan, Surya, Puneet), 70-76 (), 76+ ()</td><td>NA</td></tr>
+                                <tr><td>101</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">MI Overall Boundaries</td><td class="name-list">Less than 20 (), 20-24 (), 25-29 (Sumant, Mahendra, Yukteswar, Navneet, Basu, Anand, Praveen, Ranjit, Bhagavan), 29+ (Surya, Puneet)</td><td>NA</td></tr>
+                                <tr><td>102</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">MI Overall Score</td><td class="name-list">Less than 165 (), 165-178 (), 179-194 (Basu, Navneet, Praveen), 195-210 (Bhagavan, Ranjit, Mahendra, Anand, Yukteswar), 210+ (Surya, Sumant, Puneet)</td><td class="win-cell name-list">Bhagavan, Ranjit, Mahendra, Anand, Yukteswar</td></tr>
+                                <tr><td>103</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">PBKS PP Score</td><td class="name-list">Less than 61 (Surya, Puneet), 61-66 (Sumant, Mahendra, Yukteswar), 67-72 (Anand), 72+ (Ranjit, Navneet)</td><td class="win-cell name-list">Sumant, Mahendra, Yukteswar</td></tr>
+                                <tr><td>104</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-coll">PBKS Overall Boundaries</td><td class="name-list">Less than 18 (), 18-24 (Surya, Sumant, Mahendra), 25-29 (Anand, Navneet, Puneet, Yukteswar, Ranjit), 29+ ()</td><td>NA</td></tr>
+                                <tr><td>105</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">KKR PP Score</td><td class="name-list">Less than 58 (Sumant), 58-64 (Praveen, Yukteswar, Mahendra, Anand, Bhagavan), 65-71 (Ranjit, Navneet), 71+ (Surya, Puneet)</td><td class="win-cell name-list">Sumant</td></tr>
+                                <tr><td>106</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">KKR Overall Boundaries</td><td class="name-list">Less than 19 (), 19-24 (Bhagavan, Sumant, Yukteswar), 25-29 (Ranjit, Mahendra, Puneet, Navneet, Praveen, Anand), 28+ (Basu)</td><td class="win-cell name-list">Ranjit, Mahendra, Puneet, Navneet, Praveen, Anand</td></tr>
+                                <tr><td>107</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">KKR Overall Score</td><td class="name-list">Less than 189 (Sumant), 189-197 (Praveen, Ranjit), 198-208 (Bhagavan, Anand, Mahendra, Yukteswar), 208+ (Puneet, Navneet, Basu)</td><td class="win-cell name-list">Sumant</td></tr>
+                                <tr><td>108</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">GT PP Score</td><td class="name-list">Less than 54 (Puneet), 54-60 (Sumant, Praveen, Anand), 61-66 (Navneet), 66+ ()</td><td>NA</td></tr>
+                                <tr><td>109</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">GT Overall Boundaries</td><td class="name-list">Less than 20 (), 20-23 (), 24-27 (Bhagavan, Puneet, Praveen, Anand, Sumant, Navneet), 27+ ()</td><td>NA</td></tr>
+                                <tr><td>110</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">Less than 50 (), 50-59 (Surya, Anand, Puneet), 60-69 (Ranjit, Navneet, Bhagavan, Sumant), 69+ (Praveen Mahendra)</td><td class="win-cell name-list">Surya, Anand, Puneet</td></tr>
+                                <tr><td>111</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">RCB Overall Boundaries</td><td class="name-list">Less than 20 (), 20-25 (Surya, Anand), 26-30 (Yukteswar, Bhagavan, Puneet, Navneet, Sumant, Ranjit, Mahendra), 30+ (Praveen)</td><td>NA</td></tr>
+                                <tr><td>112</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">RCB Overall Score</td><td class="name-list">Less than 160 (), 160-174 (), 175-186 (Surya), 187-202 (Yukteswar, Navneet, Anand, Ranjit), 202+ (Praveen, Bhagavan, Sumant, Mahendra, Puneet)</td><td class="win-cell name-list">Surya</td></tr>
+                                <tr><td>113</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">DC PP Score</td><td class="name-list">Less than 51 (), 51-55 (Sumant, Navneet), 56-60 (Puneet), 61+ (Surya, Ranjit, Anand)</td><td>NA</td></tr>
+                                <tr><td>114</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">DC Overall Boundaries</td><td class="name-list">Less than 17 (), 17-22 (Sumant, Navneet, Anand), 23-28 (Surya, Ranjit, Puneet), 28+ ()</td><td class="win-cell name-list">Sumant, Navneet, Anand</td></tr>
+                                <tr><td>115</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">SRH PP Score</td><td class="name-list">Less than 66 (Mahendra, Puneet, Navneet), 66-72 (Ranjit, Yukteswar, Sumant, Anand), 73-79 (Surya, Praveen, Basu), 79+ ()</td><td class="win-cell name-list">Surya, Praveen, Basu</td></tr>
+                                <tr><td>116</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">SRH Overall Boundaries</td><td class="name-list">Less than 20 (), 20-25 (Navneet), 26-30 (Ranjit, Mahendra, Puneet, Yukteswar, Praveen, Anand, Surya, Sumant, Basu), 30+ ()</td><td class="win-cell name-list">Ranjit, Mahendra, Puneet, Yukteswar, Praveen, Anand, Surya, Sumant, Basu</td></tr>
+                                <tr><td>117</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">SRH Overall Score</td><td class="name-list">Less than 200 (Puneet, Ranjit, Navneet), 201-207 (), 208-215 (Basu, Anand, Mahendra, Yukteswar, Sumant), 215+ (Praveen, Surya)</td><td class="win-cell name-list">Puneet, Ranjit, Navneet</td></tr>
+                                <tr><td>118</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">CSK PP Score</td><td class="name-list">Less than 51 (Surya, Anand), 51-57 (Sumant, Praveen, Yukteswar), 58-64 (Navneet, Basu, Puneet), 64+ (Bhagavan, Ranjit)</td><td class="win-cell name-list">Bhagavan, Ranjit</td></tr>
+                                <tr><td>119</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">CSK Overall Boundaries</td><td class="name-list">Less than 18 (Surya), 18-22 (Sumant, Praveen, Yukteswar), 23-27 (Bhagavan, Puneet, Anand, Ranjit, Navneet, Basu), 27+ ()</td><td class="win-cell name-list">Sumant, Praveen, Yukteswar</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <div id="wickets" class="tab-content">
                     <div class="table-wrapper">
                         <table>
-                            <thead><tr><th>Match</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
-                            <tbody>
-                                <tr><td>1</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td><td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td></tr>
-                                <tr><td>2</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Praveen, Anand, Navneet, Bhagavan), 2 (Puneet, Ranjit), 3+ ()</td><td class="win-cell name-list">Basu, Praveen, Anand, Navneet, Bhagavan</td></tr>
-                                <tr><td>3</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Puneet, Navneet, Ranjit), 1 (Basu, Anand, Narasimha, Mahendra), 2 (Surya, Praveen), 3+ ()</td><td class="win-cell name-list">Puneet, Navneet, Ranjit</td></tr>
-                                <tr><td>4</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Yukteswar), 1 (Bhagavan, Anand, Ranjit, Mahendra, Praveen, Basu, Navneet), 2 (Surya, Puneet, Sumant), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>5</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Surya, Anand), 1 (Navneet, Praveen, Basu, Ranjit), 2 (Sumant, Puneet), 3+ (Bhagavan)</td><td class="win-cell name-list">Surya, Anand</td></tr>
-                                <tr><td>6</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (Ranjit, Sumant), 1 (Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet), 2 (Anand), 3+ ()</td><td class="win-cell name-list">Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet</td></tr>
-                                <tr><td>7</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">0 (Anand), 1 (Yukteswar, Bhagavan, Praveen), 2 (Surya, Basu), 3+ ()</td><td class="win-cell name-list">Yukteswar, Bhagavan, Praveen</td></tr>
-                                <tr><td>8</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Surya, Bhagavan, Narasimha, Basu, Puneet, Mahendra, Ranjit, Yukteswar), 2 (Anand, Navneet), 3+ ()</td><td class="win-cell name-list">Anand, Navneet</td></tr>
-                                <tr><td>9</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Basu, Ranjit, Navaneet, Bhagavan, Anand), 2 (Puneet), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>10</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (Navneet, Ranjit), 1 (Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand), 2 (), 3+ ()</td><td class="win-cell name-list">Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand</td></tr>
-                                <tr><td>11</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya, Navneet), 1 (Bhagavan, Puneet, Basu, Yukteswar, Anand, Ranjit), 2 (Praveen), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>12</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Ranjit, Yukteswar), 1 (Surya, Navneet, Bhagavan, Praveen, Anand, Puneet), 2 (Basu, Sumant), 3+ ()</td><td class="win-cell name-list">Surya, Navneet, Bhagavan, Praveen, Anand, Puneet</td></tr>
-                                <tr><td>13</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">0 (Surya), 1 (Ranjit, Puneet, Basu, Yukteswar, Anand, Sumant, Praveen), 2 (Mahendra, Navneet), 3+ ()</td><td class="win-cell name-list">Ranjit, Puneet, Basu, Yukteswar, Anand, Sumant, Praveen</td></tr>
-                                <tr><td>14</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Navneet), 1 (Ranjit, Praveen, Puneet), 2 (Surya, Sumant, Basu, Anand), 3+ ()</td><td class="win-cell name-list">Surya, Sumant, Basu, Anand</td></tr>
-                                <tr><td>15</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (Anand), 1 (Ranjit, Surya, Navneet, Basu), 2 (Sumant), 3+ (Puneet)</td><td class="win-cell name-list">Sumant</td></tr>
-                                <tr><td>16</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (), 1 (Ranjit, Sumant, Navneet, Basu, Yukteswar, Anand), 2 (Surya, Puneet), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>17</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (), 1 (Surya, Bhagavan, Puneet, Yukteswar, Anand), 2 (Basu), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>18</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (Sumant), 1 (Basu, Praveen, Puneet, Yukteswar, Anand, Navneet, Ranjit), 2 (), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>19</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (Anand, Ranjit), 1 (Surya, Praveen, Puneet, Yukteswar, Navneet, Mahendra), 2 (Basu, Sumant), 3+ ()</td><td class="win-cell name-list">Surya, Praveen, Puneet, Yukteswar, Navneet, Mahendra</td></tr>
-                                <tr><td>20</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Mahendra, Navneet, Basu, Praveen), 1 (Ranjit, Yukteswar, Anand), 2 (Sumant, Puneet), 3+ ()</td><td class="win-cell name-list">Ranjit, Yukteswar, Anand</td></tr>
-                                <tr><td>21</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Puneet, Yukteswar, Ranjit), 1 (Surya, Navneet, Anand), 2 (Basu, Praveen, Mahendra), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>22</td><td class="matchup-col">Bumrah Total Wickets in Match 13</td><td class="name-list">0 (), 1 (Surya, Sumant, Anand, Ranjit), 2 (Mahendra, Puneet, Navneet), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>23</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Praveen), 1 (Surya, Basu, Anand, Sumant, Ranjit), 2 (Puneet, Navneet), 3+ ()</td><td class="win-cell name-list">Praveen</td></tr>
-                                <tr><td>24</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Basu, Puneet), 1 (Surya, Navneet, Praveen, Mahendra, Ranjit), 2 (Sumant, Anand), 2+ ()</td><td>NA</td></tr>
-                                <tr><td>25</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (Ranjit), 1 (Surya, Sumant, Puneet, Praveen, Basu, Navneet), 2 (Mahendra, Anand, Yukteswar), 3+ ()</td><td class="win-cell name-list">Surya, Sumant, Puneet, Praveen, Basu, Navneet</td></tr>
-                                <tr><td>26</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Ranjit, Yukteswar, Sumant, Basu, Praveen, Puneet, Anand, Navneet), 2 (Surya), 3+ ()</td><td>-NA</td></tr>
-                                <tr><td>27</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (), 1 (Ranjit, Mahendra, Sumant, Basu, Praveen, Puneet, Anand, Navneet, Surya), 2 (Bhagavan), 3+ ()</td><td class="win-cell name-list">Ranjit, Mahendra, Sumant, Basu, Praveen, Puneet, Anand, Navneet, Surya</td></tr>
-                                <tr><td>28</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Basu, Sumant, Puneet, Praveen), 2 (Anand, Navneet, Yukteswar), 3+ (Surya)</td><td class="win-cell name-list">Anand, Navneet, Yukteswar</td></tr>
-                                <tr><td>29</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Mahendra), 1 (Basu, Sumant, Puneet, Praveen, Navneet, Yukteswar, Ranjit), 2 (Surya), 3+ ()</td><td>NA</td></tr>
-                                <tr><td>30</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Surya), 1 (Ranjit, Navneet, Sumant, Puneet), 2 (Yukteswar, Basu, Praveen), 3+ ()</td><td class="win-cell name-list">Ranjit, Navneet, Sumant, Puneet</td></tr>
-                                <tr><td>31</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Navneet, Sumant, Puneet, Praveen, Ranjit, Yukteswar), 2 (Anand), 2+ ()</td><td class="win-cell name-list">Surya</td></tr>
-                                <tr><td>32</td><td class="matchup-col">SRH Innings Wickets</td><td class="name-list">Less than 4 (), 4-5 (Surya), 6-7 (Sumant, Anand, Yukteswar, Navneet), 7+ (Ranjit, Basu, Puneet)</td><td class="win-cell name-list">Sumant, Anand, Yukteswar, Navneet</td></tr>
-                                <tr><td>33</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">0 (Ranjit, Anand, Praveen), 1 (Basu, Navneet, Sumant, Puneet), 2 (Mahendra), 2+ (Surya)</td><td class="win-cell name-list">Ranjit, Anand, Praveen</td></tr>
-                                <tr><td>34</td><td class="matchup-col">PBKS Innings Wickets</td><td class="name-list">Less than 4 (), 4-5 (), 6-7 (Ranjit, Navneet, Basu, Puneet, Praveen, Mahendra, Anand), 7+ (Surya, Sumant)</td><td>NA</td></tr>
-                                <tr><td>35</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Ranjit), 1 (Mahendra, Navneet, Basu, Praveen, Sumant, Puneet), 2 (Surya, Anand), 2+ ()</td><td class="win-cell name-list">Ranjit</td></tr>
-                                <tr><td>36</td><td class="matchup-col">CSK Innings Wickets</td><td class="name-list">Less than 4 (), 4-5 (), 6-7 (Mahendra, Navneet, Anand, Sumant, Puneet), 7+ (Surya, Ranjit, Basu, Praveen)</td><td>NA</td></tr>
-                                <tr><td>37</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Navneet, Sumant, Puneet, Praveen, Anand, Mahendra, Ranjit), 2 (), 2+ ()</td><td>NA</td></tr>
-                                <tr><td>38</td><td class="matchup-col">DC Innings Wickets</td><td class="name-list">Less than 4 (Surya), 4-5 (Anand, Puneet), 6-7 (Basu, Praveen, Sumant, Mahendra), 7+ (Ranjit, Navneet)</td><td class="win-cell name-list">Ranjit, Navneet</td></tr>
-                                <tr><td>39</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (Surya, Navneet), 1 (Ranjit, Basu, Puneet, Anand), 2 (Mahendra, Sumant, Praveen), 2+ ()</td><td class="win-cell name-list">Mahendra, Sumant, Praveen</td></tr>
-                                <tr><td>40</td><td class="matchup-col">LSG Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Surya, Navneet, Puneet, Anand), 6-8 (Mahendra, Sumant, Praveen), 8+ (Basu, Ranjit)</td><td class="win-cell name-list">Mahendra, Sumant, Praveen</td></tr>
-                                <tr><td>41</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (Navneet), 1 (Yukteswar, Sumant, Puneet, Praveen, Basu, Anand, Ranjit), 2 (), 2+ (Surya)</td><td class="win-cell name-list">Yukteswar, Sumant, Puneet, Praveen, Basu, Anand, Ranjit</td></tr>
-                                <tr><td>42</td><td class="matchup-col">GT Innings Wickets</td><td class="name-list">0-1 (), 2-4 (Sumant, Navneet), 5-7 (Yukteswar, Puneet, Praveen, Basu, Anand, Ranjit), 7+ (Surya)</td><td class="win-cell name-list">Sumant, Navneet</td></tr>
-                                <tr><td>43</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Mahendra, Navneet, Sumant), 1 (Praveen, Basu, Yukteswar, Ranjit), 2 (Surya, Anand, Puneet), 2+ ()</td><td class="win-cell name-list">Mahendra, Navneet, Sumant</td></tr>
-                                <tr><td>44</td><td class="matchup-col">RCB Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Mahendra, Yukteswar, Sumant, Navneet), 6-7 (Praveen, Puneet, Basu), 7+ (Surya, Ranjit, Anand)</td><td class="win-cell name-list">Mahendra, Yukteswar, Sumant, Navneet</td></tr>
-                                <tr><td>45</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Surya, Puneet), 1 (Ranjit, Sumant, Navneet, Yukteswar, Anand), 2 (Mahendra, Praveen), 2+ ()</td><td class="win-cell name-list">Surya, Puneet</td></tr>
-                                <tr><td>46</td><td class="matchup-col">MI Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Surya, Yukteswar, Puneet), 6-7 (Ranjit, Sumant, Anand), 7+ (Navneet, Mahendra, Praveen)</td><td class="win-cell name-list">Surya, Yukteswar, Puneet</td></tr>
-                                <tr><td>47</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (Navneet), 1 (Surya, Sumant, Basu, Mahendra, Praveen, Puneet), 2 (Ranjit, Anand), 2+ ()</td><td class="win-cell name-list">Surya, Sumant, Basu, Mahendra, Praveen, Puneet</td></tr>
-                                <tr><td>48</td><td class="matchup-col">SRH Innings Wickets</td><td class="name-list">0-4 (), 4-5 (Surya, Sumant), 6-7 (Basu, Mahendra, Puneet, Navneet, Anand), 7+ (Praveen, Ranjit)</td><td class="win-cell name-list">Basu, Mahendra, Puneet, Navneet, Anand</td></tr>
-                                <tr><td>49</td><td class="matchup-col">RR PP Wickets</td><td class="name-list">0 (Ranjit, Navneet), 1 (Surya, Puneet, Basu, Yukteswar, Anand, Praveen, Mahendra), 2 (Sumant), 2+ ()</td><td>NA</td></tr>
-                                <tr><td>50</td><td class="matchup-col">RR Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Surya, Navneet), 6-8 (Puneet, Anand, Yukteswar, Basu, Mahendra, Ranjit, Praveen, Sumant), 8+ ()</td><td>NA</td></tr>
-                                <tr><td>51</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (), 1 (Bhagavan, Basu, Mahendra, Praveen, Puneet, Navneet, Yukteswar), 2 (Sumant, Surya), 2+ ()</td><td class="win-cell name-list">Sumant, Surya</td></tr>
-                                <tr><td>52</td><td class="matchup-col">CSK Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Bhagavan, Yukteswar, Puneet), 6-8 (Basu, Mahendra, Praveen, Navneet, Anand, Sumant), 8+ (Surya)</td><td class="win-cell name-list">Bhagavan, Yukteswar, Puneet</td></tr>
-                                <tr><td>53</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (Surya, Anand), 1 (Ranjit, Yukteswar, Sumant, Praveen, Mahendra), 2 (Bhagavan, Navneet, Puneet), 2+ ()</td><td class="win-cell name-list">Bhagavan, Navneet, Puneet</td></tr>
-                                <tr><td>54</td><td class="matchup-col">KKR Innings Wickets</td><td class="name-list">0-4 (), 4-5 (Surya, Sumant), 6-7 (Basu, Yukteswar, Mahendra, Praveen, Navneet, Anand), 7+ (Ranjit, Bhagavan, Puneet)</td><td class="win-cell name-list">Basu, Yukteswar, Mahendra, Praveen, Navneet, Anand</td></tr>
-                                <tr><td>55</td><td class="matchup-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Puneet, Yukteswar, Basu, Ranjit, Anand, Bhagavan), 2 (Praveen, Navneet, Mahendra), 2+ ()</td><td class="win-cell name-list">Puneet, Yukteswar, Basu, Ranjit, Anand, Bhagavan</td></tr>
-                                <tr><td>56</td><td class="matchup-col">LSG Innings Wickets</td><td class="name-list">0-4 (), 4-5 (Surya, Yukteswar), 6-7 (Bhagavan, Puneet, Navneet, Anand, Sumant), 7+ (Praveen, Ranjit, Basu, Mahendra)</td><td class="win-cell name-list">Praveen, Ranjit, Basu, Mahendra</td></tr>
-                                <tr><td>57</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Mahendra, Sumant, Ranjit), 1 (Anand, Yukteswar, Navneet, Praveen), 2 (Puneet), 2+ ()</td><td class="win-cell name-list">Anand, Yukteswar, Navneet, Praveen</td></tr>
-                                <tr><td>58</td><td class="matchup-col">RCB Innings Wickets</td><td class="name-list">0-3 (), 3-4 (Surya, Sumant, Mahendra, Navneet, Yukteswar, Praveen, Ranjit), 5-6 (Basu, Puneet, Anand), 6+ ()</td><td class="win-cell name-list">Basu, Puneet, Anand</td></tr>
-                                <tr><td>59</td><td class="matchup-col">MI PP Wickets</td><td class="name-list">0 (Sumant, Ranjit, Puneet), 1 (Surya, Yukteswar, Basu, Mahendra, Anand, Praveen), 2 (Bhagavan, Navneet), 2+ ()</td><td class="win-cell name-list">Bhagavan, Navneet</td></tr>
-                                <tr><td>60</td><td class="matchup-col">MI Innings Wickets</td><td class="name-list">0-3 (), 4-6 (Sumant, Bhagavan, Praveen, Puneet, Yukteswar), 6+ (Surya, Basu, Mahendra, Ranjit, Navneet, Anand)</td><td class="win-cell name-list">Sumant, Bhagavan, Praveen, Puneet, Yukteswar</td></tr>
-                                <tr><td>61</td><td class="matchup-col">PBKS PP Wickets</td><td class="name-list">0 (Anand, Navneet), 1 (Mahendra, Yukteswar, Sumant), 2 (Surya, Puneet), 2+ ()</td><td class="win-cell name-list">Surya, Puneet</td></tr>
-                                <tr><td>62</td><td class="matchup-col">PBKS Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Navneet, Yukteswar, Anand), 6-8 (Puneet), 8+ (Surya, Ranjit)</td><td class="win-cell name-list">Navneet, Yukteswar, Anand</td></tr>
-                                <tr><td>63</td><td class="matchup-col">KKR PP Wickets</td><td class="name-list">0 (), 1 (Puneet, Yukteswar, Ranjit, Anand, Mahendra, Surya, Navneet), 2 (Bhagavan, Sumant, Praveen), 2+ ()</td><td>NA</td></tr>
-                                <tr><td>64</td><td class="matchup-col">KKR Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Navneet, Yukteswar), 6-7 (Bhagavan, Puneet, Praveen, Anand, Sumant, Basu, Mahendra), 7+ (Ranjit)</td><td class="win-cell name-list">Ranjit</td></tr>
-                                <tr><td>65</td><td class="matchup-col">GT PP Wickets</td><td class="name-list">0 (Mahendra, Sumant, Ranjit), 1 (Sumant, Navneet, Praveen), 2 (Puneet, Anand), 2+ ()</td><td class="win-cell name-list">Sumant, Navneet, Praveen</td></tr>
-                                <tr><td>66</td><td class="matchup-col">GT Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Navneet), 6-7 (Bhagavan, Praveen, Anand), 7+ (Ranjit, puneet)</td><td class="win-cell name-list">Sumant, Navneet</td></tr>
-                                <tr><td>67</td><td class="matchup-col">RCB PP Wickets</td><td class="name-list">0 (Praveen, Sumant), 1 (Ranjit, Mahendra, Navneet), 2 (Bhagavan, Anand, Puneet, Surya), 2+ ()</td><td class="win-cell name-list">Ranjit, Mahendra, Navneet</td></tr>
-                                <tr><td>68</td><td class="matchup-col">RCB Innings Wickets</td><td class="name-list">0-3 (), 4-7 (Navneet, Yukteswar, Bhagavan, Praveen, Sumant, Mahendra), 7+ (Surya, Puneet, Anand, Ranjit)</td><td class="win-cell name-list">Surya, Puneet, Anand, Ranjit</td></tr>
-                                <tr><td>69</td><td class="matchup-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Sumant, Ranjit, Puneet, Anand, Surya, Navneet), 2 (), 2+ ()</td><td>NA</td></tr>
-                                <tr><td>70</td><td class="matchup-col">DC Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Surya, Puneet, Anand), 6-7 (Ranjit, Navneet), 7+ ()</td><td class="win-cell name-list">Sumant, Surya, Puneet, Anand</td></tr>
-                                <tr><td>71</td><td class="matchup-col">SRH PP Wickets</td><td class="name-list">0 (), 1 (Yukteswar, Ranjit, Anand, Mahendra, Surya, Navneet, Basu, Praveen), 2 (Puneet), 2+ ()</td><td class="win-cell name-list">Puneet</td></tr>
-                                <tr><td>72</td><td class="matchup-col">SRH Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Surya), 6-7 (Yukteswar, Navneet, Praveen, Anand, Mahendra), 7+ (Ranjit, Basu, Puneet)</td><td class="win-cell name-list">Ranjit, Basu, Puneet</td></tr>
-                                <tr><td>73</td><td class="matchup-col">CSK PP Wickets</td><td class="name-list">0 (Bhagavan, Ranjit), 1 (Sumant, Praveen, Puneet, Yukteswar, Navneet), 2 (Basu, Anand), 2+ (Surya)</td><td class="win-cell name-list">Surya</td></tr>
-                                <tr><td>74</td><td class="matchup-col">CSK Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Bhagavan, Navneet, Puneet, Yukteswar), 6-7 (Sumant, Anand), 7+ (Ranjit, Praveen, Basu, Surya)</td><td class="win-cell name-list">Ranjit, Praveen, Basu, Surya</td></tr>
+                            <thead><tr><th>#</th><th>Date</th><th>Matchup</th><th>Poll Type</th><th>Predictions</th><th>Winner</th></tr></thead>
+                            <tbody id="wicketsBody">
+                                <tr><td>1</td><td class="date-cell"></td><td class="matchup-col">RCB vs SRH</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Anand, Praveen, Basu, Ranjit), 2 (), 3 (), 4 ()</td><td class="win-cell name-list">Anand, Praveen, Basu, Ranjit</td></tr>
+                                <tr><td>2</td><td class="date-cell"></td><td class="matchup-col">MI vs KKR</td><td class="poll-type-col">KKR PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Praveen, Anand, Navneet, Bhagavan), 2 (Puneet, Ranjit), 3+ ()</td><td class="win-cell name-list">Basu, Praveen, Anand, Navneet, Bhagavan</td></tr>
+                                <tr><td>3</td><td class="date-cell"></td><td class="matchup-col">MI vs KKR</td><td class="poll-type-col">MI PP Wickets</td><td class="name-list">0 (Puneet, Navneet, Ranjit), 1 (Basu, Anand, Narasimha, Mahendra), 2 (Surya, Praveen), 3+ ()</td><td class="win-cell name-list">Puneet, Navneet, Ranjit</td></tr>
+                                <tr><td>4</td><td class="date-cell"></td><td class="matchup-col">RR vs CSK</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (Yukteswar), 1 (Bhagavan, Anand, Ranjit, Mahendra, Praveen, Basu, Navneet), 2 (Surya, Puneet, Sumant), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>5</td><td class="date-cell"></td><td class="matchup-col">RR vs CSK</td><td class="poll-type-col">RR PP Wickets</td><td class="name-list">0 (Surya, Anand), 1 (Navneet, Praveen, Basu, Ranjit), 2 (Sumant, Puneet), 3+ (Bhagavan)</td><td class="win-cell name-list">Surya, Anand</td></tr>
+                                <tr><td>6</td><td class="date-cell"></td><td class="matchup-col">PBKS vs GT</td><td class="poll-type-col">GT PP Wickets</td><td class="name-list">0 (Ranjit, Sumant), 1 (Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet), 2 (Anand), 3+ ()</td><td class="win-cell name-list">Navneet, Praveen, Basu, Bhagavan, Yukteswar, Surya, Puneet</td></tr>
+                                <tr><td>7</td><td class="date-cell"></td><td class="matchup-col">PBKS vs GT</td><td class="poll-type-col">PBKS PP Wickets</td><td class="name-list">0 (Anand), 1 (Yukteswar, Bhagavan, Praveen), 2 (Surya, Basu), 3+ ()</td><td class="win-cell name-list">Yukteswar, Bhagavan, Praveen</td></tr>
+                                <tr><td>8</td><td class="date-cell"></td><td class="matchup-col">LSG vs DC</td><td class="poll-type-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Surya, Bhagavan, Narasimha, Basu, Puneet, Mahendra, Ranjit, Yukteswar), 2 (Anand, Navneet), 3+ ()</td><td class="win-cell name-list">Anand, Navneet</td></tr>
+                                <tr><td>9</td><td class="date-cell"></td><td class="matchup-col">LSG vs DC</td><td class="poll-type-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Basu, Ranjit, Navaneet, Bhagavan, Anand), 2 (Puneet), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>10</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">SRH PP Wickets</td><td class="name-list">0 (Navneet, Ranjit), 1 (Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand), 2 (), 3+ ()</td><td class="win-cell name-list">Surya, Puneet, Sumant, Narasimha, Yukteswar, Basu, Praveen, Mahendra, Anand</td></tr>
+                                <tr><td>11</td><td class="date-cell"></td><td class="matchup-col">KKR vs SRH</td><td class="poll-type-col">KKR PP Wickets</td><td class="name-list">0 (Surya, Navneet), 1 (Bhagavan, Puneet, Basu, Yukteswar, Anand, Ranjit), 2 (Praveen), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>12</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (Ranjit, Yukteswar), 1 (Surya, Navneet, Bhagavan, Praveen, Anand, Puneet), 2 (Basu, Sumant), 3+ ()</td><td class="win-cell name-list">Surya, Navneet, Bhagavan, Praveen, Anand, Puneet</td></tr>
+                                <tr><td>13</td><td class="date-cell"></td><td class="matchup-col">CSK vs PBKS</td><td class="poll-type-col">PBKS PP Wickets</td><td class="name-list">0 (Surya), 1 (Ranjit, Puneet, Basu, Yukteswar, Anand, Sumant, Praveen), 2 (Mahendra, Navneet), 3+ ()</td><td class="win-cell name-list">Ranjit, Puneet, Basu, Yukteswar, Anand, Sumant, Praveen</td></tr>
+                                <tr><td>14</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">MI PP Wickets</td><td class="name-list">0 (Navneet), 1 (Ranjit, Praveen, Puneet), 2 (Surya, Sumant, Basu, Anand), 3+ ()</td><td class="win-cell name-list">Surya, Sumant, Basu, Anand</td></tr>
+                                <tr><td>15</td><td class="date-cell"></td><td class="matchup-col">DC vs MI</td><td class="poll-type-col">DC PP Wickets</td><td class="name-list">0 (Anand), 1 (Ranjit, Surya, Navneet, Basu), 2 (Sumant), 3+ (Puneet)</td><td class="win-cell name-list">Sumant</td></tr>
+                                <tr><td>16</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">RR PP Wickets</td><td class="name-list">0 (), 1 (Ranjit, Sumant, Navneet, Basu, Yukteswar, Anand), 2 (Surya, Puneet), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>17</td><td class="date-cell"></td><td class="matchup-col">GT vs RR</td><td class="poll-type-col">GT PP Wickets</td><td class="name-list">0 (), 1 (Surya, Bhagavan, Puneet, Yukteswar, Anand), 2 (Basu), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>18</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">SRH PP Wickets</td><td class="name-list">0 (Sumant), 1 (Basu, Praveen, Puneet, Yukteswar, Anand, Navneet, Ranjit), 2 (), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>19</td><td class="date-cell"></td><td class="matchup-col">SRH vs LSG</td><td class="poll-type-col">LSG PP Wickets</td><td class="name-list">0 (Anand, Ranjit), 1 (Surya, Praveen, Puneet, Yukteswar, Navneet, Mahendra), 2 (Basu, Sumant), 3+ ()</td><td class="win-cell name-list">Surya, Praveen, Puneet, Yukteswar, Navneet, Mahendra</td></tr>
+                                <tr><td>20</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Mahendra, Navneet, Basu, Praveen), 1 (Ranjit, Yukteswar, Anand), 2 (Sumant, Puneet), 3+ ()</td><td class="win-cell name-list">Ranjit, Yukteswar, Anand</td></tr>
+                                <tr><td>21</td><td class="date-cell"></td><td class="matchup-col">RCB vs CSK</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (Puneet, Yukteswar, Ranjit), 1 (Surya, Navneet, Anand), 2 (Basu, Praveen, Mahendra), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>22</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">Bumrah Total Wickets in Match 13</td><td class="name-list">0 (), 1 (Surya, Sumant, Anand, Ranjit), 2 (Mahendra, Puneet, Navneet), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>23</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">RR PP Wickets</td><td class="name-list">0 (Praveen), 1 (Surya, Basu, Anand, Sumant, Ranjit), 2 (Puneet, Navneet), 3+ ()</td><td class="win-cell name-list">Praveen</td></tr>
+                                <tr><td>24</td><td class="date-cell"></td><td class="matchup-col">RR vs MI</td><td class="poll-type-col">MI PP Wickets</td><td class="name-list">0 (Basu, Puneet), 1 (Surya, Navneet, Praveen, Mahendra, Ranjit), 2 (Sumant, Anand), 2+ ()</td><td>NA</td></tr>
+                                <tr><td>25</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">GT PP Wickets</td><td class="name-list">0 (Ranjit), 1 (Surya, Sumant, Puneet, Praveen, Basu, Navneet), 2 (Mahendra, Anand, Yukteswar), 3+ ()</td><td class="win-cell name-list">Surya, Sumant, Puneet, Praveen, Basu, Navneet</td></tr>
+                                <tr><td>26</td><td class="date-cell"></td><td class="matchup-col">DC vs GT</td><td class="poll-type-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Ranjit, Yukteswar, Sumant, Basu, Praveen, Puneet, Anand, Navneet), 2 (Surya), 3+ ()</td><td>-NA</td></tr>
+                                <tr><td>27</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">KKR PP Wickets</td><td class="name-list">0 (), 1 (Ranjit, Mahendra, Sumant, Basu, Praveen, Puneet, Anand, Navneet, Surya), 2 (Bhagavan), 3+ ()</td><td class="win-cell name-list">Ranjit, Mahendra, Sumant, Basu, Praveen, Puneet, Anand, Navneet, Surya</td></tr>
+                                <tr><td>28</td><td class="date-cell"></td><td class="matchup-col">KKR vs LSG</td><td class="poll-type-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Basu, Sumant, Puneet, Praveen), 2 (Anand, Navneet, Yukteswar), 3+ (Surya)</td><td class="win-cell name-list">Anand, Navneet, Yukteswar</td></tr>
+                                <tr><td>29</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Mahendra), 1 (Basu, Sumant, Puneet, Praveen, Navneet, Yukteswar, Ranjit), 2 (Surya), 3+ ()</td><td>NA</td></tr>
+                                <tr><td>30</td><td class="date-cell"></td><td class="matchup-col">RR vs RCB</td><td class="poll-type-col">RR PP Wickets</td><td class="name-list">0 (Surya), 1 (Ranjit, Navneet, Sumant, Puneet), 2 (Yukteswar, Basu, Praveen), 3+ ()</td><td class="win-cell name-list">Ranjit, Navneet, Sumant, Puneet</td></tr>
+                                <tr><td>31</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">SRH PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Navneet, Sumant, Puneet, Praveen, Ranjit, Yukteswar), 2 (Anand), 2+ ()</td><td class="win-cell name-list">Surya</td></tr>
+                                <tr><td>32</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">SRH Innings Wickets</td><td class="name-list">Less than 4 (), 4-5 (Surya), 6-7 (Sumant, Anand, Yukteswar, Navneet), 7+ (Ranjit, Basu, Puneet)</td><td class="win-cell name-list">Sumant, Anand, Yukteswar, Navneet</td></tr>
+                                <tr><td>33</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">PBKS PP Wickets</td><td class="name-list">0 (Ranjit, Anand, Praveen), 1 (Basu, Navneet, Sumant, Puneet), 2 (Mahendra), 2+ (Surya)</td><td class="win-cell name-list">Ranjit, Anand, Praveen</td></tr>
+                                <tr><td>34</td><td class="date-cell"></td><td class="matchup-col">PBKS vs SRH</td><td class="poll-type-col">PBKS Innings Wickets</td><td class="name-list">Less than 4 (), 4-5 (), 6-7 (Ranjit, Navneet, Basu, Puneet, Praveen, Mahendra, Anand), 7+ (Surya, Sumant)</td><td>NA</td></tr>
+                                <tr><td>35</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (Ranjit), 1 (Mahendra, Navneet, Basu, Praveen, Sumant, Puneet), 2 (Surya, Anand), 2+ ()</td><td class="win-cell name-list">Ranjit</td></tr>
+                                <tr><td>36</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">CSK Innings Wickets</td><td class="name-list">Less than 4 (), 4-5 (), 6-7 (Mahendra, Navneet, Anand, Sumant, Puneet), 7+ (Surya, Ranjit, Basu, Praveen)</td><td>NA</td></tr>
+                                <tr><td>37</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">DC PP Wickets</td><td class="name-list">0 (Surya), 1 (Basu, Navneet, Sumant, Puneet, Praveen, Anand, Mahendra, Ranjit), 2 (), 2+ ()</td><td>NA</td></tr>
+                                <tr><td>38</td><td class="date-cell"></td><td class="matchup-col">CSK vs DC</td><td class="poll-type-col">DC Innings Wickets</td><td class="name-list">Less than 4 (Surya), 4-5 (Anand, Puneet), 6-7 (Basu, Praveen, Sumant, Mahendra), 7+ (Ranjit, Navneet)</td><td class="win-cell name-list">Ranjit, Navneet</td></tr>
+                                <tr><td>39</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">LSG PP Wickets</td><td class="name-list">0 (Surya, Navneet), 1 (Ranjit, Basu, Puneet, Anand), 2 (Mahendra, Sumant, Praveen), 2+ ()</td><td class="win-cell name-list">Mahendra, Sumant, Praveen</td></tr>
+                                <tr><td>40</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">LSG Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Surya, Navneet, Puneet, Anand), 6-8 (Mahendra, Sumant, Praveen), 8+ (Basu, Ranjit)</td><td class="win-cell name-list">Mahendra, Sumant, Praveen</td></tr>
+                                <tr><td>41</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">GT PP Wickets</td><td class="name-list">0 (Navneet), 1 (Yukteswar, Sumant, Puneet, Praveen, Basu, Anand, Ranjit), 2 (), 2+ (Surya)</td><td class="win-cell name-list">Yukteswar, Sumant, Puneet, Praveen, Basu, Anand, Ranjit</td></tr>
+                                <tr><td>42</td><td class="date-cell"></td><td class="matchup-col">LSG vs GT</td><td class="poll-type-col">GT Innings Wickets</td><td class="name-list">0-1 (), 2-4 (Sumant, Navneet), 5-7 (Yukteswar, Puneet, Praveen, Basu, Anand, Ranjit), 7+ (Surya)</td><td class="win-cell name-list">Sumant, Navneet</td></tr>
+                                <tr><td>43</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Mahendra, Navneet, Sumant), 1 (Praveen, Basu, Yukteswar, Ranjit), 2 (Surya, Anand, Puneet), 2+ ()</td><td class="win-cell name-list">Mahendra, Navneet, Sumant</td></tr>
+                                <tr><td>44</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">RCB Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Mahendra, Yukteswar, Sumant, Navneet), 6-7 (Praveen, Puneet, Basu), 7+ (Surya, Ranjit, Anand)</td><td class="win-cell name-list">Mahendra, Yukteswar, Sumant, Navneet</td></tr>
+                                <tr><td>45</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">MI PP Wickets</td><td class="name-list">0 (Surya, Puneet), 1 (Ranjit, Sumant, Navneet, Yukteswar, Anand), 2 (Mahendra, Praveen), 2+ ()</td><td class="win-cell name-list">Surya, Puneet</td></tr>
+                                <tr><td>46</td><td class="date-cell"></td><td class="matchup-col">MI vs RCB</td><td class="poll-type-col">MI Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Surya, Yukteswar, Puneet), 6-7 (Ranjit, Sumant, Anand), 7+ (Navneet, Mahendra, Praveen)</td><td class="win-cell name-list">Surya, Yukteswar, Puneet</td></tr>
+                                <tr><td>47</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">SRH PP Wickets</td><td class="name-list">0 (Navneet), 1 (Surya, Sumant, Basu, Mahendra, Praveen, Puneet), 2 (Ranjit, Anand), 2+ ()</td><td class="win-cell name-list">Surya, Sumant, Basu, Mahendra, Praveen, Puneet</td></tr>
+                                <tr><td>48</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">SRH Innings Wickets</td><td class="name-list">0-4 (), 4-5 (Surya, Sumant), 6-7 (Basu, Mahendra, Puneet, Navneet, Anand), 7+ (Praveen, Ranjit)</td><td class="win-cell name-list">Basu, Mahendra, Puneet, Navneet, Anand</td></tr>
+                                <tr><td>49</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">RR PP Wickets</td><td class="name-list">0 (Ranjit, Navneet), 1 (Surya, Puneet, Basu, Yukteswar, Anand, Praveen, Mahendra), 2 (Sumant), 2+ ()</td><td>NA</td></tr>
+                                <tr><td>50</td><td class="date-cell"></td><td class="matchup-col">SRH vs RR</td><td class="poll-type-col">RR Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Surya, Navneet), 6-8 (Puneet, Anand, Yukteswar, Basu, Mahendra, Ranjit, Praveen, Sumant), 8+ ()</td><td>NA</td></tr>
+                                <tr><td>51</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (), 1 (Bhagavan, Basu, Mahendra, Praveen, Puneet, Navneet, Yukteswar), 2 (Sumant, Surya), 2+ ()</td><td class="win-cell name-list">Sumant, Surya</td></tr>
+                                <tr><td>52</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">CSK Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Bhagavan, Yukteswar, Puneet), 6-8 (Basu, Mahendra, Praveen, Navneet, Anand, Sumant), 8+ (Surya)</td><td class="win-cell name-list">Bhagavan, Yukteswar, Puneet</td></tr>
+                                <tr><td>53</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">KKR PP Wickets</td><td class="name-list">0 (Surya, Anand), 1 (Ranjit, Yukteswar, Sumant, Praveen, Mahendra), 2 (Bhagavan, Navneet, Puneet), 2+ ()</td><td class="win-cell name-list">Bhagavan, Navneet, Puneet</td></tr>
+                                <tr><td>54</td><td class="date-cell"></td><td class="matchup-col">CSK vs KKR</td><td class="poll-type-col">KKR Innings Wickets</td><td class="name-list">0-4 (), 4-5 (Surya, Sumant), 6-7 (Basu, Yukteswar, Mahendra, Praveen, Navneet, Anand), 7+ (Ranjit, Bhagavan, Puneet)</td><td class="win-cell name-list">Basu, Yukteswar, Mahendra, Praveen, Navneet, Anand</td></tr>
+                                <tr><td>55</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">LSG PP Wickets</td><td class="name-list">0 (), 1 (Puneet, Yukteswar, Basu, Ranjit, Anand, Bhagavan), 2 (Praveen, Navneet, Mahendra), 2+ ()</td><td class="win-cell name-list">Puneet, Yukteswar, Basu, Ranjit, Anand, Bhagavan</td></tr>
+                                <tr><td>56</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">LSG Innings Wickets</td><td class="name-list">0-4 (), 4-5 (Surya, Yukteswar), 6-7 (Bhagavan, Puneet, Navneet, Anand, Sumant), 7+ (Praveen, Ranjit, Basu, Mahendra)</td><td class="win-cell name-list">Praveen, Ranjit, Basu, Mahendra</td></tr>
+                                <tr><td>57</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Mahendra, Sumant, Ranjit), 1 (Anand, Yukteswar, Navneet, Praveen), 2 (Puneet), 2+ ()</td><td class="win-cell name-list">Anand, Yukteswar, Navneet, Praveen</td></tr>
+                                <tr><td>58</td><td class="date-cell"></td><td class="matchup-col">RCB vs LSG</td><td class="poll-type-col">RCB Innings Wickets</td><td class="name-list">0-3 (), 3-4 (Surya, Sumant, Mahendra, Navneet, Yukteswar, Praveen, Ranjit), 5-6 (Basu, Puneet, Anand), 6+ ()</td><td class="win-cell name-list">Basu, Puneet, Anand</td></tr>
+                                <tr><td>59</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">MI PP Wickets</td><td class="name-list">0 (Sumant, Ranjit, Puneet), 1 (Surya, Yukteswar, Basu, Mahendra, Anand, Praveen), 2 (Bhagavan, Navneet), 2+ ()</td><td class="win-cell name-list">Bhagavan, Navneet</td></tr>
+                                <tr><td>60</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">MI Innings Wickets</td><td class="name-list">0-3 (), 4-6 (Sumant, Bhagavan, Praveen, Puneet, Yukteswar), 6+ (Surya, Basu, Mahendra, Ranjit, Navneet, Anand)</td><td class="win-cell name-list">Sumant, Bhagavan, Praveen, Puneet, Yukteswar</td></tr>
+                                <tr><td>61</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">PBKS PP Wickets</td><td class="name-list">0 (Anand, Navneet), 1 (Mahendra, Yukteswar, Sumant), 2 (Surya, Puneet), 2+ ()</td><td class="win-cell name-list">Surya, Puneet</td></tr>
+                                <tr><td>62</td><td class="date-cell"></td><td class="matchup-col">MI vs PBKS</td><td class="poll-type-col">PBKS Innings Wickets</td><td class="name-list">0-2 (), 3-5 (Navneet, Yukteswar, Anand), 6-8 (Puneet), 8+ (Surya, Ranjit)</td><td class="win-cell name-list">Navneet, Yukteswar, Anand</td></tr>
+                                <tr><td>63</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">KKR PP Wickets</td><td class="name-list">0 (), 1 (Puneet, Yukteswar, Ranjit, Anand, Mahendra, Surya, Navneet), 2 (Bhagavan, Sumant, Praveen), 2+ ()</td><td>NA</td></tr>
+                                <tr><td>64</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">KKR Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Navneet, Yukteswar), 6-7 (Bhagavan, Puneet, Praveen, Anand, Sumant, Basu, Mahendra), 7+ (Ranjit)</td><td class="win-cell name-list">Ranjit</td></tr>
+                                <tr><td>65</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">GT PP Wickets</td><td class="name-list">0 (Mahendra, Sumant, Ranjit), 1 (Sumant, Navneet, Praveen), 2 (Puneet, Anand), 2+ ()</td><td class="win-cell name-list">Sumant, Navneet, Praveen</td></tr>
+                                <tr><td>66</td><td class="date-cell"></td><td class="matchup-col">GT vs KKR</td><td class="poll-type-col">GT Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Navneet), 6-7 (Bhagavan, Praveen, Anand), 7+ (Ranjit, puneet)</td><td class="win-cell name-list">Sumant, Navneet</td></tr>
+                                <tr><td>67</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Praveen, Sumant), 1 (Ranjit, Mahendra, Navneet), 2 (Bhagavan, Anand, Puneet, Surya), 2+ ()</td><td class="win-cell name-list">Ranjit, Mahendra, Navneet</td></tr>
+                                <tr><td>68</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">RCB Innings Wickets</td><td class="name-list">0-3 (), 4-7 (Navneet, Yukteswar, Bhagavan, Praveen, Sumant, Mahendra), 7+ (Surya, Puneet, Anand, Ranjit)</td><td class="win-cell name-list">Surya, Puneet, Anand, Ranjit</td></tr>
+                                <tr><td>69</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">DC PP Wickets</td><td class="name-list">0 (), 1 (Sumant, Ranjit, Puneet, Anand, Surya, Navneet), 2 (), 2+ ()</td><td>NA</td></tr>
+                                <tr><td>70</td><td class="date-cell"></td><td class="matchup-col">RCB vs DC</td><td class="poll-type-col">DC Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Surya, Puneet, Anand), 6-7 (Ranjit, Navneet), 7+ ()</td><td class="win-cell name-list">Sumant, Surya, Puneet, Anand</td></tr>
+                                <tr><td>71</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">SRH PP Wickets</td><td class="name-list">0 (), 1 (Yukteswar, Ranjit, Anand, Mahendra, Surya, Navneet, Basu, Praveen), 2 (Puneet), 2+ ()</td><td class="win-cell name-list">Puneet</td></tr>
+                                <tr><td>72</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">SRH Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Sumant, Surya), 6-7 (Yukteswar, Navneet, Praveen, Anand, Mahendra), 7+ (Ranjit, Basu, Puneet)</td><td class="win-cell name-list">Ranjit, Basu, Puneet</td></tr>
+                                <tr><td>73</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">CSK PP Wickets</td><td class="name-list">0 (Bhagavan, Ranjit), 1 (Sumant, Praveen, Puneet, Yukteswar, Navneet), 2 (Basu, Anand), 2+ (Surya)</td><td class="win-cell name-list">Surya</td></tr>
+                                <tr><td>74</td><td class="date-cell"></td><td class="matchup-col">SRH vs CSK</td><td class="poll-type-col">CSK Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Bhagavan, Navneet, Puneet, Yukteswar), 6-7 (Sumant, Anand), 7+ (Ranjit, Praveen, Basu, Surya)</td><td class="win-cell name-list">Ranjit, Praveen, Basu, Surya</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -548,8 +563,30 @@
             </div>
         </div>
     </div>
-
     <script>
+      const teamLogos = {
+    "RCB": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Royal_Challengers_Bengaluru_Logo.svg/250px-Royal_Challengers_Bengaluru_Logo.svg.png",
+    "SRH": "https://upload.wikimedia.org/wikipedia/en/thumb/5/51/Sunrisers_Hyderabad_Logo.svg/250px-Sunrisers_Hyderabad_Logo.svg.png",
+    "MI": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Mumbai_Indians_Logo.svg/250px-Mumbai_Indians_Logo.svg.png",
+    "KKR": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Kolkata_Knight_Riders_Logo.svg/250px-Kolkata_Knight_Riders_Logo.svg.png",
+    "RR": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/This_is_the_logo_for_Rajasthan_Royals%2C_a_cricket_team_playing_in_the_Indian_Premier_League_%28IPL%29.svg/250px-This_is_the_logo_for_Rajasthan_Royals%2C_a_cricket_team_playing_in_the_Indian_Premier_League_%28IPL%29.svg.png",
+    "CSK": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/250px-Chennai_Super_Kings_Logo.svg.png",
+    "PBKS": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Punjab_Kings_Logo.svg/250px-Punjab_Kings_Logo.svg.png",
+    "GT": "https://upload.wikimedia.org/wikipedia/en/thumb/0/09/Gujarat_Titans_Logo.svg/250px-Gujarat_Titans_Logo.svg.png",
+    "LSG": "https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Lucknow_Super_Giants_Logo.svg/250px-Lucknow_Super_Giants_Logo.svg.png",
+    "DC": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Delhi_Capitals.svg/250px-Delhi_Capitals.svg.png"
+};
+
+// Helper function to render logo + name
+const getTeamHTML = (teamStr) => {
+    return teamStr.split(' vs ').map(team => {
+        const logo = teamLogos[team.trim()];
+        return logo ? `
+            <div style="display:inline-flex; align-items:center; justify-content:center; margin:0 8px;" title="${team.trim()}">
+                <img src="${logo}" style="width:33px; height:33px; object-fit:contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));">
+            </div>` : team;
+    }).join('<span style="color:#bbb; font-weight:bold; font-size:0.8rem;">VS</span>');
+};
         const contestData = {
             rules: [
                 { icon: "🏆", text: "Each team qualified for playoffs will be awarded with <b>+5 points</b>." },
@@ -651,17 +688,14 @@
         function updateTimers() {
             const timerBox = document.getElementById('nextMatchTimers');
             const now = new Date();
-            
             // Filters schedule for matches that haven't started yet
             const upcoming = contestData.schedule
                 .filter(s => new Date(s.date) > now)
                 .slice(0, 1); 
-
             if (upcoming.length === 0) {
                 timerBox.innerHTML = "<p>All matches completed!</p>";
                 return;
             }
-
             let html = '';
             upcoming.forEach(match => {
                 const matchTime = new Date(match.date);
@@ -678,7 +712,6 @@
             });
             timerBox.innerHTML = html;
         }
-
         const statsHistory = {
             dates: ["Mar 28", "Mar 29", "Mar 30", "Mar 31", "Apr 01", "Apr 02"],
             members: contestData.leaderboard.map(m => ({
@@ -687,13 +720,11 @@
                 polls: [0, 2, 6, m.polls/2, m.polls-4, m.polls]
             }))
         };
-
         function showModal(id) { 
             document.getElementById(id).style.display = "block"; 
             if(id === 'statsModal') setTimeout(initStats, 100);
         }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
-        
         function openTab(evt, tabName) {
             let content = evt.currentTarget.closest('.modal-body').querySelectorAll('.tab-content');
             content.forEach(tc => tc.classList.remove('active'));
@@ -702,12 +733,11 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
-
         function initStats() {
             renderRace();
             renderGrids();
+            renderAchievements();
         }
-
         function renderRace() {
             const track = document.getElementById('raceTrack');
             track.innerHTML = '';
@@ -729,59 +759,210 @@
                 track.appendChild(lane);
             });
         }
-
         function renderGrids() {
             const sortedLB = [...contestData.leaderboard].sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
-            renderGrid('matchWinsGrid', sortedLB, 'wins');
-            renderGrid('pollPointsGrid', sortedLB, 'polls');
         }
+function getDynamicWinners() {
+    const categories = {
+        ppScore: {},
+        ppWicket: {},
+        ovScore: {},
+        ovWicket: {}, // This will now track "Innings Wickets"
+        ovBoundaries: {}
+    };
 
-        function renderGrid(containerId, sortedMembers, type) {
-            const grid = document.getElementById(containerId);
-            grid.innerHTML = '';
-            sortedMembers.forEach((m, idx) => {
-                const hist = statsHistory.members.find(sm => sm.name === m.name);
-                const points = hist ? hist[type] : [0,0,0,0,0,0];
-                const card = document.createElement('div');
-                card.className = 'mini-card';
-                card.innerHTML = `<h4><span>${m.name}</span> <span>${m[type]} pts</span></h4>
-                                  <div class="mini-chart-box"><canvas id="${containerId}${idx}"></canvas></div>`;
-                grid.appendChild(card);
-                new Chart(document.getElementById(`${containerId}${idx}`), {
-                    type: 'line',
-                    data: {
-                        labels: statsHistory.dates,
-                        datasets: [{ 
-                            data: points, borderColor: '#1a237e', borderWidth: 2, fill: true, backgroundColor: m.color + '66', pointRadius: 2
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { ticks: { display: false }, grid: { display: false } } } }
-                });
+    const countNames = (cell, targetObj) => {
+        if (!cell) return;
+        const names = cell.textContent.split(',').map(n => n.trim());
+        names.forEach(name => {
+            if (name && name !== "NA" && name !== "Match Cancelled" && name !== "-NA") {
+                targetObj[name] = (targetObj[name] || 0) + 1;
+            }
+        });
+    };
+
+    // Parse Scores Table
+    document.querySelectorAll('#scoresBody tr').forEach(row => {
+        const type = row.querySelector('.poll-type-col')?.textContent.toLowerCase() || "";
+        const winCell = row.querySelector('.win-cell');
+        if (!winCell) return;
+        
+        if (type.includes('pp score')) countNames(winCell, categories.ppScore);
+        else if (type.includes('overall score')) countNames(winCell, categories.ovScore);
+        else if (type.includes('boundaries')) countNames(winCell, categories.ovBoundaries);
+    });
+
+    // Parse Wickets Table
+    document.querySelectorAll('#wicketsBody tr').forEach(row => {
+        const type = row.querySelector('.poll-type-col')?.textContent.toLowerCase() || "";
+        const winCell = row.querySelector('.win-cell');
+        if (!winCell) return;
+
+        if (type.includes('pp wicket')) countNames(winCell, categories.ppWicket);
+        else if (type.includes('innings wicket')) countNames(winCell, categories.ovWicket); // Specific check for Innings Wickets
+    });
+
+    const getTop = (obj) => {
+        const entries = Object.entries(obj);
+        if (entries.length === 0) return "TBD";
+        return entries.sort((a, b) => b[1] - a[1])[0][0];
+    };
+
+    return {
+        ppScoreKing: getTop(categories.ppScore),
+        ppWicketKing: getTop(categories.ppWicket),
+        ovScoreKing: getTop(categories.ovScore),
+        ovWicketKing: getTop(categories.ovWicket),
+        ovBoundaryKing: getTop(categories.ovBoundaries)
+    };
+}
+function renderAchievements() {
+    const grid = document.getElementById('achievementsGrid');
+    const lb = contestData.leaderboard;
+    const dynamicData = getDynamicWinners(); 
+    
+    const matchKing = [...lb].sort((a, b) => b.wins - a.wins)[0];
+    const pollKing = [...lb].sort((a, b) => b.polls - a.polls)[0];
+
+    const awards = [
+        { title: "Match Predictor King", name: matchKing.name, icon: "👑", desc: "Most Match Win Pts" },
+        { title: "Other Polls King", name: pollKing.name, icon: "💎", desc: "Most Other Poll Pts" },
+        { title: "Powerplay Pro", name: dynamicData.ppScoreKing, icon: "⚡", desc: "Most PP Score Wins" },
+        { title: "Wicket Wizard", name: dynamicData.ppWicketKing, icon: "☝️", desc: "Most PP Wicket Wins" },
+        { title: "The Finisher", name: dynamicData.ovScoreKing, icon: "🏏", desc: "Most Overall Score Wins" },
+        { title: "Boundary Baron", name: dynamicData.ovBoundaryKing, icon: "↔️", desc: "Most Overall Boundary Wins" },
+        { title: "The Executioner", name: dynamicData.ovWicketKing, icon: "🎯", desc: "Most Innings Wickets Wins" }
+    ];
+
+    grid.innerHTML = awards.map(a => `
+        <div class="achievement-card">
+            <i>${a.icon}</i>
+            <span class="achievement-title">${a.title}</span>
+            <span class="achievement-name">${a.name}</span>
+            <small style="color:#666; font-size:0.65rem; margin-top:4px; font-weight:bold;">${a.desc}</small>
+        </div>
+    `).join('');
+}
+function getDailyTopPerformer() {
+    const dailyCounts = {};
+    const allWinCells = document.querySelectorAll('.win-cell.name-list');
+    
+    // 1. Get the most recent date from the tables
+    let dates = Array.from(document.querySelectorAll('.date-cell'))
+                    .map(td => td.textContent.trim())
+                    .filter(d => d !== "");
+    const lastDate = dates[dates.length - 1];
+
+    // 2. Count wins only for rows matching that date
+    document.querySelectorAll('tr').forEach(row => {
+        const dateCell = row.querySelector('.date-cell');
+        const winCell = row.querySelector('.win-cell');
+        
+        if (dateCell && dateCell.textContent.trim() === lastDate && winCell) {
+            const names = winCell.textContent.split(',').map(n => n.trim());
+            names.forEach(name => {
+                if (name && name !== "NA") {
+                    dailyCounts[name] = (dailyCounts[name] || 0) + 1;
+                }
             });
         }
+    });
 
+    // 3. Find the name with the highest count
+    const entries = Object.entries(dailyCounts);
+    if (entries.length === 0) return "TBD";
+    return entries.sort((a, b) => b[1] - a[1])[0][0];
+}
+function updateMainPageMVP() {
+    const dailyHero = getDailyTopPerformer();
+    const now = new Date();
+    const label = (now.getHours() >= 22) ? "🔥 Today's MVP" : "🔥 Yesterday's MVP";
+    
+    document.getElementById('mvpLabel').innerText = label;
+    document.getElementById('mvpName').innerText = dailyHero;
+}
         window.onload = function() {
             const rulesDiv = document.getElementById('rulesContent');
             contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4; text-align:left;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
-
             const lbBody = document.getElementById('leaderboardBody');
             contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls)).forEach(m => {
                 // Color Logic: Win-cell/Loss-cell only if points != 0
                 const winClass = m.wins > 0 ? 'win-cell' : (m.wins < 0 ? 'loss-cell' : '');
                 const pollClass = m.polls > 0 ? 'win-cell' : '';
-                
-                lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${winClass}">${m.wins}</td><td class="${pollClass}">${m.polls}</td></tr>`;
+                // lbBody.innerHTML += `<tr><td class="name-col">${m.name}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td>${m.t4}</td><td class="${winClass}">${m.wins}</td><td class="${pollClass}">${m.polls}</td></tr>`;
+                lbBody.innerHTML += `<tr>
+    <td class="name-col">${m.name}</td>
+    <td>${getTeamHTML(m.t1)}</td>
+    <td>${getTeamHTML(m.t2)}</td>
+    <td>${getTeamHTML(m.t3)}</td>
+    <td>${getTeamHTML(m.t4)}</td>
+    <td class="${winClass}">${m.wins}</td>
+    <td class="${pollClass}">${m.polls}</td>
+</tr>`;
             });
+// Helper function to get date from schedule
+        const getDateByMatchNo = (no) => {
+            const match = contestData.schedule.find(s => s.no === parseInt(no));
+            if (match) {
+                const dt = new Date(match.date);
+                return dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+            }
+            return "";
+        };
 
+// Updated Populate Dates Logic
+const syncPollDates = () => {
+            const tabs = ['matchWinsBody', 'scoresBody', 'wicketsBody'];
+
+            tabs.forEach(tabId => {
+                const rows = document.querySelectorAll(`#${tabId} tr`);
+                rows.forEach(row => {
+                    // 1. Get Matchup name. 
+                    // In Match Wins (col index 2), In Scores/Wickets (col index 2)
+                    const matchupText = row.cells[2] ? row.cells[2].textContent.trim() : null;
+                    const dateCell = row.querySelector('.date-cell');
+// Inside syncPollDates loop
+if (row.cells[2]) {
+    const matchupText = row.cells[2].textContent.trim();
+    if (matchupText.includes('vs')) {
+        row.cells[2].innerHTML = getTeamHTML(matchupText);
+    }
+}
+                    if (dateCell && matchupText) {
+                        // 2. Find the match in contestData.schedule by comparing names
+                        const matchInfo = contestData.schedule.find(s => 
+                            s.match.toLowerCase() === matchupText.toLowerCase()
+                        );
+
+                        if (matchInfo) {
+                            const dt = new Date(matchInfo.date);
+                            dateCell.textContent = dt.toLocaleDateString('en-IN', { 
+                                day: '2-digit', 
+                                month: 'short' 
+                            });
+                        }
+                    }
+                });
+            });
+};
+// Execute the sync
+        syncPollDates();
             const schedBody = document.getElementById('scheduleBody');
             contestData.schedule.forEach(s => {
                 const dt = new Date(s.date);
-                schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short'})}</td><td>${dt.toLocaleDateString('en-IN', {weekday:'short'})}</td><td class="matchup-col">${s.match}</td><td>${s.venue}</td></tr>`;
+                // schedBody.innerHTML += `<tr><td>${s.no}</td><td>${dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short'})}</td><td>${dt.toLocaleDateString('en-IN', {weekday:'short'})}</td><td class="matchup-col">${s.match}</td><td>${s.venue}</td></tr>`;
+                schedBody.innerHTML += `<tr>
+    <td>${s.no}</td>
+    <td>${dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short'})}</td>
+    <td>${dt.toLocaleDateString('en-IN', {weekday:'short'})}</td>
+    <td class="matchup-col">${getTeamHTML(s.match)}</td>
+    <td>${s.venue}</td>
+</tr>`;
             });
+            updateMainPageMVP();
             updateTimers();
             setInterval(updateTimers, 1000);
         }
-
         window.onclick = function(e) { if (e.target.className === 'modal') e.target.style.display = "none"; }
     </script>
 </body>
