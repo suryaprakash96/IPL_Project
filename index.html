@@ -270,11 +270,11 @@
 <div class="timer-container">
     <div id="nextMatchTimers" style="display: contents;"></div>
     
-    <div class="timer-card" id="mainPageMVP">
-        <h3 id="mvpLabel">🔥 Today's MVP</h3>
-        <div class="countdown" id="mvpName" style="color: var(--accent-red); font-weight: bold; font-family: 'Segoe UI'; text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);">Loading...</div>
-        <span class="match-label">Poll Wins Leader</span>
-    </div>
+<div class="timer-card" id="mainPageMVP">
+    <h3 id="mvpLabel">🔥 Loading MVP...</h3>
+    <div class="countdown" id="mvpName" style="color: var(--accent-red); font-weight: bold; font-family: 'Segoe UI'; text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);">...</div>
+    <span class="match-label">Poll Wins Leader</span>
+</div>
 </div>
     <div class="nav-container">
         <button class="nav-button" onclick="showModal('rulesModal')">📜 Contest Rules</button>
@@ -1063,9 +1063,23 @@ function getDailyTopPerformer() {
 }
 function updateMainPageMVP() {
     const dailyHero = getDailyTopPerformer();
-    const now = new Date();
-    const label = (now.getHours() >= 24) ? "🔥 Today's MVP" : "🔥 Yesterday's MVP";
     
+    // 1. Get the most recent match date from the schedule that has results
+    let dates = Array.from(document.querySelectorAll('.date-cell'))
+                    .map(td => td.textContent.trim())
+                    .filter(d => d !== "");
+    const lastMatchDateStr = dates[dates.length - 1]; // e.g., "25 Apr"
+
+    // 2. Get today's date in the same format
+    const now = new Date();
+    const todayStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+
+    // 3. Dynamic Label Logic
+    let label = "🔥 Yesterday's MVP";
+    if (lastMatchDateStr === todayStr) {
+        label = "🔥 Today's MVP";
+    }
+
     document.getElementById('mvpLabel').innerText = label;
     document.getElementById('mvpName').innerText = dailyHero;
 }
