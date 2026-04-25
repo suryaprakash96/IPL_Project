@@ -665,6 +665,10 @@
                                 <tr><td>97</td><td class="date-cell"></td><td class="matchup-col">MI vs CSK</td><td class="poll-type-col">MI Bumrah Wickets</td><td class="name-list">0 (Navneet), 1 (Yukteswar, Praveen, Bhagavan), 2 (Anand, Surya, Basu, Mahendra, Puneet), 2+ ()</td><td class="win-cell name-list">Yukteswar, Praveen, Bhagavan</td></tr>
                                 <tr><td>98</td><td class="date-cell"></td><td class="matchup-col">MI vs CSK</td><td class="poll-type-col">MI PP Wickets</td><td class="name-list">0 (Surya), 1 (Anand, Yukteswar, Sumant, Puneet, Praveen, Basu), 2 (Bhagavan, Mahendra), 2+ ()</td><td>NA</td></tr>
                                 <tr><td>99</td><td class="date-cell"></td><td class="matchup-col">MI vs CSK</td><td class="poll-type-col">MI Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Praveen, Puneet, Surya), 6-7 (Anand, Sumant, Mahendra, Yukteswar), 7+ (Bhagavan, Basu)</td><td class="win-cell name-list">Bhagavan, Basu</td></tr>
+                                <tr><td>100</td><td class="date-cell"></td><td class="matchup-col">RCB vs GT</td><td class="poll-type-col">GT PP Wickets</td><td class="name-list">0 (Ranjit), 1 (Navneet, Basu, Puneet, Anand), 2 (Sumant, Praveen, Yukteswar, Bhagavan), 2+ (Surya)</td><td class="win-cell name-list">Ranjit</td></tr>
+                                <tr><td>101</td><td class="date-cell"></td><td class="matchup-col">RCB vs GT</td><td class="poll-type-col">GT Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Navneet, Punnet, Anand, Yukteswar, Bhagavan), 6-7 (), 7+ (Basu, Praveen, Surya, Ranjit)</td><td>NA</td></tr>
+                                <tr><td>102</td><td class="date-cell"></td><td class="matchup-col">RCB vs GT</td><td class="poll-type-col">RCB PP Wickets</td><td class="name-list">0 (Surya, Navneet, Mahendra), 1 (Yukteswar, Sumant, Puneet, Praveen, Basu), 2 (Anand), 2+ ()</td><td class="win-cell name-list">Yukteswar, Sumant, Puneet, Praveen, Basu</td></tr>
+                                <tr><td>103</td><td class="date-cell"></td><td class="matchup-col">RCB vs GT</td><td class="poll-type-col">RCB Innings Wickets</td><td class="name-list">0-3 (), 4-5 (Surya, Navneet, Basu, Mahendra, Praveen), 6-7 (Anand, Sumant, Puneet, Yukteswar), 7+ ()</td><td class="win-cell name-list">Surya, Navneet, Basu, Mahendra, Praveen</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -746,16 +750,16 @@ const getTeamHTML = (teamStr) => {
                 { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
-                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PBKS", wins: 35, polls: 136, color: "#90caf9"},
-                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PBKS", wins: 21, polls: 126, color: "#a5d6a7"},
-                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 14, polls: 84, color: "#e1bee7"},
-                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 9, polls: 122, color: "#ffccbc"},
-                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PBKS", t4: "SRH", wins: 29, polls: 146, color: "#d7ccc8"},
-                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GT", t4: "RCB", wins: 21, polls: 158, color: "#cfd8dc"},
+                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PBKS", wins: 35, polls: 140, color: "#90caf9"},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PBKS", wins: 21, polls: 130, color: "#a5d6a7"},
+                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 14, polls: 86, color: "#e1bee7"},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 9, polls: 124, color: "#ffccbc"},
+                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PBKS", t4: "SRH", wins: 29, polls: 148, color: "#d7ccc8"},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GT", t4: "RCB", wins: 21, polls: 160, color: "#cfd8dc"},
                 {name: "Anand", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 24, polls: 158, color: "#ef9a9a"},
-                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 5, polls: 142, color: "#f48fb1"},
-                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 14, polls: 150, color: "#fff59d"},
-                {name: "Yuktheswar", t1: "CSK", t2: "PBKS", t3: "MI", t4: "DC", wins: 25, polls: 118, color: "#80deea"},
+                {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 5, polls: 144, color: "#f48fb1"},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 14, polls: 152, color: "#fff59d"},
+                {name: "Yuktheswar", t1: "CSK", t2: "PBKS", t3: "MI", t4: "DC", wins: 25, polls: 120, color: "#80deea"},
                 {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PBKS", wins: 10, polls: 54, color: "#c5e1a5"},
                 {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PBKS", t4: "CSK", wins: -6, polls: 6, color: "#ffe082"}
             ],
