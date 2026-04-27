@@ -396,6 +396,7 @@
                                 <tr><td>36</td><td class="date-cell"></td><td class="matchup-col">RR vs SRH</td><td class="name-list">Surya, Puneet, Yukteswar, Basu, Anand</td><td class="name-list">Praveen, Navneet, Sumant</td><td class="win-cell name-list">Praveen, Navneet, Sumant</td></tr>
                                 <tr><td>37</td><td class="date-cell"></td><td class="matchup-col">GT vs CSK</td><td class="name-list">Surya, Praveen, Sumant, Puneet</td><td class="name-list">Anand, Mahendra, Basu, Bhagavan, Yukteswar</td><td class="win-cell name-list">Surya, Praveen, Sumant, Puneet</td></tr>
                                 <tr><td>38</td><td class="date-cell"></td><td class="matchup-col">LSG vs KKR</td><td class="name-list">Sumant, Puneet, Mahendra, Praveen</td><td class="name-list">Surya, Basu</td><td class="win-cell name-list">Surya, Basu</td></tr>
+                                <tr><td>39</td><td class="date-cell"></td><td class="matchup-col">DC vs RCB</td><td class="name-list">Surya</td><td class="name-list">Navneet, Basu, Anand, Puneet, Sumant, Praveen, Mahendra</td><td class="win-cell name-list">Navneet, Basu, Anand, Puneet, Sumant, Praveen, Mahendra</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -581,6 +582,11 @@
                                 <tr><td>174</td><td class="date-cell"></td><td class="matchup-col">LSG vs KKR</td><td class="poll-type-col">KKR Overall Score</td><td class="name-list">Less than 175 (), 175-189 (Puneet), 190-203 (Yukteswar, Mahendra, Anand, Sumant), 203+ (Surya, Basu)</td><td>NA</td></tr>
                                 <tr><td>175</td><td class="date-cell"></td><td class="matchup-col">LSG vs KKR</td><td class="poll-type-col">LSG PP Score</td><td class="name-list">Less than 50 (Surya), 50-59 (Yukteswar, Puneet, Anand), 60-69 (Praveen), 69+ ()</td><td class="win-cell name-list">Surya</td></tr>
                                 <tr><td>176</td><td class="date-cell"></td><td class="matchup-col">LSG vs KKR</td><td class="poll-type-col">LSG Overall Boundaries</td><td class="name-list">Less than 18 (Surya), 18-22 (Puneet), 23-28 (Anand, Praveen, Yukteswar), 28+ ()</td><td class="win-cell name-list">Puneet</td></tr>
+                                <tr><td>177</td><td class="date-cell"></td><td class="matchup-col">DC vs RCB</td><td class="poll-type-col">DC PP Score</td><td class="name-list">Less than 51 (), 51-57 (Sumant, Navneet, Praveen, Mahendra, Yukteswar), 58-64 (Basu, Puneet, Anand), 64+ ()</td><td>NA</td></tr>
+                                <tr><td>178</td><td class="date-cell"></td><td class="matchup-col">DC vs RCB</td><td class="poll-type-col">DC Overall Boundaries</td><td class="name-list">Less than 19 (), 19-24 (Navneet), 25-29 (Yukteswar, Sumant, Puneet, Basu, Mahendra, Praveen), 29+ (Surya)</td><td>NA</td></tr>
+                                <tr><td>179</td><td class="date-cell"></td><td class="matchup-col">DC vs RCB</td><td class="poll-type-col">DC Overall Score</td><td class="name-list">Less than 185 (), 185-195 (Navneet, Praveen, Mahendra), 196-206 (Yukteswar, Basu, Sumant), 206+ (Surya, Puneet, Anand)</td><td>NA</td></tr>
+                                <tr><td>180</td><td class="date-cell"></td><td class="matchup-col">DC vs RCB</td><td class="poll-type-col">RCB PP Score</td><td class="name-list">Less than 55 (Yukteswar, Anand), 56-59 (Mahendra, Basu), 60-64 (Navneet, Puneet, Praveen), 64+ ()</td><td>NA</td></tr>
+                                <tr><td>181</td><td class="date-cell"></td><td class="matchup-col">DC vs RCB</td><td class="poll-type-col">RCB Overall Boundaries</td><td class="name-list">5-7 (), 8-10 (), 11-13 (Anand, Basu, Navneet, Puneet), 13+ (Yukteswar, Praveen)</td><td class="win-cell name-list">Anand, Basu, Navneet, Puneet</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -790,15 +796,15 @@ const getTeamHTML = (teamStr) => {
                 { icon: "⚡", text: "Tie/Super Over: New poll will be announced; <b>Fastest Fingers First</b> applies." }
             ],
             leaderboard: [
-                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PBKS", wins: 40, polls: 82, color: "#90caf9"},
-                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PBKS", wins: 23, polls: 67, color: "#a5d6a7"},
-                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 11, polls: 51, color: "#e1bee7"},
-                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 11, polls: 75, color: "#ffccbc"},
-                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PBKS", t4: "SRH", wins: 34, polls: 87, color: "#d7ccc8"},
-                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GT", t4: "RCB", wins: 25, polls: 80, color: "#cfd8dc"},
-                {name: "Anand", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 24, polls: 90, color: "#ef9a9a"},
+                {name: "Praveen", t1: "RCB", t2: "MI", t3: "SRH", t4: "PBKS", wins: 42, polls: 82, color: "#90caf9"},
+                {name: "Basu", t1: "RCB", t2: "MI", t3: "KKR", t4: "PBKS", wins: 25, polls: 68, color: "#a5d6a7"},
+                {name: "Mahendra", t1: "RCB", t2: "CSK", t3: "MI", t4: "SRH", wins: 13, polls: 51, color: "#e1bee7"},
+                {name: "Surya", t1: "KKR", t2: "RR", t3: "SRH", t4: "RCB", wins: 10, polls: 75, color: "#ffccbc"},
+                {name: "Sumant", t1: "MI", t2: "RCB", t3: "PBKS", t4: "SRH", wins: 36, polls: 87, color: "#d7ccc8"},
+                {name: "Navneet", t1: "MI", t2: "KKR", t3: "GT", t4: "RCB", wins: 27, polls: 81, color: "#cfd8dc"},
+                {name: "Anand", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 26, polls: 91, color: "#ef9a9a"},
                 {name: "Ranjit", t1: "MI", t2: "RCB", t3: "CSK", t4: "KKR", wins: 5, polls: 72, color: "#f48fb1"},
-                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 16, polls: 87, color: "#fff59d"},
+                {name: "Puneet", t1: "MI", t2: "RCB", t3: "PBKS", t4: "DC", wins: 18, polls: 88, color: "#fff59d"},
                 {name: "Yukteswar", t1: "CSK", t2: "PBKS", t3: "MI", t4: "DC", wins: 25, polls: 67, color: "#80deea"},
                 {name: "Bhagavan", t1: "CSK", t2: "RCB", t3: "SRH", t4: "PBKS", wins: 9, polls: 33, color: "#c5e1a5"},
                 {name: "Narasimha", t1: "MI", t2: "LSG", t3: "PBKS", t4: "CSK", wins: -6, polls: 3, color: "#ffe082"}
