@@ -318,8 +318,8 @@
                 <div class="table-wrapper">
                     <table>
                         <thead>
-                            <tr><th rowspan="2">MEMBER</th><th colspan="4">PLAYOFFS PREDICTIONS</th><th colspan="3">POINTS</th></tr>
-                            <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>PLAYOFFS</th><th>MATCH WINS POLL</th><th>OTHER POLLS</th></tr>
+                            <tr><th rowspan="2">MEMBER</th><th colspan="4">PLAYOFFS PREDICTIONS</th><th colspan="2">POINTS</th></tr>
+                            <tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>MATCH WINS POLL</th><th>OTHER POLLS</th></tr>
                         </thead>
                         <tbody id="leaderboardBody"></tbody>
                     </table>
@@ -980,7 +980,7 @@
 function getMatchStreaks() {
     // Get all members from leaderboard (preserves leaderboard order)
     const members = [...contestData.leaderboard]
-        .sort((a,b) => (b.playoffs + b.wins + b.polls) - (a.playoffs + a.wins + a.polls))
+        .sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls))
         .map(m => m.name);
         
     const streaks = {};
@@ -1181,8 +1181,8 @@ html += `
         function renderRace() {
             const track = document.getElementById('raceTrack');
             track.innerHTML = '';
-            const sorted = [...contestData.leaderboard].sort((a,b) => (b.playoffs + b.wins + b.polls) - (a.playoffs + a.wins + a.polls));
-            const maxPoints = Math.max(...sorted.map(m => m.playoffs + m.wins + m.polls)) + 5;
+            const sorted = [...contestData.leaderboard].sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
+            const maxPoints = Math.max(...sorted.map(m => m.wins + m.polls)) + 5;
 
             sorted.forEach(m => {
                 const total = m.wins + m.polls;
@@ -1200,7 +1200,7 @@ html += `
             });
         }
         function renderGrids() {
-            const sortedLB = [...contestData.leaderboard].sort((a,b) => (b.playoffs + b.wins + b.polls) - (a.playoffs + a.wins + a.polls));
+            const sortedLB = [...contestData.leaderboard].sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
         }
 function getDynamicWinners() {
     const categories = {
@@ -1258,7 +1258,7 @@ function getDynamicWinners() {
 }
 function renderAchievements() {
     const grid = document.getElementById('achievementsGrid');
-    const lb = [...contestData.leaderboard].sort((a,b) => (b.playoffs + b.wins + b.polls) - (b.playoffs + a.wins + a.polls));
+    const lb = [...contestData.leaderboard].sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls));
     const dynamicData = getDynamicWinners(); 
     const streaks = getMatchStreaks();
     
@@ -1364,7 +1364,7 @@ function updateMainPageMVP() {
             const rulesDiv = document.getElementById('rulesContent');
             contestData.rules.forEach(r => { rulesDiv.innerHTML += `<div style="display:flex; gap:15px; margin-bottom:18px; line-height:1.4; text-align:left;"><span style="font-size:1.5rem">${r.icon}</span><span>${r.text}</span></div>`; });
             const lbBody = document.getElementById('leaderboardBody');
-            contestData.leaderboard.sort((a,b) => (b.playoffs + b.wins + b.polls) - (a.playoffs + a.wins + a.polls)).forEach(m => {
+            contestData.leaderboard.sort((a,b) => (b.wins + b.polls) - (a.wins + a.polls)).forEach(m => {
                 // Color Logic: Win-cell/Loss-cell only if points != 0
                 const winClass = m.wins > 0 ? 'win-cell' : (m.wins < 0 ? 'loss-cell' : '');
                 const pollClass = m.polls > 0 ? 'win-cell' : '';
